@@ -1,0 +1,35 @@
+.hero-banner{
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     align-items: flex-end;
+     align-content: flex-end;
+     height: 100vh;
+     position: relative;
+}
+.hero-banner .hero-banner-bg{
+     width: 100%;
+     height: 100%;
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     position: absolute;
+     top: 0;
+     left: 0;
+}
+.hero-banner .hero-banner-in{
+     padding-bottom: 3.90625vw;
+     position: relative;
+     z-index: 1;
+}
+.hero-banner .hero-banner-in .hero-banner-content{
+     width: 100%;
+     max-width: 37.5vw;
+     display: block;
+}
+.hero-banner .hero-banner-in .hero-banner-content h1{
+     color: #ffffff;     
+}
+.hero-banner .hero-banner-in .hero-banner-content .button-wrap{
+     margin-top: 5.5vw;
+}
