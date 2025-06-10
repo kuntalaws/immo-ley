@@ -5,8 +5,8 @@ add_action('acf/init',function(){
 		add_action('block_categories',function($categories) {
 			$return = array(
 						array(
-							'slug'  => 'mattresstheme',
-							'title' => __('Recovery Friendly Workplace','mattress')
+							'slug'  => 'immoley',
+							'title' => __('Immo Ley','immoley')
 						)
 					  );
 			$return = array_merge($return,$categories);
@@ -21,12 +21,12 @@ add_action('acf/init',function(){
 			'name'				=> 'hero',
 			'title'				=> __('Hero'),
 			'description'		=> __('A Hero Banner Block for All of Your Pages.'),
-			'render_callback'	=> 'mattress_block_render',
-			'category'			=> 'mattresstheme',
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
 			'icon'				=> 'align-pull-right',
 			'keywords'			=> array(
 									'hero',
-									'mattress' 
+									'immoley' 
 								   ),
 			'example'  => array(
 	            'attributes' => array(
@@ -38,10 +38,33 @@ add_action('acf/init',function(){
 	        )
 		));			
 
+		// ######## Register Text Section Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'text-section',
+			'title'				=> __('Text Section'),
+			'description'		=> __('A Text Section Banner Block for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'text section',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));		
+
 		// ######## End of Registration of All Custom Content Block ########
 
 		
-		function mattress_block_render( $block ) {
+		function immoley_block_render( $block ) {
 			global $contentRowsInPage,$curContIndex;
 			
 			$curContIndex++;
@@ -80,25 +103,25 @@ add_action('acf/init',function(){
 					in_array(get_post_type($_GET['post']),array('page','post','block_templates'))
 				)
 			){
-				if(file_exists(get_template_directory().'/css/mattress-global-admin.css')){
+				if(file_exists(get_template_directory().'/css/immoley-global-admin.css')){
 					wp_register_style(
-						'mattress-global',
-						get_bloginfo('stylesheet_directory').'/css/mattress-global-admin.css',
+						'immoley-global',
+						get_bloginfo('stylesheet_directory').'/css/immoley-global-admin.css',
 						false, 
-						filemtime(get_template_directory().'/css/mattress-global-admin.css'), 
+						filemtime(get_template_directory().'/css/immoley-global-admin.css'), 
 						'all' 
 					);
-					wp_enqueue_style('mattress-global');
+					wp_enqueue_style('immoley-global');
 				}
 				/*if(file_exists(get_template_directory().'/js/swiper.js')){
 					wp_register_script(
-						'mattress-swiper-admin',
+						'immoley-swiper-admin',
 						get_bloginfo('stylesheet_directory').'/js/swiper.js',
 						array(), 
 						filemtime(get_template_directory().'/js/swiper.js'),
 						true
 					);
-					wp_enqueue_script( 'mattress-swiper-admin' );
+					wp_enqueue_script( 'immoley-swiper-admin' );
 				}*/
 		    }
 		});
