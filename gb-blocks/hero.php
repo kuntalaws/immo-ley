@@ -2,16 +2,14 @@
 // Exit if this file is directly accessed
 if ( ! defined( 'ABSPATH' ) ) exit;
 global $contentRowsInPage,$curContIndex,$sectionID;
-$displayOption = trim(get_field('display_option'));
 $heading = trim(get_field('heading'));
-$overview = trim(get_field('overview'));
 $image = intval(get_field('pimage'));
 // $imageTab = swcGetImage($image,768,NULL,true,true);
 $imageMob = swcGetImage($image,1024,NULL,true,true);
 $image = swcGetImage($image,1920,1080,true,true);
 $button = get_field('button');
 $button = swcGetLink($button);
-$video = get_field('video');
+/*$video = get_field('video');
 $video = swcGetURLfromIframe($video);
 if($vmoVideoID = getVimeoId($video)){
     $video = array(
@@ -27,12 +25,9 @@ if($vmoVideoID = getVimeoId($video)){
             );
 }else{
     $video = false;
-}
+}*/
 if(empty($heading) && is_admin()){
 	$heading = "Heading goes here..";
-}
-if(empty($overview) && is_admin()){
-	$overview = "Overview goes here..";
 }
 if(!$button && is_admin()){
 	$button = array('link'=>'#','target'=>'','label'=>'Button Label');
@@ -50,20 +45,27 @@ if(!$image && is_admin()) {
 						'src' => 'src'
 					)
 	);
-	$imageTab = $imageMob = $image;
 }
-// if(!empty($heading) || !empty($overview) || !empty($image) || !empty($video) || !empty($button)){?>
+if(!empty($heading) || !empty($image) || !empty($button)){?>
 <!--Container Start Here-->
 <div class="container">
 	<!--Hero Banner Start-->
 	<section class="hero-banner">
-		<div class="hero-banner-bg" style="background-image: url(https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/hero-banner-bg.jpg);"></div>
+		<?php if(!empty($image)){?>
+			<div class="hero-banner-bg" style="background-image: url(<?php echo $image['url'];?>);"></div>
+		<?php }?>
 		<div class="hero-banner-in fw flex">
 			<div class="hero-banner-content">
-				<h1>Sterke panden, sterke service.</h1>
-				<div class="button-wrap">
-					<a href="#" class="btn"><span>GRATIS WAARDEBEPALING</span></a>
-				</div>
+				<?php if(!empty($heading)){
+					$htag = get_field('htag');
+					$htag = swcGetHeadingTag($htag,'h1');?>
+					<<?php echo $htag;?>><?php echo $heading;?></<?php echo $htag;?>>
+				<?php }
+				if(!empty($button)){?>
+					<div class="button-wrap">
+						<a href="<?php echo $button['link'];?>"<?php echo $button['target'];?> class="btn"><span><?php echo $button['label'];?></span></a>
+					</div>
+				<?php }?>
 			</div>
 		</div>
 	</section>
@@ -85,4 +87,4 @@ if(!$image && is_admin()) {
 		}      
 	}
 	$contentRowsInPage['hero'] = intval($contentRowsInPage['hero'])+1;
-// }
+}
