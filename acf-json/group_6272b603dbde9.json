@@ -1,0 +1,50 @@
+{
+    "key": "group_6272b603dbde9",
+    "title": "Clone Field &mdash; Section ID",
+    "fields": [
+        {
+            "key": "field_6272b603e118f",
+            "label": "Section Identifier",
+            "name": "section_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "You can override the HTML Node ID for this Content Row through this Field. Please Use an Unique Value with No Spaces.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Like : unique-id-for-this-section",
+            "prepend": "#",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            },
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1749549241
+}

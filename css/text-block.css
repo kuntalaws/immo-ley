@@ -1,14 +1,14 @@
-.text-section .text-section-in p {
-    font-size: 2.6vw;
-    line-height: 4.16vw;
-    color: #3d1a25;
-    font-weight: 300;
-    font-family: "Larken";
-    width: 70vw;
-    max-width: 100%;
-  }
-  .text-section .text-section-in {
-    padding-top: 165px;
-    padding-bottom: 93px;
-  }
+
+.text-section .text-section-in {
+  padding-top: 6.25vw;
+  padding-bottom: 93px;
+}
+.text-section .text-section-in h3 {
+  font-size: 1.953125vw;
+  line-height: 3.125vw;
+  color: #3d1a25;
+  font-weight: 300;
+  font-family: "larken", sans-serif;
+  display: block;
+}
   
