@@ -67,11 +67,17 @@ h1 {
 }
 
 h2 {
+  font-size: 3.125vw;
+  line-height: 3.125vw;
   font-family: "larken", sans-serif;
+  font-weight: 300;
 }
 
 h3 {
+  font-size: 2.34375vw;
+  line-height: 2.5vw;
   font-family: "larken", sans-serif;
+  font-weight: 300;
 }
 
 h4 {
@@ -86,11 +92,11 @@ a {
   text-decoration: none;
   outline: none;
   color: #3d1a25;
-  -webkit-transition: all 0.35s ease-in-out 0s;
-  -moz-transition: all 0.35s ease-in-out 0s;
-  -ms-transition: all 0.35s ease-in-out 0s;
-  -o-transition: all 0.35s ease-in-out 0s;
-  transition: all 0.35s ease-in-out 0s;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
 }
 
 img {
@@ -174,7 +180,7 @@ button{
   height: 3.90625vw;
   cursor: pointer;
   font-family: "Be Vietnam Pro", sans-serif;
-  transition: all 0.35s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
 }
 .button-wrap .btn span, 
 .button-wrap button span{
@@ -187,6 +193,7 @@ button{
   letter-spacing: 2px;
   color: #ffffff;
   font-family: "Be Vietnam Pro", sans-serif;
+  transition: all 0.5s ease-in-out 0s;
 }
 .button-wrap .btn::before, 
 .button-wrap button::before{
@@ -198,19 +205,23 @@ button{
   height: 100%;
   background-color: #b0d4d5;
   display: block;
-  transition: all 0.35s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
 }
 .button-wrap .btn:hover, 
 .button-wrap button:hover{
-  background-color: #3d1a25;
+  background-color: #f9f3ec;
   /* padding-bottom: 0;
   padding-left: 0; */
 }
 .button-wrap .btn:hover::before, 
 .button-wrap button:hover::before{
-  background-color: #3d1a25;
+  background-color: #f9f3ec;
   /* left: 0;
   bottom: 0; */
+}
+.button-wrap .btn:hover span, 
+.button-wrap button:hover span{
+  color: #3d1a25;
 }
 
 
@@ -238,7 +249,7 @@ header.header{
   left: 0;
   z-index: 1111;
   background-color: transparent;
-  transition: all 0.35s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
 }
 header.header .header-in{
   width: 100%;
@@ -249,7 +260,7 @@ header.header .header-in{
 header.header .header-in .logo{
   width: 10.5078125vw;
   display: block;
-  transition: all 0.35s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
 }
 header.header.sticky{
   background-color: rgba(255,255,255,0.9);
@@ -298,7 +309,7 @@ header.header .header-in .header-nav-wrap .nav .mainmenu > li > a{
   display: block;
   text-decoration: none;
   font-family: "Be Vietnam Pro", sans-serif;
-  transition: all 0.35s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
   position: relative;
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li > a::before{
@@ -310,7 +321,7 @@ header.header .header-in .header-nav-wrap .nav .mainmenu > li > a::before{
   height: 2px;
   background-color: #3d1a25;
   display: block;
-  transition: all 0.35s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li:hover > a::before{
   width: 100%;

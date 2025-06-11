@@ -43,7 +43,7 @@ add_action('acf/init',function(){
 		acf_register_block(array(
 			'name'				=> 'text-section',
 			'title'				=> __('Text Section'),
-			'description'		=> __('A Text Section Banner Block for All of Your Pages.'),
+			'description'		=> __('A Text Section Block for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
 			'icon'				=> 'align-pull-right',
@@ -60,6 +60,30 @@ add_action('acf/init',function(){
 	            )
 	        )
 		));		
+
+
+		// ######## Register Filter With Grid Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'filter-with-grid',
+			'title'				=> __('Filter With Grid'),
+			'description'		=> __('A Filter With Grid Block for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'filter grid',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));	
 
 		// ######## End of Registration of All Custom Content Block ########
 

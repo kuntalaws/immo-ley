@@ -27,7 +27,8 @@ if( function_exists('acf_add_options_page') ) {
 add_filter( 'allowed_block_types',function($allowed){
     return array(
         'acf/hero',
-        'acf/text-section'
+        'acf/text-section',
+	   'acf/filter-with-grid',
     );
 });
 
