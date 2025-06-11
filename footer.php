@@ -27,6 +27,7 @@ $footerlegalmenu = wp_nav_menu(
 );
 ?>
     </div>
+    <!--Container End Here-->
     <!--Footer Start Here-->
     <footer class="footer">
         <div class="footer-in fw">
