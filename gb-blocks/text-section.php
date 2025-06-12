@@ -8,13 +8,11 @@ if(empty($content) && is_admin()){
 }
 if(!empty($content)){?>
 <!--Text Section Start Here-->
-<div class="container">
-	<section class="text-section">
-		<div class="text-section-in fw">
-			<p><?php echo $content;?></p>
-		</div>
-	</section>
-</div>
+<section class="text-section">
+	<div class="text-section-in fw">
+		<h3><?php echo $content;?></h3>
+	</div>
+</section>
 <!--Text Section End Here-->
 
 <?php
@@ -23,12 +21,7 @@ if(!empty($content)){?>
 			echo '<style>';
 		include(get_template_directory().'/css/text-section.css');
 		echo '</style>';
-		}
-		if(file_exists(get_template_directory().'/css/text-section-1025.css')){
-		echo '<style media="(min-width: 1025px)">';
-		include(get_template_directory().'/css/text-section-1025.css');
-		echo '</style>';
-		}      
+		}    
 	}
 	$contentRowsInPage['text-section'] = intval($contentRowsInPage['text-section'])+1;
 }

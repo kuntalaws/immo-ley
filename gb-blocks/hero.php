@@ -2,6 +2,7 @@
 // Exit if this file is directly accessed
 if ( ! defined( 'ABSPATH' ) ) exit;
 global $contentRowsInPage,$curContIndex,$sectionID;
+$displayOption = trim(get_field('display_option'));
 $heading = trim(get_field('heading'));
 $image = intval(get_field('pimage'));
 // $imageTab = swcGetImage($image,768,NULL,true,true);
@@ -47,8 +48,6 @@ if(!$image && is_admin()) {
 	);
 }
 if(!empty($heading) || !empty($image) || !empty($button)){?>
-<!--Container Start Here-->
-<div class="container">
 	<!--Hero Banner Start-->
 	<section class="hero-banner">
 		<?php if(!empty($image)){?>
@@ -70,8 +69,6 @@ if(!empty($heading) || !empty($image) || !empty($button)){?>
 		</div>
 	</section>
 	<!--Hero Banner End-->
-</div>
-<!--Container End Here-->
 
 <?php
 	if(intval($contentRowsInPage['hero']) == 0 || is_admin()){
@@ -79,12 +76,7 @@ if(!empty($heading) || !empty($image) || !empty($button)){?>
 			echo '<style>';
 		include(get_template_directory().'/css/hero-banner.css');
 		echo '</style>';
-		}
-		if(file_exists(get_template_directory().'/css/hero-banner-1025.css')){
-		echo '<style media="(min-width: 1025px)">';
-		include(get_template_directory().'/css/hero-banner-1025.css');
-		echo '</style>';
-		}      
+		}     
 	}
 	$contentRowsInPage['hero'] = intval($contentRowsInPage['hero'])+1;
 }

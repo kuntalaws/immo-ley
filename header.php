@@ -58,7 +58,7 @@ $include_at_top_of_body_tag = trim(get_field('include_at_top_of_body_tag', 'opti
         <header class="header">
             <div class="header-in fw flex">
                 <?php if(!empty($logo)){?>
-                    <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php printf(esc_attr__('%1$s - %2$s', 'harmony-psychiatric'), get_bloginfo('name'), get_bloginfo('description')); ?>">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php printf(esc_attr__('%1$s - %2$s', 'immo-ley'), get_bloginfo('name'), get_bloginfo('description')); ?>" class="logo">
                         <img <?php echo $logo['attrs']['class'];?> <?php echo $logo['attrs']['src'];?>="<?php echo esc_url($logo['url']);?>" alt="<?php echo esc_attr($logo['alt']); ?>" width="<?php echo esc_attr($logo['width']); ?>" height="<?php echo esc_attr($logo['height']); ?>">
                     </a>
                 <?php }?>
@@ -87,3 +87,5 @@ $include_at_top_of_body_tag = trim(get_field('include_at_top_of_body_tag', 'opti
             </div>
         </header>
         <!--Header End Here-->
+        <!--Container Start Here-->
+        <div class="container">
