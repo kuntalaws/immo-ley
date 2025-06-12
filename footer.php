@@ -93,7 +93,7 @@ $footerlegalmenu = wp_nav_menu(
                         <?php if(have_rows('social_links_global','option')){?>
                             <div class="footer-social-icons">
                                 <div class="footer-social-icons-text"><span>Volg ons op</span></div>
-                                <ul class="social-menu">
+                                <ul class="social-menu flex">
                                     <?php 
                                     while(have_rows('social_links_global','option')){
                                         the_row();
