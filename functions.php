@@ -76,8 +76,8 @@ register_sidebar(
 		'name'=> 'Footer &raquo; Navigation &raquo; Columns',
 		'id'=> 'footer-nav-columns',
 		'before_widget'=> '<div class="footer-menu">',
-        'before_title'=>			'',
-        'after_title'=>			'',
+        'before_title'=>			'<h3>',
+        'after_title'=>			'</h3>',
         'after_widget'=> 	   '</div>',
 	)
 );
