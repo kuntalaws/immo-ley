@@ -177,7 +177,7 @@ button{
   position: relative;
   justify-content: center;
   align-items: center;  
-  height: clamp(60px, 3.90625vw, 100px)vw;
+  height: clamp(60px, 3.90625vw, 100px);
   cursor: pointer;
   font-family: "Be Vietnam Pro", sans-serif;
   transition: all 0.5s ease-in-out 0s;
@@ -186,7 +186,7 @@ button{
 .button-wrap button span{
   position: relative;
   z-index: 1;
-  padding: clamp(50px, 4vw, 100px);
+  padding: 0 clamp(50px, 4vw, 100px);
   font-size: clamp(16px, 0.859375vw, 22px);
   line-height: clamp(24px, 1.5625vw, 40px);
   text-transform: uppercase;
@@ -258,7 +258,7 @@ header.header .header-in{
   align-content: center;
 }
 header.header .header-in .logo{
-  width: clamp(86px, 10.5078125vw, 269px);
+  width: clamp(100px, 10.5078125vw, 269px);
   display: block;
   transition: all 0.5s ease-in-out 0s;
 }

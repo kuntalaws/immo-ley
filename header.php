@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @subpackage RECOVERY_FRIENDLY_WORKPLACE
  */
 $logo = intval(get_field('logo','option'));
-$logo = swcGetImage($logo,null,null,false,true);
+$logo = swcGetImage($logo,'full',null,false,true);
 $ilphone = trim(get_field('ilphone','option'));
 $ilemail = trim(get_field('ilemail','option'));
 $primaryNav = wp_nav_menu(
