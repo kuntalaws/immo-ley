@@ -1,0 +1,59 @@
+.side-image-with-content-block {
+    padding-top: clamp(59px, 4.296vw, 110px);
+    padding-bottom: clamp(59px, 4.296vw, 110px);
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in {
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    gap: clamp(96px, 7.03vw, 180px);
+}
+.side-image-with-content-block.right .side-image-with-content-wrap .side-image-with-content-block-in {
+flex-direction: row-reverse;
+justify-content: flex-end;
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-img {
+    width: calc((100% - 10.8203125vw) / 2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-img img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-content {
+    width: calc((100% - 10.8203125vw) / 2);
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-content h2 {
+    font-size: clamp(34.69px, 2.539vw, 65px);
+    margin-bottom: clamp(32.015px, 2.343vw, 60px);
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-content ul {
+    margin-left: clamp(37.35px, 2.734vw,70px);
+}
+.side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-content ul li {
+    list-style-type: disc;
+}
+@media screen and (max-width: 768px) {
+    .side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in {
+        gap: 40px;
+    }
+    .side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-img {
+        width: 100%;
+    }
+    .side-image-with-content-block .side-image-with-content-wrap .side-image-with-content-block-in .side-image-with-content-block-content {
+        width: 100%;
+    }
+    .fw {
+        max-width: 100%;
+    }
+    
+}
