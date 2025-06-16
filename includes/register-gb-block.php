@@ -158,6 +158,102 @@ add_action('acf/init',function(){
 	        )
 		));
 
+
+		// ######## Register Blog Listing Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'blog-listing',
+			'title'				=> __('Blog Listing'),
+			'description'		=> __('A Blog Listing for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'blog listing',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));
+
+
+		// ######## Register Project Single Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'single-project',
+			'title'				=> __('Project Single'),
+			'description'		=> __('A Project Single for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'project single',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));
+
+
+		// ######## Overview Content With Form Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'overview-content-with-form',
+			'title'				=> __('Overview Content With Form'),
+			'description'		=> __('A Overview Content With Form for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'overview content form',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));
+
+
+		// ######## Contact Form Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'contact-form',
+			'title'				=> __('Contact Form'),
+			'description'		=> __('A Contact Form for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'contact form',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));
+
 		// ######## End of Registration of All Custom Content Block ########
 
 		

@@ -1,0 +1,133 @@
+.blog-listing-block{
+  width: 100%;
+  display: block;
+  padding-bottom: clamp(80px, 5.46875vw, 200px);
+}
+.blog-listing-block .blog-listing-block-in{
+  padding-left: 0;
+  padding-right: 0;
+}
+.blog-listing-block .blog-listing-block-in h2{
+  text-align: center;
+  display: block;
+  margin-bottom: clamp(80px, 5.859375vw, 150px);
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row{
+  display: grid;
+  grid-gap: clamp(20px, 1.25vw, 32px);
+  grid-template-columns: repeat(3, 1fr);
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item{
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-img{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  aspect-ratio: 595 / 850;
+  overflow: hidden;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-img::before{
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.4);
+  transition: all 0.5s ease-in-out 0s;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-img img{
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: all 0.5s ease-in-out 0s;
+  transform: scale(1);
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item:hover .blog-listing-img::before{
+  background-color: rgba(0,0,0,0.2);
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item:hover .blog-listing-img img{
+  transform: scale(1.1);
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-category-with-date{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  top: 0;
+  justify-content: space-between;
+  padding: 2.5vw;
+  align-items: center;
+  align-content: center;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-category-with-date .blog-listing-category{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #3d1a25;
+  padding: clamp(10px, 0.5859375vw, 15px) clamp(24px, 1.5625vw, 40px);
+  border-radius: 0;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-category-with-date .blog-listing-category span{
+  display: block;
+  color: #fff;
+  font-size: clamp(15px, 0.7421875vw, 19px);
+  line-height: clamp(16px, 0.78125vw, 20px);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-category-with-date .blog-listing-date{
+  padding: clamp(10px, 0.5859375vw, 15px) 0;
+  color: #fff;
+  font-size: clamp(15px, 0.7421875vw, 19px);
+  line-height: clamp(16px, 0.78125vw, 20px);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  display: block;
+  padding: 2.5vw;
+  padding-bottom: 3.125vw;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link h3{
+  font-size: clamp(40px, 2.734375vw, 70px);
+  line-height: clamp(44px, 2.96875vw, 76px);;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 2.5vw;
+  transition: all 0.5s ease-in-out 0s;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link a{
+  color: #fff;
+}
+.blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link a.link{
+  font-size: clamp(16px, 0.9375vw, 24px);
+  line-height: clamp(24px, 1.25vw, 32px);;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid #ffffff;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  color: #fff;
+  display: inline-block;
+}

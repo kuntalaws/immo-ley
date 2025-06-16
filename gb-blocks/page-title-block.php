@@ -7,13 +7,13 @@ if(empty($pagetitle) && is_admin()){
 	$pagetitle = "Page Title here..";
 }
 if(!empty($pagetitle)){?>
-<!--Text Section Start Here-->
+<!--Page Title Block Start Here-->
 <section class="page-title-block">
 	<div class="page-title-block-in fw">
 		<h1><?php echo $pagetitle;?></h1>
 	</div>
 </section>
-<!--Text Section End Here-->
+<!--Page Title Block End Here-->
 
 <?php
 	if(intval($contentRowsInPage['page-title-block']) == 0 || is_admin()){

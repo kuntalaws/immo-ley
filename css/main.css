@@ -292,7 +292,7 @@ header.header .header-in .header-nav-wrap .nav .mainmenu{
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-  gap: 5.078125vw;
+  gap: clamp(60px, 5.078125vw, 130px);
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li{
   display: block;
@@ -301,8 +301,8 @@ header.header .header-in .header-nav-wrap .nav .mainmenu > li.only-for-mobile{
   display: none;
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li > a{
-  font-size: 0.8203125vw;
-  line-height: 1.5625vw;
+  font-size:  clamp(13px, 0.8203125vw, 22px);
+  line-height: clamp(40px, 1.5625vw, 40px);
   text-transform: uppercase;
   color: #3d1a25;
   letter-spacing: 2px;

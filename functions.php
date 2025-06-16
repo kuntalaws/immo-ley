@@ -32,6 +32,10 @@ add_filter( 'allowed_block_types',function($allowed){
 	   'acf/side-image-with-content-block',
 	   'acf/heading-with-text-section',
 	   'acf/page-title-block',
+	   'acf/blog-listing',
+	   'acf/single-project',
+	   'acf/overview-content-with-form',
+	   'acf/contact-form',
     );
 });
 
