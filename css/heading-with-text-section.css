@@ -1,0 +1,26 @@
+.heading-with-text-section {
+    padding: clamp(120px, 8.984vw, 230px) 0 clamp(120px, 8.984vw, 230px) 0;
+}
+.heading-with-text-section.bg-light-blue {
+    background-color: #d7eaea;
+}
+.heading-with-text-section .heading-with-text-section-in .heading-with-text-content h2 {
+    font-size: clamp(34.69px, 2.539vw, 65px);
+    margin-bottom: clamp(32.015px, 2.343vw, 60px);
+}
+.heading-with-text-section .heading-with-text-section-in .heading-with-text-content {
+padding-left: clamp(25px, 1.796vw, 46px);
+}
+.heading-with-text-section .heading-with-text-section-in .heading-with-text-content ul {
+    margin-left: clamp(37.35px, 2.734vw, 70px);
+    margin-bottom: clamp(24px, 1.5625vw, 40px);
+}
+.heading-with-text-section .heading-with-text-section-in .heading-with-text-content ul li {
+    list-style-type: disc;
+}
+@media screen and (max-width: 768px) {
+    .heading-with-text-section .heading-with-text-section-in .heading-with-text-content {
+        padding-left: 0;
+    }
+    
+}

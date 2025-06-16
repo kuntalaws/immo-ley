@@ -1,10 +1,13 @@
-.text-section .text-section-in {
+.text-section {
   padding-top: 6.25vw;
   padding-bottom: 93px;
 }
+.page-over-ons .text-section {
+  margin-top: clamp(190px, 14.257vw, 365px);
+}
 .text-section .text-section-in h3 {
-  font-size: 1.953125vw;
-  line-height: 3.125vw;
+  font-size: clamp(26px, 1.953125vw, 50px);
+  line-height: clamp(43px, 3.125vw, 80px);
   color: #3d1a25;
   font-weight: 300;
   font-family: "larken", sans-serif;
