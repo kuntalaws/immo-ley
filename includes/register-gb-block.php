@@ -134,6 +134,30 @@ add_action('acf/init',function(){
 	        )
 		));
 
+
+		// ######## Register Page Title Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'page-title-block',
+			'title'				=> __('Page Title Block'),
+			'description'		=> __('A Page Title Block for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'align-pull-right',
+			'keywords'			=> array(
+									'title block',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));
+
 		// ######## End of Registration of All Custom Content Block ########
 
 		

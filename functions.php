@@ -31,6 +31,7 @@ add_filter( 'allowed_block_types',function($allowed){
 	   'acf/filter-with-grid',
 	   'acf/side-image-with-content-block',
 	   'acf/heading-with-text-section',
+	   'acf/page-title-block',
     );
 });
 

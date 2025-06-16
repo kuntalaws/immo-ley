@@ -1,0 +1,11 @@
+.page-title-block{
+  width: 100%;
+  display: block;
+  padding-top: clamp(250px, 19.53125vw, 500px);
+  padding-bottom: clamp(60px, 4vw, 100px);
+}
+.page-title-block h1{
+  font-size: clamp(60px, 4.6875vw, 120px);
+  line-height: clamp(60px, 4.6875vw, 120px);
+}
+  
