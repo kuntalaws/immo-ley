@@ -55,7 +55,7 @@ margin: 0;
 .contact-form .contact-form-in  .form-group input, .contact-form .contact-form-in  .textarea-group textarea {
     width: 100%;
     padding: 12px 0;
-    font-size: clamp(12px, 0.859375vw, 16px);
+    font-size: clamp(16px, 0.859375vw, 22px);
     color: #333;
     background: transparent;
     border: none;
