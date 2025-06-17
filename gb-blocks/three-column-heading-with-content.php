@@ -31,7 +31,7 @@ if(is_admin()) {
 ?>
 <!--Filter With Grid Start Here-->
 <section class="three-column-heading-with-content">
-	<div class="container">
+	<div class="fw three-column-heading-with-content-in">
 		<div class="three-column-heading-with-content-content">
 			<?php if(!empty($heading)) { ?>
 				<h2><?php echo esc_html($heading); ?></h2>

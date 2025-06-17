@@ -42,6 +42,7 @@
         cursor: pointer;
         font-family: "Be Vietnam Pro", sans-serif;
         transition: all 0.5s ease-in-out 0s;
+        width: clamp(130px, 9.765vw, 250px);
     }
     .contact-form .contact-form-in .checkbox-container .submit-btn:after {
         content: '';
@@ -89,7 +90,7 @@
     .contact-form .contact-form-in .form-title {
         font-weight: 300;
         margin-bottom: clamp(45px, 3.32vw, 85px);
-        font-size: clamp(24px, 1.406vw, 36px);
+        font-size: clamp(28px, 1.563vw, 40px);
     }
     .contact-form .widget .checkbox-group .wpcf7-form-control.wpcf7-checkbox {
         display: grid;

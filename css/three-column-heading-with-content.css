@@ -1,0 +1,12 @@
+.three-column-heading-with-content .three-column-heading-with-content-in .three-column-heading-with-content-content .columns-wrapper {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+background-color: #f9f3ec;
+margin-top: clamp(43px, 3.125vw, 80px);
+padding: clamp(60px, 3.90625vw, 100px);
+grid-gap: 0 30px;
+margin-bottom: clamp(90px, 7.031vw, 180px);
+}
+.three-column-heading-with-content .three-column-heading-with-content-in .three-column-heading-with-content-content .columns-wrapper .column h3 {
+    margin-bottom: clamp(38px, 2.734vw, 70px);
+}
