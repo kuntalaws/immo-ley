@@ -46,7 +46,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Text Section Block for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'media-text',
 			'keywords'			=> array(
 									'text section',
 									'immoley' 
@@ -70,7 +70,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Filter With Grid Block for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'filter',
 			'keywords'			=> array(
 									'filter grid',
 									'immoley' 
@@ -95,7 +95,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Side Image With Content Block for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'media-document',
 			'keywords'			=> array(
 									'side image content block',
 									'immoley' 
@@ -119,7 +119,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Heading With Text Section for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'text-page',
 			'keywords'			=> array(
 									'heading text section',
 									'immoley' 
@@ -143,7 +143,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Page Title Block for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'welcome-write-blog',
 			'keywords'			=> array(
 									'title block',
 									'immoley' 
@@ -167,7 +167,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Blog Listing for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'admin-page',
 			'keywords'			=> array(
 									'blog listing',
 									'immoley' 
@@ -191,7 +191,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Project Single for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'admin-home',
 			'keywords'			=> array(
 									'project single',
 									'immoley' 
@@ -215,7 +215,7 @@ add_action('acf/init',function(){
 			'description'		=> __('A Overview Content With Form for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'list-view',
 			'keywords'			=> array(
 									'overview content form',
 									'immoley' 
@@ -239,9 +239,32 @@ add_action('acf/init',function(){
 			'description'		=> __('A Contact Form for All of Your Pages.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
-			'icon'				=> 'align-pull-right',
+			'icon'				=> 'feedback',
 			'keywords'			=> array(
 									'contact form',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));
+
+		// ######## Three Column Heading With Content Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'three-column-heading-with-content',
+			'title'				=> __('Three Column Heading With Content'),
+			'description'		=> __('A Three Column Heading With Content for All of Your Pages.'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'media-spreadsheet',
+			'keywords'			=> array(
+									'three column heading with content',
 									'immoley' 
 								   ),
 			'example'  => array(

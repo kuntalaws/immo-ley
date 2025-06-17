@@ -2,25 +2,38 @@
 // Exit if this file is directly accessed
 if ( ! defined( 'ABSPATH' ) ) exit;
 global $contentRowsInPage,$curContIndex,$sectionID;
+
+$overview = get_field('overview');
+$short_code = get_field('short_code');
+
+// Set placeholders for admin view
+if(is_admin()) {
+    if(empty($overview)) {
+        $overview = "Overview text goes here..";
+    }
+}
 ?>
 <!--overview-content-with-form Start Here-->
 <div class="overview-content-with-form">
     <div class="overview-content-with-form-in fw">
         <div class="overview-text-content">
-			<p>“We hebben geen tijd om dagelijks de vastgoedwebsites te checken.” “Telkens we iets vinden, is het al weg.” Het zijn uitspraken die we bij Immo LEY maar al te vaak horen. Daarom bieden we een op maat gemaakte zoekservice aan, waarbij wij actief op zoek gaan naar het juiste pand voor jou. Op basis van jouw woonvoorkeuren speuren we gericht de markt af — én vaak vinden we woningen nog vóór ze publiek beschikbaar zijn. We matchen onze off-market aanbiedingen of geschatte panden met profielen uit onze persoonlijke zoekdatabase. Het resultaat? Een snelle, gerichte en vooral discrete transactie op jouw maat.
-
-</p>
-</div>
-</div>
+            <?php echo wpautop($overview); ?>
+        </div>
+    </div>
 </div>
 <!--overview-content-with-form End Here-->
 
 <div class="contact-form">
     <div class="contact-form-in fw">
-    <?php echo do_shortcode('[contact-form-7 id="89026b6" title="zoek service form"]'); ?>
+        <?php 
+        if(!empty($short_code)) {
+            echo do_shortcode($short_code);
+        } elseif(is_admin()) {
+            echo '<p>Short code goes here.</p>';
+        }
+        ?>
     </div>
 </div>
-
 
 <script>
         class CF7MultiSelectEnhancer {
@@ -199,11 +212,11 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 </script>
 
 <?php
-	if(intval($contentRowsInPage['overview-content-with-form']) == 0 || is_admin()){
-		if(file_exists(get_template_directory().'/css/overview-content-with-form.css')){
-			echo '<style>';
-		include(get_template_directory().'/css/overview-content-with-form.css');
-		echo '</style>';
-		}    
-	}
-	$contentRowsInPage['overview-content-with-form'] = intval($contentRowsInPage['overview-content-with-form'])+1;
+if(intval($contentRowsInPage['overview-content-with-form']) == 0 || is_admin()){
+    if(file_exists(get_template_directory().'/css/overview-content-with-form.css')){
+        echo '<style>';
+        include(get_template_directory().'/css/overview-content-with-form.css');
+        echo '</style>';
+    }    
+}
+$contentRowsInPage['overview-content-with-form'] = intval($contentRowsInPage['overview-content-with-form'])+1;

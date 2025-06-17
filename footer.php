@@ -122,9 +122,9 @@ $footerlegalmenu = wp_nav_menu(
     <?php 
         wp_footer();
         // Include script snippets as defined on theme settings page
-        if ( $include_at_bottom_of_body_tag && !empty($include_at_bottom_of_body_tag) ) { 
+        if ( isset($include_at_bottom_of_body_tag) && !empty($include_at_bottom_of_body_tag) ) {
             echo $include_at_bottom_of_body_tag;
-        }      
+        }   
     ?>   
 </body>
 </html>

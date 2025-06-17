@@ -36,11 +36,12 @@ add_filter( 'allowed_block_types',function($allowed){
 	   'acf/single-project',
 	   'acf/overview-content-with-form',
 	   'acf/contact-form',
+	   'acf/three-column-heading-with-content',
     );
 });
 
 add_action('acf/init', function() {
-	$gmapapikey = trim(get_field('tv_map_key','option'));
+	$gmapapikey = trim(get_field('tv_map_key', 'option') ?? '');
 	if(!empty($gmapapikey)){
 		acf_update_setting('google_api_key',$gmapapikey);
 	}
