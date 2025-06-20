@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 26" width="27" height="26">
+	<title>LinkedIn Black</title>
+	<defs>
+		<image  width="27" height="26" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAaCAMAAABxVtfCAAAAAXNSR0IB2cksfwAAAKhQTFRF////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1UVUWwAAADh0Uk5TCpXy/9NGAJ/5Jvh4fKf8LA+r+95QCGOQGwFbvOziqEGwMDi0BMf+I8y16on6Twu6yIMp7zfu1tC89AaeAAAArklEQVR4nGNkYAQDBiyAkf0PkGRl/ItNjusniOL4jU0OIsr5C5sc7zcgyc34HZucACPjRwHGT1jdwsbA//sbNhmwHE7AKAb2GuM7BgEIAwTeCTMyPgeyFR6DhOSeMkiBGfKMDyCaWGQfocsp3YOZKPIeXQ4BlBkx5VQZGW+CGRrocppACQ3GKyCmLrqc3lUgoXMRxDRAlzO8BCL1z4H9gyYHZIC0nMUtZ3hmJMgBAOGmYjMFWEMTAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="LinkedIn Black" href="#img1" x="0" y="0"/>
+</svg>

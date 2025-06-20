@@ -1,0 +1,176 @@
+.single-project-section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: flex-end;
+    height: 100vh;
+    margin-top: clamp(145px, 15.57vw, 245px);
+    position: relative;
+    z-index: 1;
+}
+.single-project-section .single-project-section-in {
+    position: relative;
+    height: 100%;
+}
+.single-project-section .single-project-section-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.single-project-section .single-project-section-in .single-project-section-button {
+    padding: clamp(30px, 2.148vw, 55px) clamp(24px, 1.875vw, 48px) 0 clamp(24px, 1.875vw, 48px);
+}
+.single-project-section .single-project-section-in .single-project-section-button a {
+    display: flex;
+    align-items: center;
+    font-size: clamp(14px, 0.98vw, 16px);
+    line-height: clamp(24px, 1.718vw, 44px);
+    font-weight: 400;
+    color: #3d1a25;
+    text-transform: uppercase;
+}
+.single-project-section .single-project-section-in .single-project-section-button a span.img-icon {
+    width: 69px;
+    height: 58px;
+    background-color: #3d1a25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.single-project-section .single-project-section-in .single-project-section-button a span.btn-text {
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #fff;
+}
+
+.single-project-content-section {
+    background-color: #fff6ee;
+    padding: clamp(80px, 5.859vw, 150px) 0;
+    position: relative;
+}
+.single-project-content-section::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #fff6ee;
+}
+.single-project-content-section::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #fff6ee;
+}
+
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left h3,
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right h3 {
+    font-size: clamp(12px, 0.98vw, 16px);
+    letter-spacing: 2px;
+    line-height: clamp(24px, 1.718vw, 44px);
+    color: #3d1a25;
+    font-weight: 400;
+    font-family: "Be Vietnam Pro";
+}
+.single-project-content-section .single-project-content-section-in .single-project-content {
+    width: 100%;
+    align-items: flex-start;
+    gap: clamp(80px, 5.859vw, 150px);
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left {
+    flex: 0 0 55%;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right {
+    flex: 0 0 35%;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left p {
+font-size: clamp(20px, 1.406vw, 36px);
+line-height: clamp(26px, 1.875vw, 48px);
+color: #3d1a25;
+font-weight: 300;
+font-family: "Larken";
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left h2,
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price {
+    margin-bottom: clamp(43px, 3.125vw, 80px);
+    margin-top: clamp(28px, 1.563vw, 40px);
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price span {
+    font-size: clamp(42px, 3.125vw, 80px);
+    line-height: clamp(42px, 3.125vw, 80px);
+    color: #3d1a25;
+    font-weight: 300;
+    font-family: "Larken";
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
+    gap: 40px;
+    align-items: center;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right p {
+font-size: clamp(26px, 1.875vw, 48px);
+color: #3d1a25;
+font-weight: 300;
+font-family: "Larken";
+margin-bottom: 10px;
+}
+.kenmerken {
+    position: relative;
+    z-index: 1;
+}
+.kenmerken .kenmerken-stats-wrap {
+    background-color: #3d1a25;
+    width: 100%;
+    padding-top: clamp(64px, 4.687vw, 120px);
+    padding-bottom: clamp(64px, 4.687vw, 120px);
+    padding-left: 0;
+    padding-right: 0;
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-title {
+font-size: clamp(32px, 2.343vw, 60px);
+line-height: clamp(32px, 2.343vw, 60px);
+color: #ffffff;
+font-family: "Larken";
+padding-left: clamp(24px, 1.875vw, 48px);
+padding-bottom: clamp(42px, 3.125vw, 80px);
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
+    padding-left: clamp(24px, 1.875vw, 48px);
+    grid-row-gap: 30px;
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat{
+    flex: 0 0 20%;
+    align-items: center;
+    gap: 20px;
+    display: flex;
+}
+
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat .kenmerken__stat-icon {
+    width: 40px;
+    height: 40px;
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat .kenmerken-stat-value {
+    font-size: clamp(16px, 0.98vw, 24px);
+    letter-spacing: 1px;
+    color: #ffffff;
+    font-weight: 300;
+    font-family: "Larken";
+}

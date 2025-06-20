@@ -1,0 +1,16 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="64" height="80">
+	<title>Vector Smart Object</title>
+	<style>
+		.s0 { fill: #000000 } 
+	</style>
+	<filter id="f0">
+		<feFlood flood-color="#a8d9d9" flood-opacity="1" />
+		<feBlend mode="normal" in2="SourceGraphic"/>
+		<feComposite in2="SourceAlpha" operator="in" />
+	</filter>
+	<g id="Layer 1" filter="url(#f0)">
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Compound Path&gt;" fill-rule="evenodd" class="s0" d="m36 24h12c1.1 0 2 0.9 2 2v2h8c1.1 0 2 0.9 2 2v12c0 0.5-0.2 1-0.6 1.4l-7.4 7.5v5.1h-4v-4h-32v4h-4v-5.1l-7.4-7.5c-0.4-0.4-0.6-0.9-0.6-1.4v-28c0-1.6 0.6-3.1 1.8-4.2 1.1-1.2 2.6-1.8 4.2-1.8q1 0 2 0c1.6 0 3.1 0.6 4.2 1.8 1.2 1.1 1.8 2.6 1.8 4.2v2h2v4h-8v-4h2v-2c0-0.5-0.2-1-0.6-1.4-0.4-0.4-0.9-0.6-1.4-0.6h-2c-0.5 0-1 0.2-1.4 0.6-0.4 0.4-0.6 0.9-0.6 1.4v14h22v4h-22v9.2l6.7 6.8h34.6l6.7-6.8v-9.2h-6v10c0 1.1-0.9 2-2 2h-12c-1.1 0-2-0.9-2-2v-16c0-1.1 0.9-2 2-2zm2 4v12h8v-12z"/>
+		</g>
+	</g>
+</svg>

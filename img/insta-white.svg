@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
+	<title>Insta Black</title>
+	<defs>
+		<image  width="28" height="28" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAAXNSR0IB2cksfwAAAJxQTFRF////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////RWkLIgAAADR0Uk5TAC2S2vn/CZb+vvq0gHC/ISAr/QaRBcvQB9myEzIoLvh/TcV+oSqg6YFIS8IRTMHrD4MssyMXYuMAAAEwSURBVHicjZPRT4JQFMa/A0H5wELTB3HlrEXlqFX//99QbZIu27LYYm5F6nhQQbhxAUuQWN/Tvee3c8+953yXEIm48CvGxeOATBQgL5ExL4KyuIK0leljJ/AIuyEqNMslquEcwpKq5FYkJ4sOQgH+XGFUn0nyNMsaNKnRwvP3qfnZsNfRFoG9A4djoGlpH3Vq263XBHXIDiBqbBRnjk8sjSTsuXGd6lua356g9uVAWeAH6iMcR+9h7AWdIQ9swO4zdDKjhcGGOO9l4dWgG5jxqYbY1x8z8Npyjfu05o2pHD1swtseTvspjCpc3v0blh5beqHyp5Q2IdM+Zw0LGp9seeMLRpaIj0wQt4YdS/X8oNAm/AqxTWKDCflcdbniBkusefGUsebZILVmqanx93f4BnZfqwE/4r9zAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Insta Black" href="#img1" x="0" y="0"/>
+</svg>
