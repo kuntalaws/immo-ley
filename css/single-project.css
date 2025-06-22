@@ -174,3 +174,61 @@ padding-bottom: clamp(42px, 3.125vw, 80px);
     font-weight: 300;
     font-family: "Larken";
 }
+
+/* kenmerken end */
+
+/*property widget*/
+
+.property-widget {
+    width: 100%;
+    background-color: #d7eaea;
+    padding: clamp(74px, 5.468vw, 140px) 0;
+}
+.property-widget .property-widget-wrap .widget-title {
+    margin-bottom: clamp(32.015px, 2.343vw, 60px);
+    font-size: clamp(32.015px, 2.343vw, 60px);
+    line-height: clamp(32.015px, 2.343vw, 60px);
+    color: #323232;
+    font-family: "Larken";
+}
+.property-widget .property-widget-wrap .property-table {
+    column-count: 3;
+    column-gap: 30px;
+}
+.property-widget .property-widget-wrap .property-table p {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #323232;
+    padding-bottom: clamp(24px, 1.5625vw, 40px);
+    font-size: clamp(16px, 0.98vw, 22px);
+    color: #323232;
+    font-weight: 300;
+    font-family: "Be Vietnam Pro";
+}
+.property-widget .property-widget-wrap .share-section {
+    padding-top: clamp(64px, 4.687vw, 120px);
+}
+.property-widget .property-widget-wrap .share-section h3 {
+    margin-bottom: clamp(20px, 1.562vw, 40px);
+    font-size: clamp(14px, 0.98vw, 16px);
+    letter-spacing: 2px;
+    line-height: clamp(20px, 0.85vw, 22px);
+    color: #3d1a25;
+    font-weight: 400;
+    font-family: "Be Vietnam Pro";
+}
+.property-widget .property-widget-wrap .social-icons {
+    gap: 10px;
+    align-items: center;
+}
+.property-widget .property-widget-wrap .social-icons .social-icon a {
+    width: 40px;
+    height: 40px;
+    background-color: #3d1a25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.property-widget .property-widget-wrap .social-icons .social-icon a img {
+    width: 20px;
+}
