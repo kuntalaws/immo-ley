@@ -63,23 +63,25 @@ $include_at_top_of_body_tag = trim(get_field('include_at_top_of_body_tag', 'opti
                     </a>
                 <?php }?>
                 <div class="header-nav-wrap">
-                    <?php if(!empty($primaryNav)){?>
-                        <nav class="nav">
-                            <?php echo $primaryNav;?>
-                        </nav>
-                    <?php }
-                    if(!empty($ilphone) || !empty($ilemail)){?>
-                    <div class="header-contact-info">
-                        <?php if(!empty($ilphone)){?>
-                            <h6><?php echo $ilphone;?></h6>
+                    <div class="header-nav-wrap-in">
+                        <?php if(!empty($primaryNav)){?>
+                            <nav class="nav">
+                                <?php echo $primaryNav;?>
+                            </nav>
                         <?php }
-                        if(!empty($ilemail)){?>
-                            <h6><a href="mailto:<?php echo $ilemail;?>"><?php echo $ilemail;?></a></h6>
+                        if(!empty($ilphone) || !empty($ilemail)){?>
+                        <div class="header-contact-info">
+                            <?php if(!empty($ilphone)){?>
+                                <h6><?php echo $ilphone;?></h6>
+                            <?php }
+                            if(!empty($ilemail)){?>
+                                <h6><a href="mailto:<?php echo $ilemail;?>"><?php echo $ilemail;?></a></h6>
+                            <?php }?>
+                        </div>
                         <?php }?>
                     </div>
-                    <?php }?>
                 </div>
-                <span class="hamburger">
+                <span class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>

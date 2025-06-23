@@ -25,6 +25,7 @@
 .hero-banner .hero-banner-in .hero-banner-content{
      width: 100%;
      max-width: 37.5vw;
+     max-width: clamp(540px, 37.5vw, 960px);
      display: block;
 }
 .hero-banner .hero-banner-in .hero-banner-content h1{
@@ -32,4 +33,20 @@
 }
 .hero-banner .hero-banner-in .hero-banner-content .button-wrap{
      margin-top: 5.5vw;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1365px) {
+
+}
+@media screen and (max-width: 640px) {
+     .hero-banner .hero-banner-in{
+          padding-bottom: 10vw;
+     }
+     .hero-banner .hero-banner-in .hero-banner-content{
+          max-width: 100%;
+     }
+     .hero-banner .hero-banner-in .hero-banner-content h1{
+          font-size: 13.28125vw;
+          line-height: 14.84375vw;
+     }
 }

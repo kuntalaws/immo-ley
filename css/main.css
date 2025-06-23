@@ -13,6 +13,9 @@ body {
   line-height: clamp(24px, 1.5625vw, 40px);
   color: #3d1a25;
 }
+body.scroll-lock {
+  overflow: hidden;
+}
 /*font-family: "larken", sans-serif;*/
 html {
   padding: 0;
@@ -155,7 +158,7 @@ button{
 
 .fw {
   width: 100%;
-  max-width: 74.0625vw;
+  max-width: clamp(1280px, 74.0625vw, 1800px);
   margin: 0 auto;
   padding-left: clamp(24px, 1.875vw, 48px);
   padding-right: clamp(24px, 1.875vw, 48px);
@@ -170,8 +173,8 @@ button{
 .button-wrap .btn, 
 .button-wrap button{
   background-color: #b0d4d5;
-  padding-left: clamp(16px, 0.9375vw, 24px);
-  padding-bottom: clamp(16px, 0.9375vw, 24px);
+  padding-left: clamp(12px, 0.9375vw, 24px);
+  padding-bottom: clamp(12px, 0.9375vw, 24px);
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -186,8 +189,8 @@ button{
 .button-wrap button span{
   position: relative;
   z-index: 1;
-  padding: 0 clamp(50px, 4vw, 100px);
-  font-size: clamp(16px, 0.859375vw, 22px);
+  padding: 0 clamp(48px, 4vw, 100px);
+  font-size: clamp(14px, 0.859375vw, 22px);
   line-height: clamp(24px, 1.5625vw, 40px);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -199,8 +202,8 @@ button{
 .button-wrap button::before{
   content: '';
   position: absolute;
-  left: clamp(16px, 0.9375vw, 24px);
-  bottom: clamp(16px, 0.9375vw, 24px);
+  left: clamp(12px, 0.9375vw, 24px);
+  bottom: clamp(12px, 0.9375vw, 24px);
   width: 100%;
   height: 100%;
   background-color: #b0d4d5;
@@ -267,7 +270,7 @@ header.header.sticky{
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 header.header.sticky .logo{
-  width: 6.2vw;
+  width: 8vw;
 }
 
 header.header .header-in .logo img{
@@ -301,7 +304,7 @@ header.header .header-in .header-nav-wrap .nav .mainmenu > li.only-for-mobile{
   display: none;
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li > a{
-  font-size:  clamp(13px, 0.8203125vw, 22px);
+  font-size:  clamp(16px, 0.8203125vw, 22px);
   line-height: clamp(40px, 1.5625vw, 40px);
   text-transform: uppercase;
   color: #3d1a25;
@@ -332,20 +335,153 @@ header.header .header-in .header-nav-wrap .header-contact-info{
 }
 header.header .header-in .hamburger{
   display: none;
+  width: 40px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-footer.footer{
+header.header .header-in .hamburger span {
+  height: 2px;
   width: 100%;
-  padding: 0;
-  margin: 0;
+  background: #000;
+  border-radius: 2px;
+  transition: 0.4s ease;
+  transform-origin: center;
   display: block;
-  position: relative;
-  background-color: #3d1a25;
+  transition: all 0.5s ease-in-out 0s;
 }
-footer.footer .footer-in{
+header.header .header-in .hamburger span:nth-child(1) {
+  width: 32px;
+}
+header.header .header-in .hamburger span:nth-child(3) {
+  width: 20px;
+}
+
+header.header .header-in .hamburger.nav-open span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+  background-color: #ffedde;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding-top: 5.078125vw;
+}
+
+header.header .header-in .hamburger.nav-open span:nth-child(2) {
+  opacity: 0;
+}
+
+header.header .header-in .hamburger.nav-open span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+  background-color: #ffedde;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .fw{
+    max-width: 100%;
+  }
+  header.header .header-in .logo{
+    width: 100px;
+  }
+  header.header.sticky .header-in .logo{
+    width: 100px;
+  }
+  header.header .header-in .hamburger{
+    display: flex;
+  }
+  header.header .header-in .header-nav-wrap{
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #3d1a25;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    overflow: auto;
+    padding: 0 24px;
+    transition: all 0.5s ease-in-out 0s;
+  }
+  
+  header.header .header-in .header-nav-wrap.nav-open{
+    max-height: 100vh;
+    visibility: visible;
+    opacity: 1; 
+    padding: 85px 24px;    
+  }
+  header.header .header-in .header-nav-wrap .header-nav-wrap-in{
+    width: 100%;
+    display: block;
+    max-height: calc(100vh - 170px);
+    overflow: auto;
+  }
+  header.header .header-in .header-nav-wrap .nav{
+    width: 100%;
+    display: block;   
+  }
+  header.header .header-in .header-nav-wrap .nav .mainmenu{
+    gap: 0;
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  header.header .header-in .header-nav-wrap .nav .mainmenu > li.only-for-mobile{
+    display: block;
+  }
+  header.header .header-in .header-nav-wrap .nav .mainmenu > li > a{
+    font-size: 44px;
+    line-height: 73px;
+    color: #ffedde;
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: 'larken', sans-serif;
+    transition: all 0.35s ease-in-out 0s;
+  }
+  header.header .header-in .header-nav-wrap .header-contact-info{
+    display: block;
+    padding-top: 50px;
+  }
+  header.header .header-in .header-nav-wrap .header-contact-info h6{
+    font-size: 18px;
+    line-height: 36px;
+    font-weight: 300;
+    color: #ffedde;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: "Be Vietnam Pro", sans-serif;
+  }
+  header.header .header-in .header-nav-wrap .header-contact-info h6 a{
+    color: #ffedde;
+    text-decoration: none;
+  }
+  
+}
+
+@media screen and (max-width: 640px) {
+  .fw{
+    padding-left: 7.5vw;
+    padding-right: 7.5vw;
+  }
+  .button-wrap .btn, .button-wrap button{
+    height: clamp(48px, 9.375vw, 60px)
+  }
+  .button-wrap .btn span, 
+  .button-wrap button span{
+    padding: 0 clamp(24px, 7.5vw, 48px);
+  }
+  header.header .header-in .header-nav-wrap .nav .mainmenu > li > a{
+    font-size: 6.875vw;
+    line-height: 11.25vw;
+  }
 }

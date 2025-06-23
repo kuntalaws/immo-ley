@@ -18,7 +18,7 @@ padding-left: clamp(25px, 1.796vw, 46px);
 .heading-with-text-section .heading-with-text-section-in .heading-with-text-content ul li {
     list-style-type: disc;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .heading-with-text-section .heading-with-text-section-in .heading-with-text-content {
         padding-left: 0;
     }

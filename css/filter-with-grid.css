@@ -19,9 +19,9 @@
      width: calc((100% - (1.875vw * 4)) / 5);
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item > h5{
-     font-size: 1.171875vw;
-     line-height: 1.5625vw;
-     padding: 0.5859375vw 0.390625vw;
+     font-size: clamp(17px, 1.171875vw, 19px);
+     line-height: clamp(32px, 1.5625vw, 40px);
+     padding: 0.5859375vw 0.390625vw;     
      font-weight: 300;
      display: block;
      margin: 0;
@@ -88,7 +88,7 @@
      bottom: -6vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img::before{
-     width: 25.15625vw;
+     width: clamp(380px, 25.15625vw, 644px);
      height: 7.3046875vw;
      position: absolute;
      right: 0;
@@ -134,20 +134,22 @@
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in{
      width: 100%;
-     max-width: 25.15625vw;
+     max-width: clamp(380px, 25.15625vw, 644px);
      display: block;
      padding-right: 7.6171875vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in h6{
      color: #434343;
+     font-size: clamp(16px, 0.859375vw, 22px);
+     line-height: clamp(24px, 1.5625vw, 40px);
      font-family: "Be Vietnam Pro", sans-serif;
      text-transform: uppercase;
      font-weight: 400;
      display: block;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in h4{
-     font-size: 1.6796875vw;
-     line-height: 2.2265625vw;
+     font-size: clamp(24px, 1.6796875vw, 43px);
+     line-height: clamp(36px, 2.2265625vw, 57px);
      font-weight: 400;
      display: block;
 }
@@ -169,9 +171,9 @@
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content{
      width: 100%;
-     max-width: 31.625vw;
-     padding-left: 1.875vw;
-     padding-right: 6.328125vw;
+     max-width: clamp(500px, 31.625vw, 810px);
+     padding-left: clamp(24px, 1.875vw, 48px);
+     padding-right: clamp(24px, 6.328125vw, 162px);
      display: flex;
      flex-wrap: wrap;
      align-items: center;
@@ -216,4 +218,50 @@
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img:hover img{
      transform: scale(1.1);
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1365px) {
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content h2 br{
+          display: none;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content{
+          padding-right: 24px;
+     }
+}
+
+@media screen and (max-width: 1023px) {
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap{
+          grid-column-gap: 24px;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img{
+          padding-right: 24px;
+          padding-bottom: 24px;
+          margin-bottom: 24px;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img:after{
+          left: 24px;
+          height: 96px;
+          bottom: -48px;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img::before{
+          width: calc(100% - 48px);
+          height: 80px;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in{
+          padding-left: 48px;
+          padding-right: 24px;
+          max-width: 100%;
+     }
+
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col{
+          width: calc((100% - 24px) / 2);
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content{
+          padding: 48px 24px;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img{
+          width: calc((100% - 24px) / 2);
+          height: 40vw;
+     }
 }

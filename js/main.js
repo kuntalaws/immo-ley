@@ -9,4 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
       header.classList.remove("sticky");
     }
   });
+
+  document.getElementById('hamburger').addEventListener('click', function () {
+    this.classList.toggle('nav-open');
+    document.body.classList.toggle('scroll-lock');
+    document.querySelector('.header-nav-wrap').classList.toggle('nav-open');
+  });
 });
