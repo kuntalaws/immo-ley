@@ -396,7 +396,7 @@ align-items: center;
         grid-template-columns: 1fr 1fr;
     }
     .contact-form .widget {
-        padding: 40px 30px;
+        padding: 40px 20px;
     }
     .contact-form .contact-form-in .budget-input {
         width: 110px;
