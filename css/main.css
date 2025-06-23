@@ -361,7 +361,7 @@ header.header .header-in .hamburger span:nth-child(3) {
 }
 
 header.header .header-in .hamburger.nav-open span:nth-child(1) {
-  transform: rotate(45deg) translate(7px, 7px);
+  transform: rotate(45deg) translate(8px, 8px);
   background-color: #ffedde;
   width: 100%;
 }
@@ -394,7 +394,7 @@ header.header .header-in .hamburger.nav-open span:nth-child(3) {
     width: 100%;
     max-width: 100%;
     position: absolute;
-    left: 0;
+    right: -100%;
     top: 0;
     background-color: #3d1a25;
     display: flex;
@@ -402,17 +402,18 @@ header.header .header-in .hamburger.nav-open span:nth-child(3) {
     align-items: center;
     align-content: center;
     height: 100vh;
-    max-height: 0;
+    max-height: 100vh;
     visibility: hidden;
-    opacity: 0;
+    opacity: 1;
     overflow: auto;
-    padding: 0 24px;
+    padding: 85px 24px;
     transition: all 0.5s ease-in-out 0s;
   }
   
   header.header .header-in .header-nav-wrap.nav-open{
     max-height: 100vh;
     visibility: visible;
+    right: 0;
     opacity: 1; 
     padding: 85px 24px;    
   }

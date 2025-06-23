@@ -230,7 +230,7 @@
      }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 641px) and (max-width: 1023px) {
      .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap{
           grid-column-gap: 24px;
      }
@@ -263,5 +263,103 @@
      .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img{
           width: calc((100% - 24px) / 2);
           height: 40vw;
+     }
+}
+
+
+@media screen and (max-width: 640px) {
+     .filter-with-grid .filter-row{
+          padding-bottom: 22.1875vw;
+     }
+     .filter-with-grid .filter-row .filter-row-in{
+          grid-row-gap: 9.375vw;
+     }
+     .filter-with-grid .filter-row .filter-row-in .filter-item{
+          width: 100%;
+     }
+     .filter-with-grid .filter-row .filter-row-in .filter-item:last-child{
+          width: auto;
+     }
+     .filter-with-grid .filter-row .filter-row-in .filter-item h5{
+          padding: 2.34375vw 1.875vw;
+          font-size: 4.6875vw;
+          line-height: 6.25vw;
+     }
+
+     .filter-with-grid .filter-grid .filter-grid-title{
+          padding-bottom: 10vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-title h3{
+          font-size: 5.625vw;
+          line-height: 6.25vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap{
+          padding-left: 7.5vw;
+          padding-right: 7.5vw;
+          grid-template-columns: repeat(1, 1fr);
+          grid-column-gap: 0vw;
+          grid-row-gap: 11.25vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 2){
+          margin-top: 0;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img{
+          padding-right: 3.125vw;
+          padding-bottom: 3.125vw;
+          margin-bottom: 3.125vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img::before{
+          width: 42.1875vw;
+          height: 19.375vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img:after{
+          display: none;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in{
+          max-width: 100%;
+          padding-left: 0;
+          padding-right: 0;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in h6{
+          font-size: clamp(14px, 2.5vw, 16px);
+          line-height: clamp(20px, 3.75vw, 24px);
+          margin-bottom: 1vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in h4{
+          font-size: clamp(24px, 5.625vw, 36px);
+          line-height: clamp(30px, 7.5vw, 48px);
+          color: #5c182e;
+     }
+
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row{
+          margin-top: 15vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col{
+          width: 100%;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content{
+          padding: 12.5vw 7.5vw;
+          max-width: 100%;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content h2{
+          font-size: clamp(32px, 7.5vw, 48px);
+          line-height: clamp(40px, 9vw, 58px);
+          padding-bottom: 5.625vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content p{
+          font-size: clamp(16px, 2.8125vw, 18px);
+          line-height: clamp(24px, 4.6875vw, 30px);
+          margin-bottom: 0;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content .button-wrap{
+          position: relative;
+          left: auto;
+          bottom: auto;
+          margin-top: 11.25vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img{
+          width: 100%;
+          height: auto;
+          top: 0;
      }
 }

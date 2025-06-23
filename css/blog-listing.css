@@ -131,3 +131,38 @@
   color: #fff;
   display: inline-block;
 }
+
+
+@media screen and (max-width: 1023px) {
+  .blog-listing-block .blog-listing-block-in{
+    padding-left: clamp(24px, 1.875vw, 48px);
+    padding-right: clamp(24px, 1.875vw, 48px);
+  }
+  .blog-listing-block .blog-listing-block-in .blog-listing-row{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 767px) {
+  .blog-listing-block .blog-listing-block-in{
+    padding-left: 7.5vw;
+    padding-right: 7.5vw;
+  }
+  .blog-listing-block .blog-listing-block-in .blog-listing-row{
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-category-with-date{
+    padding: 6.25vw;
+  }
+  .blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link{
+    padding: 6.25vw;
+  }
+  .blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link h3{
+    font-size: clamp(30px, 7.5vw, 48px);
+    line-height: clamp(36px, 9.375vw, 60px);
+  }
+  .blog-listing-block .blog-listing-block-in .blog-listing-row .blog-listing-item .blog-listing-title-with-link a.link{
+    font-size: clamp(14px, 3.75vw, 24px);
+    line-height: clamp(20px, 5vw, 32px);
+    font-weight: 400;
+  }
+}

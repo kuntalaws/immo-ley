@@ -7,7 +7,7 @@
 
 }
 .single-blog .single-blog-in .single-blog-header{
-     width: clamp(768px, 55.8984375vw, 1430px);
+     max-width: clamp(768px, 55.8984375vw, 1430px);
      display: block;
      margin: 0 auto;
      padding-bottom: clamp(80px, 5.859375vw, 150px);
@@ -73,7 +73,7 @@
 }
 
 .single-blog .single-blog-in .single-blog-content{
-     width: clamp(768px, 55.8984375vw, 1430px);
+     max-width: clamp(768px, 55.8984375vw, 1430px);
      display: block;
      margin: 0 auto;
      padding-top: clamp(100px, 7.03125vw, 180px);
@@ -140,4 +140,59 @@
      font-weight: 300;
      font-family: "larken", sans-serif;
      display: block;
+}
+
+
+@media screen and (max-width: 1024px) {
+     .single-blog .single-blog-in .single-blog-title{
+          max-width: 100%;
+     }
+}
+@media screen and (max-width: 767px) {
+     .single-blog{
+          padding-top: clamp(124px, 35vw, 220vw);
+     }
+     .single-blog .single-blog-in .single-blog-header{
+          padding-bottom: clamp(40px, 9.375vw, 60px);
+     }
+     .single-blog .single-blog-in .single-blog-title{
+        font-size: clamp(32px, 8.375vw, 54px);
+        line-height: clamp(32px, 8.375vw, 54px);
+     }
+     .single-blog .single-blog-in .single-blog-excerpt p{
+          font-size: clamp(16px, 2.8125vw, 18px);
+          line-height: clamp(24px, 4.6875vw, 30px);
+     }
+     .single-blog .single-blog-in .single-blog-content{
+          padding-top: clamp(40px, 9.375vw, 60px);
+          padding-bottom: clamp(40px, 9.375vw, 60px);
+     }
+     .single-blog .single-blog-in .single-blog-content p{
+          font-size: clamp(16px, 2.8125vw, 18px);
+          line-height: clamp(24px, 4.6875vw, 30px);
+          margin-bottom: clamp(24px, 4.6875vw, 30px);
+     }
+     .single-blog .single-blog-in .single-blog-content h3{
+          font-size: clamp(24px, 6.25vw, 40px);
+          line-height: clamp(30px, 7.5vw, 48px);
+          margin-bottom: clamp(24px, 4.6875vw, 30px);
+     }
+     .single-blog .single-blog-in .single-blog-content ul li{
+          font-size: clamp(16px, 2.8125vw, 18px);
+          line-height: clamp(24px, 4.6875vw, 30px);
+          padding-left: 24px;
+     }
+     .single-blog .single-blog-in .single-blog-content ul li::before{
+          font-size: clamp(16px, 2.8125vw, 18px);
+          line-height: clamp(24px, 4.6875vw, 30px);
+     }
+     .single-blog .single-blog-in .single-blog-content blockquote{
+          margin: 6.25vw 0;
+          font-size: clamp(24px, 6.25vw, 40px);
+          line-height: clamp(30px, 7.5vw, 48px);
+     }
+     .single-blog .single-blog-in .single-blog-content blockquote p{
+          font-size: clamp(24px, 6.25vw, 40px);
+          line-height: clamp(30px, 7.5vw, 48px);
+     }
 }
