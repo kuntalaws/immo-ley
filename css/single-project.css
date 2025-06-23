@@ -232,3 +232,33 @@ padding-bottom: clamp(42px, 3.125vw, 80px);
 .property-widget .property-widget-wrap .social-icons .social-icon a img {
     width: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right,
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left {
+        flex: 0 0 100%;
+    }
+    .single-project-section {
+        margin-top: 145px;
+    }
+    .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
+        grid-column-gap: 10px;
+    }
+    .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat {
+        flex: 0 0 48%;
+        gap: 10px;
+    }
+    .property-widget .property-widget-wrap .property-table {
+        column-count: 1;
+    }
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
+        gap: 20px;
+    }
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
+        width: 100px;
+        height: 100px;
+    }
+    .single-project-section {
+        height: 60vh;
+    }
+}
