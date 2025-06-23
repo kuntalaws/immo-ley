@@ -188,3 +188,26 @@
     .contact-form-section .contact-form-section-in .contact-form {
         flex: 0 0 60%;
     }
+@media screen and (max-width: 768px) {
+    .contact-form-section .contact-form-section-in {
+        margin-bottom: 70px;
+    }
+    .contact-form-section .contact-form-section-in .contact-form {
+        flex: 0 0 100%;
+    }
+    .contact-form .contact-form-in .checkbox-container {
+        flex-wrap: wrap;
+    }
+    .contact-form .widget .checkbox-group .wpcf7-form-control.wpcf7-checkbox {
+        gap: 10px;
+        max-width: 100%;
+        grid-template-columns: 1fr 1fr;
+    }
+    .contact-form .widget {
+        padding: 40px 30px;
+    }
+    .contact-form .contact-form-in .budget-input {
+        width: 110px;
+    }
+    
+}
