@@ -30,7 +30,7 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 		</div>
 		<div class="filter-grid-item-wrapper">
 			<div class="filter-grid-item-wrap fw flex">
-				<a href="#" class="filter-grid-item">
+				<a href="https://anushaweb.com/immo-ley/single-project/" class="filter-grid-item">
 					<div class="filter-grid-item-img">
 						<div class="filter-grid-item-img-box">
 							<img loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/grid-item-img-01.jpg" alt="Immo Ley">
@@ -43,7 +43,7 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 						</div>
 					</div>
 				</a>
-				<a href="#" class="filter-grid-item">
+				<a href="https://anushaweb.com/immo-ley/single-project/" class="filter-grid-item">
 					<div class="filter-grid-item-img">
 						<div class="filter-grid-item-img-box">
 							<img loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/grid-item-img-02.jpg" alt="Immo Ley">
@@ -56,7 +56,7 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 						</div>
 					</div>
 				</a>
-				<a href="#" class="filter-grid-item">
+				<a href="https://anushaweb.com/immo-ley/single-project/" class="filter-grid-item">
 					<div class="filter-grid-item-img">
 						<div class="filter-grid-item-img-box">
 							<img loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/grid-item-img-03.jpg" alt="Immo Ley">
@@ -69,7 +69,7 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 						</div>
 					</div>
 				</a>
-				<a href="#" class="filter-grid-item">
+				<a href="https://anushaweb.com/immo-ley/single-project/" class="filter-grid-item">
 					<div class="filter-grid-item-img">
 						<div class="filter-grid-item-img-box">
 							<img loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/grid-item-img-01.jpg" alt="Immo Ley">
@@ -82,7 +82,7 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 						</div>
 					</div>
 				</a>
-				<a href="#" class="filter-grid-item">
+				<a href="https://anushaweb.com/immo-ley/single-project/" class="filter-grid-item">
 					<div class="filter-grid-item-img">
 						<div class="filter-grid-item-img-box">
 							<img loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/grid-item-img-02.jpg" alt="Immo Ley">
@@ -95,7 +95,7 @@ global $contentRowsInPage,$curContIndex,$sectionID;
 						</div>
 					</div>
 				</a>
-				<a href="#" class="filter-grid-item">
+				<a href="https://anushaweb.com/immo-ley/single-project/" class="filter-grid-item">
 					<div class="filter-grid-item-img">
 						<div class="filter-grid-item-img-box">
 							<img loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/uploads/2025/06/grid-item-img-03.jpg" alt="Immo Ley">
