@@ -11,6 +11,12 @@ if(file_exists(dirname(__FILE__) . '/includes/register-post-types.php')){
 if(file_exists(dirname(__FILE__) . '/includes/register-gb-block.php')){
 	include_once(dirname(__FILE__) . '/includes/register-gb-block.php');
 }
+if(file_exists(dirname(__FILE__) . '/includes/WhiseAPI.php')){
+	include_once(dirname(__FILE__) . '/includes/WhiseAPI.php');
+}
+if(file_exists(dirname(__FILE__) . '/includes/whise-config.php')){
+	include_once(dirname(__FILE__) . '/includes/whise-config.php');
+}
 
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
@@ -574,4 +580,88 @@ add_filter( 'body_class', 'add_slug_body_class' );
     return $args;
 }
 add_filter('wp_nav_menu_args', 'register_custom_menu_walker');*/
+
+/**
+ * Whise API AJAX endpoints
+ */
+
+// AJAX endpoint for getting estates
+add_action('wp_ajax_get_estates', 'whise_get_estates_ajax');
+add_action('wp_ajax_nopriv_get_estates', 'whise_get_estates_ajax');
+
+function whise_get_estates_ajax() {
+    $whise = new WhiseAPI();
+    
+    $filters = [];
+    
+    // Get filter parameters
+    if (isset($_POST['purpose']) && !empty($_POST['purpose'])) {
+        $filters['PurposeId'] = intval($_POST['purpose']);
+    }
+    
+    if (isset($_POST['city']) && !empty($_POST['city'])) {
+        $filters['City'] = sanitize_text_field($_POST['city']);
+    }
+    
+    if (isset($_POST['category']) && !empty($_POST['category'])) {
+        $filters['CategoryId'] = intval($_POST['category']);
+    }
+    
+    if (isset($_POST['price_min']) && !empty($_POST['price_min'])) {
+        $filters['PriceMin'] = intval($_POST['price_min']);
+    }
+    
+    if (isset($_POST['price_max']) && !empty($_POST['price_max'])) {
+        $filters['PriceMax'] = intval($_POST['price_max']);
+    }
+    
+    // Debug logging
+    error_log('Whise API - Filters: ' . print_r($filters, true));
+    
+    $estates = $whise->get_estates($filters);
+    
+    // Debug logging
+    error_log('Whise API - Response: ' . print_r($estates, true));
+    
+    if ($estates && isset($estates['estates'])) {
+        error_log('Whise API - Found ' . count($estates['estates']) . ' estates');
+        wp_send_json_success($estates['estates']);
+    } else {
+        error_log('Whise API - No estates found or error');
+        wp_send_json_error('No estates found');
+    }
+}
+
+// AJAX endpoint for getting filter options
+add_action('wp_ajax_get_filter_options', 'whise_get_filter_options_ajax');
+add_action('wp_ajax_nopriv_get_filter_options', 'whise_get_filter_options_ajax');
+
+function whise_get_filter_options_ajax() {
+    $whise = new WhiseAPI();
+    
+    $options = [
+        'purposes' => $whise->get_static_data('purpose'),
+        'categories' => $whise->get_static_data('category'),
+        'price_ranges' => $whise->get_static_data('price_ranges'),
+        'cities' => []
+    ];
+    
+    // Get cities from API
+    $cities_data = $whise->get_cities();
+    if ($cities_data && isset($cities_data['cities'])) {
+        $options['cities'] = $cities_data['cities'];
+    }
+    
+    wp_send_json_success($options);
+}
+
+// Enqueue scripts for Whise API
+function whise_enqueue_scripts() {
+    wp_enqueue_script('whise-api', get_template_directory_uri() . '/js/whise-api.js', array('jquery'), '1.0.0', true);
+    wp_localize_script('whise-api', 'whise_ajax', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('whise_nonce')
+    ));
+}
+add_action('wp_enqueue_scripts', 'whise_enqueue_scripts');
 

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whise API Filter Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .filter-row { display: flex; gap: 20px; margin-bottom: 30px; }
+        .filter-item { display: flex; flex-direction: column; }
+        .filter-item select { padding: 8px; margin-top: 5px; }
+        .filter-item button { padding: 10px 20px; background: #007cba; color: white; border: none; cursor: pointer; }
+        .estates-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .estate-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+        .estate-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; }
+        .loading { text-align: center; padding: 40px; }
+        .no-results { text-align: center; padding: 40px; color: #666; }
+        .error { text-align: center; padding: 40px; color: red; }
+    </style>
+</head>
+<body>
+    <h1>Whise API Filter Test</h1>
+    
+    <div class="filter-row">
+        <div class="filter-item">
+            <label>Te koop</label>
+            <select class="whise-filter whise-purpose-select">
+                <option value="">Alle</option>
+                <option value="1">Te koop</option>
+                <option value="2">Te huur</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>Gemeente</label>
+            <select class="whise-filter whise-city-select">
+                <option value="">Alle gemeenten</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>Type</label>
+            <select class="whise-filter whise-category-select">
+                <option value="">Alle types</option>
+                <option value="1">Appartement</option>
+                <option value="2">Huis</option>
+                <option value="3">Villa</option>
+                <option value="4">Kantoor</option>
+                <option value="5">Winkel</option>
+                <option value="6">Grond</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>Prijs</label>
+            <select class="whise-filter whise-price-range">
+                <option value="">Alle prijzen</option>
+                <option value="0-500000">0 - €500.000</option>
+                <option value="500000-1000000">€500.000 - €1.000.000</option>
+                <option value="1000000-1500000">€1.000.000 - €1.500.000</option>
+                <option value="1500000-">€1.500.000+</option>
+            </select>
+            <input type="hidden" class="whise-price-min" value="">
+            <input type="hidden" class="whise-price-max" value="">
+        </div>
+        <div class="filter-item">
+            <label>Zoeken</label>
+            <button type="button" class="whise-search-btn">ZOEKEN</button>
+        </div>
+    </div>
+    
+    <div id="whise-estates-container" class="estates-container">
+        <div class="loading-placeholder">
+            <div class="loading-spinner"></div>
+            <p>Eigendommen laden...</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Mock AJAX data for testing
+        const whise_ajax = {
+            ajax_url: '/wp-admin/admin-ajax.php',
+            nonce: 'test_nonce'
+        };
+
+        jQuery(document).ready(function($) {
+            'use strict';
+            
+            const WhiseAPI = {
+                init: function() {
+                    this.bindEvents();
+                    this.loadEstates();
+                },
+                
+                bindEvents: function() {
+                    $(document).on('change', '.whise-filter', function() {
+                        WhiseAPI.loadEstates();
+                    });
+                    
+                    $(document).on('click', '.whise-search-btn', function(e) {
+                        e.preventDefault();
+                        WhiseAPI.loadEstates();
+                    });
+                    
+                    $(document).on('change', '.whise-price-range', function() {
+                        const selectedRange = $(this).val();
+                        if (selectedRange) {
+                            const [min, max] = selectedRange.split('-');
+                            $('.whise-price-min').val(min || '');
+                            $('.whise-price-max').val(max || '');
+                        } else {
+                            $('.whise-price-min').val('');
+                            $('.whise-price-max').val('');
+                        }
+                        WhiseAPI.loadEstates();
+                    });
+                },
+                
+                loadEstates: function() {
+                    const filters = this.getFilters();
+                    
+                    $('#whise-estates-container').addClass('loading');
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        const mockEstates = this.getMockEstates(filters);
+                        if (mockEstates.length > 0) {
+                            this.renderEstates(mockEstates);
+                        } else {
+                            this.showNoResults();
+                        }
+                        $('#whise-estates-container').removeClass('loading');
+                    }, 1000);
+                },
+                
+                getFilters: function() {
+                    return {
+                        purpose: $('.whise-purpose-select').val(),
+                        city: $('.whise-city-select').val(),
+                        category: $('.whise-category-select').val(),
+                        price_min: $('.whise-price-min').val(),
+                        price_max: $('.whise-price-max').val()
+                    };
+                },
+                
+                getMockEstates: function(filters) {
+                    const allEstates = [
+                        {
+                            id: 1,
+                            name: 'Charmante villa gelegen op een uniek perceel',
+                            city: 'EDEGEM',
+                            price: 1850000,
+                            purpose: { id: 1 },
+                            category: { id: 3 },
+                            pictures: [{ urlLarge: 'https://via.placeholder.com/400x300/007cba/ffffff?text=Villa' }]
+                        },
+                        {
+                            id: 2,
+                            name: 'Nieuwbouwwoning in hartje Hove',
+                            city: 'HOVE',
+                            price: 1250000,
+                            purpose: { id: 1 },
+                            category: { id: 2 },
+                            pictures: [{ urlLarge: 'https://via.placeholder.com/400x300/28a745/ffffff?text=Huis' }]
+                        },
+                        {
+                            id: 3,
+                            name: 'Modern appartement met terras',
+                            city: 'ANTWERPEN',
+                            price: 450000,
+                            purpose: { id: 1 },
+                            category: { id: 1 },
+                            pictures: [{ urlLarge: 'https://via.placeholder.com/400x300/dc3545/ffffff?text=Appartement' }]
+                        },
+                        {
+                            id: 4,
+                            name: 'Kantoorruimte in centrum',
+                            city: 'BRUSSEL',
+                            price: 800000,
+                            purpose: { id: 2 },
+                            category: { id: 4 },
+                            pictures: [{ urlLarge: 'https://via.placeholder.com/400x300/ffc107/ffffff?text=Kantoor' }]
+                        }
+                    ];
+                    
+                    return allEstates.filter(estate => {
+                        if (filters.purpose && estate.purpose.id != filters.purpose) return false;
+                        if (filters.city && estate.city !== filters.city) return false;
+                        if (filters.category && estate.category.id != filters.category) return false;
+                        if (filters.price_min && estate.price < filters.price_min) return false;
+                        if (filters.price_max && estate.price > filters.price_max) return false;
+                        return true;
+                    });
+                },
+                
+                renderEstates: function(estates) {
+                    const container = $('#whise-estates-container');
+                    container.empty();
+                    
+                    estates.forEach(function(estate) {
+                        const estateHtml = WhiseAPI.createEstateHTML(estate);
+                        container.append(estateHtml);
+                    });
+                },
+                
+                createEstateHTML: function(estate) {
+                    const imageUrl = estate.pictures && estate.pictures.length > 0 
+                        ? estate.pictures[0].urlLarge 
+                        : 'https://via.placeholder.com/400x300/cccccc/ffffff?text=No+Image';
+                    
+                    const price = estate.price ? '€ ' + WhiseAPI.formatPrice(estate.price) : 'Prijs op aanvraag';
+                    const city = estate.city || 'Onbekend';
+                    const title = estate.name || 'Eigendom';
+                    
+                    return '<div class="estate-item" data-estate-id="' + estate.id + '">' +
+                        '<img src="' + imageUrl + '" alt="' + title + '">' +
+                        '<h3>' + title + '</h3>' +
+                        '<p><strong>' + city + '</strong> / <strong>' + price + '</strong></p>' +
+                    '</div>';
+                },
+                
+                formatPrice: function(price) {
+                    if (price >= 1000000) {
+                        return (price / 1000000).toFixed(1) + 'M';
+                    } else if (price >= 1000) {
+                        return (price / 1000).toFixed(0) + 'K';
+                    } else {
+                        return price.toLocaleString();
+                    }
+                },
+                
+                showNoResults: function() {
+                    const container = $('#whise-estates-container');
+                    container.html('<div class="no-results">' +
+                        '<h4>Geen eigendommen gevonden</h4>' +
+                        '<p>Probeer andere zoekcriteria of neem contact met ons op.</p>' +
+                    '</div>');
+                }
+            };
+            
+            if ($('.whise-filter').length > 0) {
+                WhiseAPI.init();
+            }
+        });
+    </script>
+</body>
+</html> 
