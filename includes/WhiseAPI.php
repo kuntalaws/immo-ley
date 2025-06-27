@@ -34,14 +34,6 @@ class WhiseAPI {
             return false;
         }
         
-        // Check cache first
-        $cached_token = get_transient('whise_auth_token');
-        if ($cached_token !== false) {
-            $this->token = $cached_token;
-            error_log('Whise API: Using cached auth token');
-            return true;
-        }
-        
         $request_body = [
             'username' => $this->username,
             'password' => $this->password
@@ -73,8 +65,6 @@ class WhiseAPI {
         
         if (isset($data['token'])) {
             $this->token = $data['token'];
-            // Cache token for 1 hour (tokens usually expire after 2 hours)
-            set_transient('whise_auth_token', $this->token, 3600);
             error_log('Whise API: Step 1 - Authentication successful');
             return true;
         }
@@ -141,14 +131,6 @@ class WhiseAPI {
             return false;
         }
         
-        // Check cache first
-        $cached_client_token = get_transient('whise_client_token_' . $this->client_id);
-        if ($cached_client_token !== false) {
-            $this->client_token = $cached_client_token;
-            error_log('Whise API: Using cached client token');
-            return true;
-        }
-        
         $request_body = [
             'ClientId' => intval($this->client_id)
         ];
@@ -179,8 +161,6 @@ class WhiseAPI {
         
         if (isset($data['token'])) {
             $this->client_token = $data['token'];
-            // Cache client token for 1 hour
-            set_transient('whise_client_token_' . $this->client_id, $this->client_token, 3600);
             error_log('Whise API: Step 3 - Client token obtained successfully');
             return true;
         }
@@ -200,51 +180,61 @@ class WhiseAPI {
             }
         }
         
+        // Build request body according to Whise API documentation
         $request_body = [
+            'Filter' => [],
             'Field' => [
-                'excluded' => ['longDescription']
+                'Excluded' => ['longDescription']
+            ],
+            'Page' => [
+                'Limit' => 100,  // Set a reasonable limit
+                'Offset' => 0
             ]
         ];
         
-        // Add filters if provided
+        // Add filters if provided - map to correct API parameter names
         if (!empty($filters)) {
-            // Map filter names to API field names
-            $api_filters = [];
+            error_log('Whise API: Processing filters: ' . print_r($filters, true));
+            
+            // Map filter names to API field names according to Whise API documentation
             foreach ($filters as $key => $value) {
                 switch ($key) {
                     case 'purpose':
-                        $api_filters['PurposeId'] = intval($value);
+                    case 'PurposeId':
+                        $request_body['Filter']['PurposeIds'] = [intval($value)];
                         break;
                     case 'city':
-                        $api_filters['City'] = $value;
+                    case 'City':
+                        $request_body['Filter']['City'] = $value;
                         break;
                     case 'category':
-                        $api_filters['CategoryId'] = intval($value);
+                    case 'CategoryId':
+                        $request_body['Filter']['CategoryIds'] = [intval($value)];
                         break;
                     case 'price_min':
-                        $api_filters['PriceMin'] = intval($value);
+                    case 'PriceMin':
+                        if (!isset($request_body['Filter']['PriceRange'])) {
+                            $request_body['Filter']['PriceRange'] = ['Min' => 0, 'Max' => 999999999];
+                        }
+                        $request_body['Filter']['PriceRange']['Min'] = intval($value);
                         break;
                     case 'price_max':
-                        $api_filters['PriceMax'] = intval($value);
+                    case 'PriceMax':
+                        if (!isset($request_body['Filter']['PriceRange'])) {
+                            $request_body['Filter']['PriceRange'] = ['Min' => 0, 'Max' => 999999999];
+                        }
+                        $request_body['Filter']['PriceRange']['Max'] = intval($value);
                         break;
                     default:
-                        $api_filters[$key] = $value;
+                        // Pass through any other parameters as-is to Filter object
+                        $request_body['Filter'][$key] = $value;
                 }
             }
-            $request_body = array_merge($request_body, $api_filters);
-        }
-        
-        // Create cache key based on filters
-        $cache_key = 'estates_' . md5(serialize($request_body));
-        
-        // Check cache first
-        $cached_estates = get_transient('whise_' . $cache_key);
-        if ($cached_estates !== false) {
-            error_log('Whise API: Returning cached estates data');
-            return $cached_estates;
         }
         
         error_log('Whise API: Step 4 - Requesting estates with body: ' . json_encode($request_body));
+        error_log('Whise API: Step 4 - API URL: ' . $this->api_url . '/v1/estates/list');
+        error_log('Whise API: Step 4 - Client token: ' . substr($this->client_token, 0, 20) . '...');
         
         $response = wp_remote_post($this->api_url . '/v1/estates/list', [
             'headers' => [
@@ -262,18 +252,34 @@ class WhiseAPI {
         
         $status_code = wp_remote_retrieve_response_code($response);
         $body = wp_remote_retrieve_body($response);
+        $headers = wp_remote_retrieve_headers($response);
         
         error_log('Whise API: Estates response code: ' . $status_code);
-        error_log('Whise API: Estates response body: ' . substr($body, 0, 1000) . '...');
+        error_log('Whise API: Estates response headers: ' . print_r($headers, true));
+        error_log('Whise API: Estates response body length: ' . strlen($body));
+        error_log('Whise API: Estates response body: ' . $body);
         
         $data = json_decode($body, true);
         
         if ($data) {
-            // Cache for 30 minutes
-            set_transient('whise_' . $cache_key, $data, 1800);
-            error_log('Whise API: Step 4 - Estates data cached successfully');
+            error_log('Whise API: Step 4 - Estates data received successfully');
+            if (isset($data['estates'])) {
+                error_log('Whise API: Step 4 - Found ' . count($data['estates']) . ' estates');
+                // Log first estate details for debugging
+                if (count($data['estates']) > 0) {
+                    $first_estate = $data['estates'][0];
+                    error_log('Whise API: Step 4 - First estate: ID=' . ($first_estate['id'] ?? 'N/A') . 
+                             ', PurposeId=' . ($first_estate['purposeId'] ?? 'N/A') . 
+                             ', CategoryId=' . ($first_estate['categoryId'] ?? 'N/A') . 
+                             ', Price=' . ($first_estate['price'] ?? 'N/A') . 
+                             ', City=' . ($first_estate['city'] ?? 'N/A'));
+                }
+            } else {
+                error_log('Whise API: Step 4 - No estates array in response');
+            }
         } else {
             error_log('Whise API: Step 4 - Failed to decode estates response');
+            error_log('Whise API: Step 4 - JSON decode error: ' . json_last_error_msg());
         }
         
         return $data;
@@ -288,12 +294,6 @@ class WhiseAPI {
                 error_log('Whise API: Failed to get client token for cities request');
                 return false;
             }
-        }
-        
-        // Check cache first
-        $cached_cities = get_transient('whise_cities');
-        if ($cached_cities !== false) {
-            return $cached_cities;
         }
         
         error_log('Whise API: Requesting cities list');
@@ -321,9 +321,7 @@ class WhiseAPI {
         $data = json_decode($body, true);
         
         if ($data) {
-            // Cache for 1 hour
-            set_transient('whise_cities', $data, 3600);
-            error_log('Whise API: Cities data cached successfully');
+            error_log('Whise API: Cities data received successfully');
         }
         
         return $data;
@@ -333,9 +331,69 @@ class WhiseAPI {
      * Get static data (purpose, category, etc.)
      */
     public function get_static_data($type) {
-        // For now, we'll return hardcoded data based on the API documentation
-        // In a real implementation, you might want to cache this data
+        // Try to get data from API first, fallback to hardcoded data
+        if (!$this->client_token) {
+            if (!$this->get_client_token()) {
+                error_log('Whise API: Failed to get client token for static data');
+                return $this->get_hardcoded_static_data($type);
+            }
+        }
         
+        switch ($type) {
+            case 'purpose':
+                // Try to get purposes from API
+                $response = wp_remote_post($this->api_url . '/v1/estates/purposes/list', [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer ' . $this->client_token
+                    ],
+                    'body' => json_encode([]),
+                    'timeout' => 30
+                ]);
+                
+                if (!is_wp_error($response)) {
+                    $data = json_decode(wp_remote_retrieve_body($response), true);
+                    if ($data && isset($data['purposes'])) {
+                        error_log('Whise API: Got purposes from API: ' . print_r($data['purposes'], true));
+                        return $data['purposes'];
+                    }
+                }
+                error_log('Whise API: Using hardcoded purposes');
+                return $this->get_hardcoded_static_data($type);
+                
+            case 'category':
+                // Try to get categories from API
+                $response = wp_remote_post($this->api_url . '/v1/estates/categories/list', [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer ' . $this->client_token
+                    ],
+                    'body' => json_encode([]),
+                    'timeout' => 30
+                ]);
+                
+                if (!is_wp_error($response)) {
+                    $data = json_decode(wp_remote_retrieve_body($response), true);
+                    if ($data && isset($data['categories'])) {
+                        error_log('Whise API: Got categories from API: ' . print_r($data['categories'], true));
+                        return $data['categories'];
+                    }
+                }
+                error_log('Whise API: Using hardcoded categories');
+                return $this->get_hardcoded_static_data($type);
+                
+            case 'price_ranges':
+                return $this->get_hardcoded_static_data($type);
+                
+            default:
+                return [];
+        }
+    }
+    
+    /**
+     * Get hardcoded static data as fallback
+     */
+    private function get_hardcoded_static_data($type) {
         switch ($type) {
             case 'purpose':
                 return [
@@ -423,6 +481,102 @@ class WhiseAPI {
             'message' => 'All steps successful', 
             'clients_count' => count($clients),
             'estates_count' => count($estates['estates'] ?? [])
+        ];
+    }
+    
+    /**
+     * Test method to debug API calls with detailed logging
+     */
+    public function debug_api_call($filters = []) {
+        if (!$this->client_token) {
+            if (!$this->get_client_token()) {
+                error_log('Whise API Debug: Failed to get client token');
+                return false;
+            }
+        }
+        
+        // Build request body according to Whise API documentation
+        $request_body = [
+            'Filter' => [],
+            'Field' => [
+                'Excluded' => ['longDescription']
+            ],
+            'Page' => [
+                'Limit' => 100,
+                'Offset' => 0
+            ]
+        ];
+        
+        // Add filters if provided
+        if (!empty($filters)) {
+            foreach ($filters as $key => $value) {
+                switch ($key) {
+                    case 'PurposeId':
+                        $request_body['Filter']['PurposeIds'] = [intval($value)];
+                        break;
+                    case 'CategoryId':
+                        $request_body['Filter']['CategoryIds'] = [intval($value)];
+                        break;
+                    case 'PriceMin':
+                        if (!isset($request_body['Filter']['PriceRange'])) {
+                            $request_body['Filter']['PriceRange'] = ['Min' => 0, 'Max' => 999999999];
+                        }
+                        $request_body['Filter']['PriceRange']['Min'] = intval($value);
+                        break;
+                    case 'PriceMax':
+                        if (!isset($request_body['Filter']['PriceRange'])) {
+                            $request_body['Filter']['PriceRange'] = ['Min' => 0, 'Max' => 999999999];
+                        }
+                        $request_body['Filter']['PriceRange']['Max'] = intval($value);
+                        break;
+                    default:
+                        $request_body['Filter'][$key] = $value;
+                }
+            }
+        }
+        
+        error_log('Whise API Debug: Making test API call');
+        error_log('Whise API Debug: Request body: ' . json_encode($request_body));
+        error_log('Whise API Debug: API URL: ' . $this->api_url . '/v1/estates/list');
+        
+        $response = wp_remote_post($this->api_url . '/v1/estates/list', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->client_token
+            ],
+            'body' => json_encode($request_body),
+            'timeout' => 30
+        ]);
+        
+        if (is_wp_error($response)) {
+            error_log('Whise API Debug: Request error - ' . $response->get_error_message());
+            return false;
+        }
+        
+        $status_code = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+        $headers = wp_remote_retrieve_headers($response);
+        
+        error_log('Whise API Debug: Response status: ' . $status_code);
+        error_log('Whise API Debug: Response headers: ' . print_r($headers, true));
+        error_log('Whise API Debug: Response body: ' . $body);
+        
+        $data = json_decode($body, true);
+        
+        if ($data) {
+            error_log('Whise API Debug: JSON decoded successfully');
+            if (isset($data['estates'])) {
+                error_log('Whise API Debug: Found ' . count($data['estates']) . ' estates');
+            }
+        } else {
+            error_log('Whise API Debug: JSON decode failed: ' . json_last_error_msg());
+        }
+        
+        return [
+            'status_code' => $status_code,
+            'headers' => $headers,
+            'body' => $body,
+            'data' => $data
         ];
     }
 } 
