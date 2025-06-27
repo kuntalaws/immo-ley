@@ -124,42 +124,41 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 		<div class="filter-row">
 			<div class="filter-row-in fw flex">
 				<div class="filter-item">
-					<h5>Te koop</h5>
-					<select name="purpose" class="whise-purpose-select">
-						<option value="">Alle</option>
+					<input type="text" name="purpose-input" placeholder="Te koop" value="<?php echo esc_attr($current_purpose); ?>" class="select-input" data-select="purpose">
+					<ul name="purpose" class="select-options whise-purpose-select" data-select="purpose">
 						<?php if (isset($filter_options['purposes'])): ?>
 							<?php foreach ($filter_options['purposes'] as $purpose): ?>
-								<option value="<?php echo esc_attr($purpose['id']); ?>" <?php selected($current_purpose, $purpose['id']); ?>><?php echo esc_html($purpose['name']); ?></option>
+								<li value="<?php echo esc_attr($purpose['id']); ?>" <?php selected($current_purpose, $purpose['id']); ?>><?php echo esc_html($purpose['name']); ?></li>
 							<?php endforeach; ?>
 						<?php endif; ?>
-					</select>
+					</ul>
+					<div class="selected-tags" data-selected="purpose"></div>
 				</div>
 				<div class="filter-item">
-					<h5>Gemeente</h5>
-					<select name="city" class="whise-city-select">
-						<option value="">Alle gemeenten</option>
+					<input type="text" name="city-input" placeholder="Gemeente" value="<?php echo esc_attr($current_city); ?>" class="select-input" data-select="city">
+					<ul name="city" class="select-options whise-city-select" data-select="city">
 						<?php if (isset($filter_options['cities'])): ?>
 							<?php foreach ($filter_options['cities'] as $city): ?>
-								<option value="<?php echo esc_attr($city['name']); ?>" <?php selected($current_city, $city['name']); ?>><?php echo esc_html($city['name']); ?></option>
+								<li value="<?php echo esc_attr($city['name']); ?>" <?php selected($current_city, $city['name']); ?>><?php echo esc_html($city['name']); ?></li>
 							<?php endforeach; ?>
 						<?php endif; ?>
-					</select>
+					</ul>
+					<div class="selected-tags" data-selected="city"></div>
 				</div>
 				<div class="filter-item">
-					<h5>Type</h5>
-					<select name="category" class="whise-category-select">
-						<option value="">Alle types</option>
+					<input type="text" name="category-input" placeholder="Type" value="<?php echo esc_attr($current_category); ?>" class="select-input" data-select="category">
+					<ul name="category" class="select-options whise-category-select" data-select="category">
 						<?php if (isset($filter_options['categories'])): ?>
 							<?php foreach ($filter_options['categories'] as $category): ?>
-								<option value="<?php echo esc_attr($category['id']); ?>" <?php selected($current_category, $category['id']); ?>><?php echo esc_html($category['name']); ?></option>
+								<li value="<?php echo esc_attr($category['id']); ?>" <?php selected($current_category, $category['id']); ?>><?php echo esc_html($category['name']); ?></li>
 							<?php endforeach; ?>
 						<?php endif; ?>
-					</select>
+					</ul>
+					<div class="selected-tags" data-selected="category"></div>
 				</div>
 				<div class="filter-item">
-					<h5>Prijs</h5>
-					<select name="price_range" class="whise-price-range">
-						<option value="">Alle prijzen</option>
+					<input type="text" name="price_range-input" placeholder="Prijs" value="<?php echo esc_attr($current_price_range); ?>" class="select-input" data-select="price_range">
+					<ul name="price_range" class="select-options whise-price-range" data-select="price_range">
 						<?php if (isset($filter_options['price_ranges'])): ?>
 							<?php foreach ($filter_options['price_ranges'] as $range): ?>
 								<?php 
@@ -169,16 +168,17 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 									$current_range = $current_price_min . '-' . $current_price_max;
 								}
 								?>
-								<option value="<?php echo esc_attr($range_value); ?>" <?php selected($current_range, $range_value); ?>><?php echo esc_html($range['label']); ?></option>
+								<li value="<?php echo esc_attr($range_value); ?>" <?php selected($current_range, $range_value); ?>><?php echo esc_html($range['label']); ?></li>
 							<?php endforeach; ?>
 						<?php endif; ?>
-					</select>
+					</ul>
 					<input type="hidden" name="price_min" value="<?php echo esc_attr($current_price_min); ?>">
 					<input type="hidden" name="price_max" value="<?php echo esc_attr($current_price_max); ?>">
+					<div class="selected-tags" data-selected="price_range"></div>
 				</div>
 				<div class="filter-item">
-					<h5>Zoeken</h5>
-					<button type="submit" class="whise-search-btn btn"><span>ZOEKEN</span></button>
+					<!-- <h5>Zoeken</h5> -->
+					<button type="submit" class="whise-search-btn btn"><span>Zoeken</span></button>
 				</div>
 			</div>
 		</div>
@@ -188,6 +188,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 			<h3>Een greep uit ons aanbod</h3>
 		</div>
 		<div class="filter-grid-item-wrapper">
+			<!--Show First 4 Items-->
 			<div class="filter-grid-item-wrap fw flex" id="whise-estates-container">
 				<?php if (!empty($estates)): ?>
 					<?php foreach ($estates as $estate): ?>
@@ -200,7 +201,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 						$city = $estate['city'] ?? 'Onbekend';
 						$title = $estate['name'] ?? ($estate['shortDescription'] && count($estate['shortDescription']) > 0 ? $estate['shortDescription'][0]['content'] : 'Eigendom');
 						?>
-						<a href="#" class="filter-grid-item" data-estate-id="<?php echo esc_attr($estate['id']); ?>">
+						<a href="<?php echo esc_url($estate['url']); ?>" class="filter-grid-item" data-estate-id="<?php echo esc_attr($estate['id']); ?>">
 							<div class="filter-grid-item-img">
 								<div class="filter-grid-item-img-box">
 									<img loading="lazy" src="<?php echo esc_url($imageUrl); ?>" alt="<?php echo esc_attr($title); ?>">
@@ -245,6 +246,40 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 				<?php } ?>
 			</div>
 			<?php } ?>
+			<!--Show After 4 Items-->
+			<div class="filter-grid-item-wrap fw flex" id="whise-estates-container">
+				<?php if (!empty($estates)): ?>
+					<?php foreach ($estates as $estate): ?>
+						<?php
+						$imageUrl = $estate['pictures'] && count($estate['pictures']) > 0 
+							? $estate['pictures'][0]['urlLarge'] 
+							: get_template_directory_uri() . '/img/grid-item-img-01.jpg';
+						
+						$price = $estate['price'] ? '€ ' . number_format($estate['price'], 0, ',', '.') : 'Prijs op aanvraag';
+						$city = $estate['city'] ?? 'Onbekend';
+						$title = $estate['name'] ?? ($estate['shortDescription'] && count($estate['shortDescription']) > 0 ? $estate['shortDescription'][0]['content'] : 'Eigendom');
+						?>
+						<a href="<?php echo esc_url($estate['url']); ?>" class="filter-grid-item" data-estate-id="<?php echo esc_attr($estate['id']); ?>">
+							<div class="filter-grid-item-img">
+								<div class="filter-grid-item-img-box">
+									<img loading="lazy" src="<?php echo esc_url($imageUrl); ?>" alt="<?php echo esc_attr($title); ?>">
+								</div>
+							</div>
+							<div class="filter-grid-item-info">
+								<div class="filter-grid-item-info-in">
+									<h6><span class="filter-grid-item-info-category"><?php echo esc_html($city); ?></span> / <span class="filter-grid-item-info-price"><?php echo esc_html($price); ?></span></h6>
+									<h4><?php echo esc_html($title); ?></h4>
+								</div>
+							</div>
+						</a>
+					<?php endforeach; ?>
+				<?php else: ?>
+					<div class="no-results">
+						<h4>Geen eigendommen gevonden</h4>
+						<p>Probeer andere zoekcriteria of neem contact met ons op.</p>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
 	</div>
 </section>
@@ -261,6 +296,54 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 ?>
 
 <script>
+document.querySelectorAll('.select-input').forEach(input => {
+  const key = input.dataset.select;
+  const optionsList = document.querySelector(`.select-options[data-select="${key}"]`);
+  const selectedContainer = document.querySelector(`.selected-tags[data-selected="${key}"]`);
+
+  // Filter on input
+  input.addEventListener('input', () => {
+    const term = input.value.toLowerCase();
+    optionsList.style.display = 'block';
+    [...optionsList.children].forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+    });
+  });
+
+  // Show dropdown on focus
+  input.addEventListener('focus', () => {
+    optionsList.style.display = 'block';
+  });
+
+  // Hide dropdown on outside click
+  document.addEventListener('click', e => {
+    if (!input.closest('.filter-item').contains(e.target)) {
+      optionsList.style.display = 'none';
+    }
+  });
+
+  // Option click handler
+  optionsList.querySelectorAll('li').forEach(li => {
+    li.addEventListener('click', () => {
+      const tag = document.createElement('div');
+      tag.className = 'selected-tag';
+      tag.innerHTML = `<span>${li.textContent}</span><div class="remove-tag">×</div>`;
+      selectedContainer.appendChild(tag);
+
+      // Hide option and clear input
+      li.style.display = 'none';
+      input.value = '';
+      input.focus();
+
+      // Remove tag on click and restore option
+      tag.querySelector('.remove-tag').addEventListener('click', () => {
+        selectedContainer.removeChild(tag);
+        li.style.display = 'block';
+      });
+    });
+  });
+});
+
 jQuery(document).ready(function($) {
     // Handle price range selection
     $('.whise-price-range').on('change', function() {

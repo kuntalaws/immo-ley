@@ -2,10 +2,6 @@
      width: 100%;
      display: block;
 }
-.filter-with-grid .filter-form{
-     width: 100%;
-     display: block;
-}
 .filter-with-grid .filter-row{
      width: 100%;
      display: block;
@@ -18,11 +14,10 @@
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item{
      position: relative;
-     display: block;
-     border-bottom: 2px solid #5c182e;
-     width: calc((100% - (1.875vw * 4)) / 5);
+     display: block;     
+     width: auto;
 }
-.filter-with-grid .filter-row .filter-row-in .filter-item > h5{
+.filter-with-grid .filter-row .filter-row-in .filter-item input[type="text"]{
      font-size: clamp(17px, 1.171875vw, 19px);
      line-height: clamp(32px, 1.5625vw, 40px);
      padding: 0.5859375vw 0.390625vw;     
@@ -30,83 +25,104 @@
      display: block;
      margin: 0;
      cursor: pointer;
-}
-
-/* Form select styles */
-.filter-with-grid .filter-row .filter-row-in .filter-item select{
+     border: 0;
+     outline: 0;
+     background: transparent;
+     border-radius: 0;
+     font-family: "larken", sans-serif;
      width: 100%;
-     background: transparent;
-     border: none;
-     outline: none;
-     font-size: clamp(16px, 0.859375vw, 22px);
-     line-height: clamp(24px, 1.5625vw, 40px);
-     font-family: "Be Vietnam Pro", sans-serif;
-     color: #434343;
+     border-bottom: 2px solid #5c182e;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item input[type="text"]::-webkit-input-placeholder{
+     color: #3d1a25;
+     opacity: 1;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item input[type="text"]::-moz-placeholder{
+     color: #3d1a25;
+     opacity: 1;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item button {
+     font-size: clamp(17px, 1.171875vw, 19px);
+     line-height: clamp(32px, 1.5625vw, 40px);
+     padding: 0.5859375vw 0.390625vw;     
+     font-weight: 300;
+     width: 100%;;
+     display: block;
+     margin: 0;
      cursor: pointer;
-     padding: 0.5859375vw 0.390625vw;
-     appearance: none;
-     -webkit-appearance: none;
-     -moz-appearance: none;
-     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c182e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-     background-repeat: no-repeat;
-     background-position: right 0.5vw center;
-     background-size: 1vw;
+     border: 0;
+     outline: 0;
+     background: transparent;
+     border-radius: 0;
+     font-family: "larken", sans-serif;
+     cursor: pointer;
+     border-bottom: 2px solid #3d1a25;
 }
-
-.filter-with-grid .filter-row .filter-row-in .filter-item select:focus{
-     border-color: #5c182e;
-}
-
-.filter-with-grid .filter-row .filter-row-in .filter-item select option{
+.filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options{
+     position: absolute;
+     left: 0;
+     top: 100%;
+     width: 100%;
      background: #fff;
-     color: #434343;
-     padding: 0.5vw;
+     margin: 0;
+     padding: 0;
+     list-style: none;
+     border: 0;
+     z-index: 1;
 }
-
-/* Button styles */
-.filter-with-grid .filter-row .filter-row-in .filter-item .whise-search-btn{
-     background: transparent;
-     border: none;
-     outline: none;
+.filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li{
+     padding: 0.5859375vw 0.390625vw;
+     font-size: clamp(17px, 1.171875vw, 19px);
+     line-height: clamp(17px, 1.171875vw, 19px);
+     font-weight: 300;
+     display: block;
+     margin: 0;
      cursor: pointer;
-     font-size: clamp(16px, 0.859375vw, 22px);
+     border: 0;
+     outline: 0;
+     background: transparent;
+     border-radius: 0;
+     font-family: "larken", sans-serif;
+     cursor: pointer;
+     border-bottom: 1px solid #5c182e;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li:hover{
+     background: #3d1a25;
+     color: #fff;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item .selected-tags{
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 15px;
+     padding-top: 4vw;
+     position: absolute;
+     top: 100%;
+     left: 0;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item .selected-tags .selected-tag{
+     color: #3d1a25;
+     background-color: #efefef;
+     font-size: clamp(12px, 0.6vw, 22px);
      line-height: clamp(24px, 1.5625vw, 40px);
      font-family: "Be Vietnam Pro", sans-serif;
-     color: #434343;
-     padding: 0.5859375vw 0.390625vw;
      text-transform: uppercase;
      font-weight: 400;
-     transition: all 0.3s ease;
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-between;
+     gap: 10px;
+     letter-spacing: 2px;
+     min-width: 7.8vw;
+     position: relative;
+     padding: 0.5vw 1vw;
 }
-
-.filter-with-grid .filter-row .filter-row-in .filter-item .whise-search-btn:hover{
-     color: #5c182e;
-}
-
-/* Hidden input styles */
-.filter-with-grid .filter-row .filter-row-in .filter-item input[type="hidden"]{
-     display: none;
-}
-
-/* No results styles */
-.filter-with-grid .no-results{
-     width: 100%;
-     text-align: center;
-     padding: 3.125vw 0;
-}
-
-.filter-with-grid .no-results h4{
-     font-size: clamp(24px, 1.6796875vw, 43px);
-     line-height: clamp(36px, 2.2265625vw, 57px);
-     font-weight: 400;
-     color: #434343;
-     margin-bottom: 1.5625vw;
-}
-
-.filter-with-grid .no-results p{
-     font-size: clamp(16px, 0.859375vw, 22px);
-     line-height: clamp(24px, 1.5625vw, 40px);
-     color: #666;
+.filter-with-grid .filter-row .filter-row-in .filter-item .selected-tags .selected-tag .remove-tag{
+     color: #3d1a25;
+     cursor: pointer;
+     font-size: 14px;
+     font-weight: bold;
 }
 
 .filter-with-grid .filter-grid{
@@ -179,13 +195,14 @@
      background-color: #f9f3ec;
      transition: all 0.5s ease-in-out 0s;
 }
-.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item:hover .filter-grid-item-img::before{
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:hover .filter-grid-item-img::before{
      height: 10vw;
 }
-.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item .filter-grid-item-img .filter-grid-item-img-box{
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img .filter-grid-item-img-box{
      width: 100%;
      position: relative;
      overflow: hidden;
+     aspect-ratio: 760 / 602;
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
@@ -193,7 +210,7 @@
      align-content: center;
      z-index: 1;
 }
-.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item .filter-grid-item-img .filter-grid-item-img-box img{
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img .filter-grid-item-img-box img{
      width: 100%;
      height: auto;
      min-height: 100%;
@@ -203,10 +220,10 @@
      transition: all 0.5s ease-in-out 0s;
      transform: scale(1);
 }
-.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item:hover .filter-grid-item-img .filter-grid-item-img-box img{
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:hover .filter-grid-item-img .filter-grid-item-img-box img{
      transform: scale(1.1);
 }
-.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item .filter-grid-item-info{
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info{
      width: 100%;
      display: flex;
      flex-wrap: wrap;
