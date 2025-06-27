@@ -19,8 +19,9 @@ Use these exact credentials in your WordPress admin:
 3. Save the settings
 
 ### 2. Test the Connection
-1. Run the test script: `test-whise-api.php` in your browser
+1. Run the test script: `test-whise-filters.php` in your browser
 2. Or use the "Test Connection" feature in the admin panel
+3. Check the debug page: Create a page with template "Whise API Debug"
 
 ### 3. Verify Frontend
 1. Visit your website page with the filter block
@@ -33,14 +34,65 @@ Use these exact credentials in your WordPress admin:
 ✅ **Client Token**: Should be obtained successfully  
 ✅ **Estates**: Should load real property data  
 ✅ **Cities**: Should populate the city dropdown  
-✅ **Filters**: Should work for all filter types  
+✅ **Filters**: Should work for all filter types with different results  
+
+## API Request Structure
+
+The system now uses the correct Whise API request structure:
+
+```json
+{
+  "Filter": {
+    "PurposeIds": [1],
+    "CategoryIds": [2],
+    "PriceRange": {
+      "Min": 100000,
+      "Max": 500000
+    },
+    "City": "Antwerp"
+  },
+  "Field": {
+    "Excluded": ["longDescription"]
+  },
+  "Page": {
+    "Limit": 100,
+    "Offset": 0
+  }
+}
+```
+
+## Filter Mapping
+
+| Filter | API Field | Values |
+|--------|-----------|---------|
+| Te koop/Te huur | `Filter.PurposeIds[]` | 1 (Te koop), 2 (Te huur) |
+| Gemeente | `Filter.City` | Dynamic from API |
+| Type | `Filter.CategoryIds[]` | 1-6 (Appartement, Huis, Villa, etc.) |
+| Prijs | `Filter.PriceRange.Min/Max` | € ranges |
+
+## Debugging Tools
+
+### 1. Filter Test Page
+- Create a new page in WordPress
+- Set template to "Whise Filter Test"
+- This will run comprehensive filter tests automatically
+
+### 2. Debug Page
+- Create a new page in WordPress  
+- Set template to "Whise API Debug"
+- Provides detailed API communication analysis
+
+### 3. Test Script
+- Run `test-whise-filters.php` directly in browser
+- Standalone testing without WordPress
+- Quick validation of filter functionality
 
 ## Troubleshooting
 
 ### If Authentication Fails
 - Double-check username/password
 - Ensure API URL is correct
-- Clear cache and retry
+- Check WordPress error logs for detailed messages
 
 ### If Client Token Fails
 - Contact WHISE at `api@whise.eu`
@@ -52,35 +104,49 @@ Use these exact credentials in your WordPress admin:
 - Verify Office ID if filtering by office
 - Test with different filters
 
-## API Endpoints Used
+### If Filters Always Return Same Count
+- Use the filter test page to validate functionality
+- Check if API request structure is correct
+- Verify filter parameters are being sent properly
+- Use debug tools to examine raw API responses
 
-Based on the [Whise API documentation](https://api.whise.eu/WebsiteDesigner.html#section/Statuses):
+## Performance Notes
 
-1. **Authentication**: `POST /token`
-2. **Client Token**: `POST /v1/admin/clients/token`
-3. **Estates List**: `POST /v1/estates/list`
-4. **Cities List**: `POST /v1/estates/usedcities/list`
+- **No Caching**: System now provides real-time data without caching
+- **Always Fresh**: Every request fetches latest data from API
+- **Immediate Results**: Filters applied instantly with fresh data
+- **Direct API Calls**: No intermediate caching layer
 
-## Filter Mapping
+## Testing Checklist
 
-| Filter | API Field | Values |
-|--------|-----------|---------|
-| Te koop/Te huur | `PurposeId` | 1 (Te koop), 2 (Te huur) |
-| Gemeente | `City` | Dynamic from API |
-| Type | `CategoryId` | 1-6 (Appartement, Huis, Villa, etc.) |
-| Prijs | `PriceMin`/`PriceMax` | € ranges |
+Before going live, verify:
 
-## Cache Settings
-
-- **Authentication Tokens**: 1 hour
-- **Property Data**: 30 minutes
-- **City List**: 1 hour
-- **Manual Clear**: Available in admin
+- [ ] Authentication works with your credentials
+- [ ] Client token is obtained successfully
+- [ ] Estates load with real property data
+- [ ] City dropdown populates correctly
+- [ ] Purpose filter (Te koop/Te huur) works
+- [ ] Category filter (Type) works
+- [ ] Price range filter works
+- [ ] Multiple filters work together
+- [ ] Different filter combinations return different results
+- [ ] No JavaScript errors in browser console
+- [ ] Form submission works correctly
 
 ## Support
 
 If you encounter issues:
-1. Check the test script output
-2. Review browser console for errors
-3. Contact WHISE support if API-related
-4. Check the full documentation in `WHISE_API_INTEGRATION.md` 
+1. **Use the debug tools** provided (test page, debug page, test script)
+2. **Check WordPress error logs** for detailed API communication
+3. **Test with filter test page** to validate functionality
+4. **Contact WHISE support** if API-related issues persist
+5. **Check the full documentation** in `WHISE_API_INTEGRATION.md`
+
+## Recent Updates (v2.0.0)
+
+- ✅ **Removed caching system** for real-time data
+- ✅ **Corrected API request structure** to match official documentation
+- ✅ **Added comprehensive debug tools** for troubleshooting
+- ✅ **Switched to form-based filtering** from AJAX
+- ✅ **Enhanced error logging** and debugging capabilities
+- ✅ **Added filter test page** for validation 

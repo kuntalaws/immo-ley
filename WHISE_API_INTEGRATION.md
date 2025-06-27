@@ -11,9 +11,10 @@ The Whise API integration provides dynamic real estate listings with filtering c
 - **Dynamic Property Listings**: Real-time property data from Whise API
 - **Advanced Filtering**: Filter by purpose (sale/rent), city, property type, and price range
 - **Responsive Design**: Mobile-friendly filter interface
-- **Caching System**: Optimized performance with intelligent caching
+- **Real-time Data**: Always fresh data without caching for immediate results
 - **Admin Configuration**: Easy setup through WordPress admin panel
 - **Error Handling**: Graceful fallbacks and user-friendly error messages
+- **Debug Tools**: Comprehensive testing and debugging capabilities
 
 ## Installation & Setup
 
@@ -25,7 +26,6 @@ The Whise API integration provides dynamic real estate listings with filtering c
    - **Username**: Your Whise API username
    - **Password**: Your Whise API password
    - **Client ID**: Your Whise client ID
-   - **Cache Duration**: How long to cache API responses (default: 3600 seconds)
 
 ### 2. Authentication Flow
 
@@ -34,12 +34,11 @@ The system uses a two-step authentication process:
 1. **Initial Authentication**: Uses username/password to get an access token
 2. **Client Token**: Uses the access token to get a client-specific token for API calls
 
-### 3. Cache Management
+### 3. Debug Tools
 
-- **Authentication Tokens**: Cached for 1 hour
-- **Property Data**: Cached for 30 minutes
-- **City List**: Cached for 1 hour
-- **Manual Cache Clear**: Available in admin panel
+- **Filter Test Page**: Use `page-whise-filter-test.php` template for comprehensive testing
+- **Debug Page**: Use `page-whise-debug.php` template for detailed API debugging
+- **Test Script**: Run `test-whise-filters.php` for quick filter validation
 
 ## File Structure
 
@@ -48,14 +47,15 @@ includes/
 ├── WhiseAPI.php          # Main API integration class
 └── whise-config.php      # ACF fields and admin configuration
 
-js/
-└── whise-api.js          # Frontend JavaScript for filtering
-
-css/
-└── filter-with-grid.css  # Styles for filter interface
-
 gb-blocks/
-└── filter-with-grid.php  # Updated block template
+└── filter-with-grid.php  # Updated block template with form-based filtering
+
+page-templates/
+├── page-whise-debug.php      # Debug page template
+└── page-whise-filter-test.php # Filter test page template
+
+test-files/
+└── test-whise-filters.php    # Standalone test script
 ```
 
 ## API Endpoints Used
@@ -68,18 +68,43 @@ gb-blocks/
 - `POST /v1/estates/list` - Get property listings
 - `POST /v1/estates/usedcities/list` - Get available cities
 
+## API Request Structure
+
+The system now uses the correct Whise API request structure as per the [official documentation](https://api.whise.eu/WebsiteDesigner.html#tag/Contacts/operation/):
+
+```json
+{
+  "Filter": {
+    "PurposeIds": [1],
+    "CategoryIds": [2],
+    "PriceRange": {
+      "Min": 100000,
+      "Max": 500000
+    },
+    "City": "Antwerp"
+  },
+  "Field": {
+    "Excluded": ["longDescription"]
+  },
+  "Page": {
+    "Limit": 100,
+    "Offset": 0
+  }
+}
+```
+
 ## Filter Options
 
 ### Purpose (Te koop/Te huur)
-- **API Field**: `PurposeId`
+- **API Field**: `Filter.PurposeIds[]`
 - **Values**: 1 (Te koop), 2 (Te huur)
 
 ### City (Gemeente)
-- **API Field**: `City`
+- **API Field**: `Filter.City`
 - **Source**: Dynamic from `/v1/estates/usedcities/list`
 
 ### Property Type
-- **API Field**: `CategoryId`
+- **API Field**: `Filter.CategoryIds[]`
 - **Values**: 
   - 1: Appartement
   - 2: Huis
@@ -89,36 +114,54 @@ gb-blocks/
   - 6: Grond
 
 ### Price Range
-- **API Fields**: `PriceMin`, `PriceMax`
+- **API Field**: `Filter.PriceRange.Min/Max`
 - **Ranges**:
   - 0 - €500.000
   - €500.000 - €1.000.000
   - €1.000.000 - €1.500.000
   - €1.500.000+
 
-## JavaScript API
+## Frontend Implementation
 
-### Initialization
-```javascript
-// Automatically initialized when filter elements are present
-if ($('.whise-filter').length > 0) {
-    WhiseAPI.init();
-}
+### Form-Based Filtering
+The system now uses standard HTML forms with GET parameters instead of AJAX:
+
+```html
+<form method="GET" action="<?php echo esc_url($current_url); ?>" class="filter-form">
+    <select name="purpose" class="whise-purpose-select">
+        <option value="">Alle</option>
+        <!-- Options populated from API -->
+    </select>
+    <!-- Other filter fields -->
+    <button type="submit" class="whise-search-btn">ZOEKEN</button>
+</form>
 ```
 
-### Available Methods
-- `WhiseAPI.loadEstates()` - Load estates with current filters
-- `WhiseAPI.loadFilterOptions()` - Load filter dropdown options
-- `WhiseAPI.getFilters()` - Get current filter values
+### JavaScript Enhancement
+Minimal JavaScript for enhanced user experience:
 
-### Events
-- `change` on `.whise-filter` - Automatically triggers estate reload
-- `click` on `.whise-search-btn` - Manual search trigger
+```javascript
+// Auto-submit on filter changes
+$('.whise-purpose-select, .whise-city-select, .whise-category-select').on('change', function() {
+    $(this).closest('form').submit();
+});
+
+// Price range handling
+$('.whise-price-range').on('change', function() {
+    const selectedRange = $(this).val();
+    if (selectedRange) {
+        const [min, max] = selectedRange.split('-');
+        $('input[name="price_min"]').val(min || '');
+        $('input[name="price_max"]').val(max || '');
+    }
+    $(this).closest('form').submit();
+});
+```
 
 ## CSS Classes
 
 ### Filter Elements
-- `.whise-filter` - Base class for all filter elements
+- `.filter-form` - Main filter form container
 - `.whise-purpose-select` - Purpose dropdown
 - `.whise-city-select` - City dropdown
 - `.whise-category-select` - Property type dropdown
@@ -126,7 +169,6 @@ if ($('.whise-filter').length > 0) {
 - `.whise-search-btn` - Search button
 
 ### States
-- `.loading` - Applied during API calls
 - `.no-results` - When no properties match filters
 - `.error-message` - When API errors occur
 
@@ -135,24 +177,43 @@ if ($('.whise-filter').length > 0) {
 ### Frontend Errors
 - Network errors show user-friendly messages
 - No results state with helpful suggestions
-- Loading states with spinner animation
+- Form validation for user inputs
 
 ### Backend Errors
-- Authentication failures logged
+- Authentication failures logged with detailed error messages
 - API rate limiting handled gracefully
-- Fallback to cached data when possible
+- Comprehensive logging for debugging
 
 ## Performance Optimization
 
-### Caching Strategy
-- **Short-term**: API responses cached for 30 minutes
-- **Medium-term**: Authentication tokens cached for 1 hour
-- **Long-term**: Static data (cities, categories) cached for 1 hour
+### Real-time Data
+- **No Caching**: Always fresh data from API
+- **Immediate Results**: Filters applied instantly
+- **Direct API Calls**: No intermediate caching layer
 
 ### Loading Optimization
 - Lazy loading for property images
 - Progressive enhancement for filter interface
-- Minimal initial page load with AJAX data fetching
+- Efficient form submission handling
+
+## Debugging Tools
+
+### 1. Filter Test Page (`page-whise-filter-test.php`)
+- Comprehensive filter testing with 5 different scenarios
+- Results comparison table
+- Sample estate data analysis
+- Automatic detection of filter issues
+
+### 2. Debug Page (`page-whise-debug.php`)
+- API connection testing
+- Individual filter testing
+- Raw API response viewing
+- Configuration verification
+
+### 3. Test Script (`test-whise-filters.php`)
+- Standalone testing without WordPress
+- Quick validation of filter functionality
+- Detailed logging output
 
 ## Troubleshooting
 
@@ -161,32 +222,37 @@ if ($('.whise-filter').length > 0) {
 1. **Authentication Failed**
    - Check API credentials in admin panel
    - Verify API URL is correct
-   - Clear cache and retry
+   - Check error logs for detailed messages
 
 2. **No Properties Displayed**
    - Check if client ID is correct
    - Verify API permissions
-   - Test connection using admin tools
+   - Test connection using debug tools
 
 3. **Filters Not Working**
-   - Check browser console for JavaScript errors
-   - Verify AJAX endpoints are accessible
-   - Clear browser cache
+   - Use the filter test page to validate functionality
+   - Check WordPress error logs for API communication
+   - Verify request structure matches API documentation
+
+4. **Always Same Number of Estates**
+   - Check if API request structure is correct
+   - Verify filter parameters are being sent properly
+   - Use debug tools to examine raw API responses
 
 ### Debug Tools
 
-1. **Connection Test**: Available in admin panel
-2. **Cache Management**: Clear cache button in admin
-3. **Browser Console**: Check for JavaScript errors
-4. **Network Tab**: Monitor API requests
+1. **Filter Test Page**: Comprehensive testing with visual results
+2. **Debug Page**: Detailed API communication analysis
+3. **Test Script**: Quick standalone validation
+4. **Error Logs**: Detailed logging for troubleshooting
 
 ## Security Considerations
 
 - API credentials stored securely in WordPress options
 - All user inputs sanitized before API calls
-- Nonce verification for AJAX requests
-- Rate limiting through caching
+- Form-based submission with proper validation
 - HTTPS required for API communication
+- No sensitive data in client-side code
 
 ## Future Enhancements
 
@@ -196,17 +262,29 @@ if ($('.whise-filter').length > 0) {
 - **Contact Forms**: Lead generation integration
 - **Analytics**: Search behavior tracking
 - **Multi-language**: Internationalization support
+- **Pagination**: Handle large result sets
+- **Sorting Options**: Multiple sort criteria
 
 ## Support
 
 For technical support or questions about the Whise API integration:
 
-1. Check the troubleshooting section above
-2. Review browser console for errors
-3. Test API connection in admin panel
-4. Contact development team with specific error messages
+1. Use the debug tools provided
+2. Check the troubleshooting section above
+3. Review WordPress error logs for detailed messages
+4. Test with the filter test page
+5. Contact development team with specific error messages
 
 ## Changelog
+
+### Version 2.0.0
+- **Removed caching system** for real-time data
+- **Corrected API request structure** to match official documentation
+- **Added comprehensive debug tools** for troubleshooting
+- **Switched to form-based filtering** from AJAX
+- **Enhanced error logging** and debugging capabilities
+- **Added filter test page** for validation
+- **Updated documentation** with new structure and tools
 
 ### Version 1.0.0
 - Initial Whise API integration
