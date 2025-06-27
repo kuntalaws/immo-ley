@@ -70,7 +70,7 @@ function whise_add_acf_fields() {
             'menu_order' => 0,
             'position' => 'normal',
             'style' => 'default',
-            'label_placement' => 'top',
+            'label_placement' => 'left',
             'instruction_placement' => 'label',
             'hide_on_screen' => '',
         ));
