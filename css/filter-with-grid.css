@@ -5,17 +5,25 @@
 .filter-with-grid .filter-row{
      width: 100%;
      display: block;
-     padding-bottom: 11.328125vw;
+     padding-bottom: 7.328125vw;
 }
 .filter-with-grid .filter-row .filter-row-in{
-     grid-column-gap: 1.875vw;
+     /* grid-column-gap: 1.875vw; */
      grid-row-gap: 1.875vw;
      justify-content: space-between;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item{
      position: relative;
      display: block;     
+     width: calc((100% - 182px) / 4);
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item:last-child{
      width: auto;
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item .filter-item-wrap{
+     width: 100%;
+     position: relative;
+     display: block;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item input[type="text"]{
      font-size: clamp(17px, 1.171875vw, 19px);
@@ -69,11 +77,13 @@
      list-style: none;
      border: 0;
      z-index: 1;
+     border: 1px solid #f9f3ec;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li{
-     padding: 0.5859375vw 0.390625vw;
-     font-size: clamp(17px, 1.171875vw, 19px);
-     line-height: clamp(17px, 1.171875vw, 19px);
+     padding: 8px 0.390625vw;
+     font-size: 15px;
+     line-height: 17px;
+     letter-spacing: 0.5px;
      font-weight: 300;
      display: block;
      margin: 0;
@@ -83,8 +93,10 @@
      background: transparent;
      border-radius: 0;
      font-family: "larken", sans-serif;
-     cursor: pointer;
-     border-bottom: 1px solid #5c182e;
+     cursor: pointer;     
+}
+.filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li + li{
+     border-top: 1px solid #f9f3ec;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li:hover{
      background: #3d1a25;
@@ -96,9 +108,9 @@
      flex-wrap: wrap;
      gap: 15px;
      padding-top: 4vw;
-     position: absolute;
+     /* position: absolute;
      top: 100%;
-     left: 0;
+     left: 0; */
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item .selected-tags .selected-tag{
      color: #3d1a25;
@@ -113,16 +125,17 @@
      align-items: center;
      justify-content: space-between;
      gap: 10px;
-     letter-spacing: 2px;
-     min-width: 7.8vw;
+     letter-spacing: 1px;
      position: relative;
      padding: 0.5vw 1vw;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item .selected-tags .selected-tag .remove-tag{
      color: #3d1a25;
      cursor: pointer;
-     font-size: 14px;
-     font-weight: bold;
+     font-size: 24px;
+     font-weight: normal;
+     position: relative;
+     top: -2px;
 }
 
 .filter-with-grid .filter-grid{

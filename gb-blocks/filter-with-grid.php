@@ -124,56 +124,64 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 		<div class="filter-row">
 			<div class="filter-row-in fw flex">
 				<div class="filter-item">
-					<input type="text" name="purpose-input" placeholder="Te koop" value="<?php echo esc_attr($current_purpose); ?>" class="select-input" data-select="purpose">
-					<ul name="purpose" class="select-options whise-purpose-select" data-select="purpose">
-						<?php if (isset($filter_options['purposes'])): ?>
-							<?php foreach ($filter_options['purposes'] as $purpose): ?>
-								<li value="<?php echo esc_attr($purpose['id']); ?>" <?php selected($current_purpose, $purpose['id']); ?>><?php echo esc_html($purpose['name']); ?></li>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</ul>
+					<div class="filter-item-wrap">
+						<input type="text" name="purpose-input" placeholder="Te koop" value="<?php echo esc_attr($current_purpose); ?>" class="select-input" data-select="purpose">
+						<ul name="purpose" class="select-options whise-purpose-select" data-select="purpose">
+							<?php if (isset($filter_options['purposes'])): ?>
+								<?php foreach ($filter_options['purposes'] as $purpose): ?>
+									<li value="<?php echo esc_attr($purpose['id']); ?>" <?php selected($current_purpose, $purpose['id']); ?>><?php echo esc_html($purpose['name']); ?></li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+					</div>
 					<div class="selected-tags" data-selected="purpose"></div>
 				</div>
 				<div class="filter-item">
-					<input type="text" name="city-input" placeholder="Gemeente" value="<?php echo esc_attr($current_city); ?>" class="select-input" data-select="city">
-					<ul name="city" class="select-options whise-city-select" data-select="city">
-						<?php if (isset($filter_options['cities'])): ?>
-							<?php foreach ($filter_options['cities'] as $city): ?>
-								<li value="<?php echo esc_attr($city['name']); ?>" <?php selected($current_city, $city['name']); ?>><?php echo esc_html($city['name']); ?></li>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</ul>
+					<div class="filter-item-wrap">
+						<input type="text" name="city-input" placeholder="Gemeente" value="<?php echo esc_attr($current_city); ?>" class="select-input" data-select="city">
+						<ul name="city" class="select-options whise-city-select" data-select="city">
+							<?php if (isset($filter_options['cities'])): ?>
+								<?php foreach ($filter_options['cities'] as $city): ?>
+									<li value="<?php echo esc_attr($city['name']); ?>" <?php selected($current_city, $city['name']); ?>><?php echo esc_html($city['name']); ?></li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+					</div>
 					<div class="selected-tags" data-selected="city"></div>
 				</div>
 				<div class="filter-item">
-					<input type="text" name="category-input" placeholder="Type" value="<?php echo esc_attr($current_category); ?>" class="select-input" data-select="category">
-					<ul name="category" class="select-options whise-category-select" data-select="category">
-						<?php if (isset($filter_options['categories'])): ?>
-							<?php foreach ($filter_options['categories'] as $category): ?>
-								<li value="<?php echo esc_attr($category['id']); ?>" <?php selected($current_category, $category['id']); ?>><?php echo esc_html($category['name']); ?></li>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</ul>
+					<div class="filter-item-wrap">
+						<input type="text" name="category-input" placeholder="Type" value="<?php echo esc_attr($current_category); ?>" class="select-input" data-select="category">
+						<ul name="category" class="select-options whise-category-select" data-select="category">
+							<?php if (isset($filter_options['categories'])): ?>
+								<?php foreach ($filter_options['categories'] as $category): ?>
+									<li value="<?php echo esc_attr($category['id']); ?>" <?php selected($current_category, $category['id']); ?>><?php echo esc_html($category['name']); ?></li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+					</div>
 					<div class="selected-tags" data-selected="category"></div>
 				</div>
 				<div class="filter-item">
-					<input type="text" name="price_range-input" placeholder="Prijs" value="<?php echo esc_attr($current_price_range); ?>" class="select-input" data-select="price_range">
-					<ul name="price_range" class="select-options whise-price-range" data-select="price_range">
-						<?php if (isset($filter_options['price_ranges'])): ?>
-							<?php foreach ($filter_options['price_ranges'] as $range): ?>
-								<?php 
-								$range_value = $range['min'] . '-' . ($range['max'] ?: '');
-								$current_range = '';
-								if (!empty($current_price_min) || !empty($current_price_max)) {
-									$current_range = $current_price_min . '-' . $current_price_max;
-								}
-								?>
-								<li value="<?php echo esc_attr($range_value); ?>" <?php selected($current_range, $range_value); ?>><?php echo esc_html($range['label']); ?></li>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</ul>
-					<input type="hidden" name="price_min" value="<?php echo esc_attr($current_price_min); ?>">
-					<input type="hidden" name="price_max" value="<?php echo esc_attr($current_price_max); ?>">
+					<div class="filter-item-wrap">
+						<input type="text" name="price_range-input" placeholder="Prijs" value="<?php echo esc_attr($current_price_range); ?>" class="select-input" data-select="price_range">
+						<ul name="price_range" class="select-options whise-price-range" data-select="price_range">
+							<?php if (isset($filter_options['price_ranges'])): ?>
+								<?php foreach ($filter_options['price_ranges'] as $range): ?>
+									<?php 
+									$range_value = $range['min'] . '-' . ($range['max'] ?: '');
+									$current_range = '';
+									if (!empty($current_price_min) || !empty($current_price_max)) {
+										$current_range = $current_price_min . '-' . $current_price_max;
+									}
+									?>
+									<li value="<?php echo esc_attr($range_value); ?>" <?php selected($current_range, $range_value); ?>><?php echo esc_html($range['label']); ?></li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+						<input type="hidden" name="price_min" value="<?php echo esc_attr($current_price_min); ?>">
+						<input type="hidden" name="price_max" value="<?php echo esc_attr($current_price_max); ?>">
+					</div>
 					<div class="selected-tags" data-selected="price_range"></div>
 				</div>
 				<div class="filter-item">
@@ -301,6 +309,9 @@ document.querySelectorAll('.select-input').forEach(input => {
   const optionsList = document.querySelector(`.select-options[data-select="${key}"]`);
   const selectedContainer = document.querySelector(`.selected-tags[data-selected="${key}"]`);
 
+  // ✅ Hide dropdown initially
+  optionsList.style.display = 'none';
+
   // Filter on input
   input.addEventListener('input', () => {
     const term = input.value.toLowerCase();
@@ -335,6 +346,9 @@ document.querySelectorAll('.select-input').forEach(input => {
       input.value = '';
       input.focus();
 
+      // ✅ Hide dropdown after selection
+      optionsList.style.display = 'none';
+
       // Remove tag on click and restore option
       tag.querySelector('.remove-tag').addEventListener('click', () => {
         selectedContainer.removeChild(tag);
@@ -343,6 +357,7 @@ document.querySelectorAll('.select-input').forEach(input => {
     });
   });
 });
+
 
 jQuery(document).ready(function($) {
     // Handle price range selection
