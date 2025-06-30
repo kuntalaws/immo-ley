@@ -304,62 +304,70 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 ?>
 
 <script>
-document.querySelectorAll('.select-input').forEach(input => {
-  const key = input.dataset.select;
-  const optionsList = document.querySelector(`.select-options[data-select="${key}"]`);
-  const selectedContainer = document.querySelector(`.selected-tags[data-selected="${key}"]`);
+$('.select-input').each(function () {
+  const $input = $(this);
+  const key = $input.data('select');
+  const $optionsList = $(`.select-options[data-select="${key}"]`);
+  const $selectedContainer = $(`.selected-tags[data-selected="${key}"]`);
 
   // ✅ Hide dropdown initially
-  optionsList.style.display = 'none';
+  $optionsList.hide();
 
   // Filter on input
-  input.addEventListener('input', () => {
-    const term = input.value.toLowerCase();
-    optionsList.style.display = 'block';
-    [...optionsList.children].forEach(li => {
-      li.style.display = li.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+  $input.on('input', function () {
+    const term = $input.val().toLowerCase();
+    $optionsList.show();
+    $optionsList.children('li').each(function () {
+      const $li = $(this);
+      const match = $li.text().toLowerCase().includes(term);
+      $li.toggle(match);
     });
   });
 
   // Show dropdown on focus
-  input.addEventListener('focus', () => {
-    optionsList.style.display = 'block';
+  $input.on('focus', function () {
+    $optionsList.show();
   });
 
   // Hide dropdown on outside click
-  document.addEventListener('click', e => {
-    if (!input.closest('.filter-item').contains(e.target)) {
-      optionsList.style.display = 'none';
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('.filter-item').is($input.closest('.filter-item'))) {
+      $optionsList.hide();
     }
   });
 
   // Option click handler
-  optionsList.querySelectorAll('li').forEach(li => {
-    li.addEventListener('click', () => {
-      const tag = document.createElement('div');
-      tag.className = 'selected-tag';
-      tag.innerHTML = `<span>${li.textContent}</span><div class="remove-tag">×</div>`;
-      selectedContainer.appendChild(tag);
+  $optionsList.children('li').each(function () {
+    const $li = $(this);
+    $li.on('click', function () {
+      const $tag = $(`
+        <div class="selected-tag">
+          <span>${$li.text()}</span>
+          <div class="remove-tag">×</div>
+        </div>
+      `);
+      $selectedContainer.append($tag);
 
       // Hide option and clear input
-      li.style.display = 'none';
-      input.value = '';
-      input.focus();
+      $li.hide();
+      $input.val('');
+      $input.focus();
 
       // ✅ Hide dropdown after selection
-      optionsList.style.display = 'none';
+      $optionsList.hide();
 
       // Remove tag on click and restore option
-      tag.querySelector('.remove-tag').addEventListener('click', () => {
-        selectedContainer.removeChild(tag);
-        li.style.display = 'block';
+      $tag.find('.remove-tag').on('click', function () {
+        $tag.remove();
+        $li.show();
       });
     });
   });
 });
 
 
-jQuery(document).ready(function($) {
+
+/*jQuery(document).ready(function($) {
     // Handle price range selection
     $('.whise-price-range').on('change', function() {
         const selectedRange = $(this).val();
@@ -379,6 +387,6 @@ jQuery(document).ready(function($) {
     $('.whise-purpose-select, .whise-city-select, .whise-category-select').on('change', function() {
         $(this).closest('form').submit();
     });
-});
+});*/
 </script>
 

@@ -95,6 +95,9 @@
      font-family: "larken", sans-serif;
      cursor: pointer;     
 }
+.filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li.hidden {
+  display: none !important;
+}
 .filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li + li{
      border-top: 1px solid #f9f3ec;
 }
