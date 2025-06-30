@@ -203,13 +203,25 @@ class WhiseAPI {
                     case 'PurposeId':
                         $request_body['Filter']['PurposeIds'] = [intval($value)];
                         break;
+                    case 'PurposeIds':
+                        // Handle array of purpose IDs
+                        $request_body['Filter']['PurposeIds'] = is_array($value) ? array_map('intval', $value) : [intval($value)];
+                        break;
                     case 'city':
                     case 'City':
                         $request_body['Filter']['City'] = $value;
                         break;
+                    case 'ZipCodes':
+                        // Handle array of zip codes for multiple city filtering
+                        $request_body['Filter']['ZipCodes'] = is_array($value) ? $value : [$value];
+                        break;
                     case 'category':
                     case 'CategoryId':
                         $request_body['Filter']['CategoryIds'] = [intval($value)];
+                        break;
+                    case 'CategoryIds':
+                        // Handle array of category IDs
+                        $request_body['Filter']['CategoryIds'] = is_array($value) ? array_map('intval', $value) : [intval($value)];
                         break;
                     case 'price_min':
                     case 'PriceMin':
@@ -224,6 +236,10 @@ class WhiseAPI {
                             $request_body['Filter']['PriceRange'] = ['Min' => 0, 'Max' => 999999999];
                         }
                         $request_body['Filter']['PriceRange']['Max'] = intval($value);
+                        break;
+                    case 'PriceRange':
+                        // Handle PriceRange object directly
+                        $request_body['Filter']['PriceRange'] = $value;
                         break;
                     default:
                         // Pass through any other parameters as-is to Filter object
@@ -449,6 +465,64 @@ class WhiseAPI {
     }
     
     /**
+     * Get individual estate details by ID
+     */
+    public function get_estate_details($estate_id) {
+        if (!$this->client_token) {
+            if (!$this->get_client_token()) {
+                error_log('Whise API: Failed to get client token for estate details request');
+                return false;
+            }
+        }
+        
+        error_log('Whise API: Fetching estate details for ID: ' . $estate_id);
+        
+        $request_body = [
+            'Filter' => [
+                'EstateIds' => [intval($estate_id)]
+            ],
+            'Field' => [
+                'Excluded' => [] // Include all fields for detailed view
+            ],
+            'Page' => [
+                'Limit' => 1,
+                'Offset' => 0
+            ]
+        ];
+        
+        $response = wp_remote_post($this->api_url . '/v1/estates/list', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->client_token
+            ],
+            'body' => json_encode($request_body),
+            'timeout' => 30
+        ]);
+        
+        if (is_wp_error($response)) {
+            error_log('Whise API: Estate details error - ' . $response->get_error_message());
+            return false;
+        }
+        
+        $status_code = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+        
+        error_log('Whise API: Estate details response code: ' . $status_code);
+        error_log('Whise API: Estate details response body: ' . $body);
+        
+        $data = json_decode($body, true);
+        
+        if ($data && isset($data['estates']) && count($data['estates']) > 0) {
+            $estate = $data['estates'][0];
+            error_log('Whise API: Successfully fetched estate details for ID: ' . $estate_id);
+            return ['estate' => $estate];
+        }
+        
+        error_log('Whise API: Failed to fetch estate details for ID: ' . $estate_id);
+        return false;
+    }
+    
+    /**
      * Test complete API connection flow
      */
     public function test_connection() {
@@ -578,5 +652,49 @@ class WhiseAPI {
             'body' => $body,
             'data' => $data
         ];
+    }
+    
+    /**
+     * Get representatives/agents list
+     */
+    public function get_representatives() {
+        if (!$this->client_token) {
+            if (!$this->get_client_token()) {
+                error_log('Whise API: Failed to get client token for representatives request');
+                return false;
+            }
+        }
+        
+        error_log('Whise API: Fetching representatives list');
+        
+        $response = wp_remote_post($this->api_url . '/v1/admin/representatives/list', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->client_token
+            ],
+            'body' => json_encode([]),
+            'timeout' => 30
+        ]);
+        
+        if (is_wp_error($response)) {
+            error_log('Whise API: Representatives error - ' . $response->get_error_message());
+            return false;
+        }
+        
+        $status_code = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+        
+        error_log('Whise API: Representatives response code: ' . $status_code);
+        error_log('Whise API: Representatives response body: ' . $body);
+        
+        $data = json_decode($body, true);
+        
+        if ($data && isset($data['representatives'])) {
+            error_log('Whise API: Successfully fetched ' . count($data['representatives']) . ' representatives');
+            return $data['representatives'];
+        }
+        
+        error_log('Whise API: Failed to fetch representatives');
+        return false;
     }
 } 
