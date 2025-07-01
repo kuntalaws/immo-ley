@@ -79,6 +79,7 @@ if (empty($agent_name) && !empty($representatives) && count($representatives) ==
     $agent_name = $representative['name'] ?? $representative['firstName'] ?? '';
     $agent_phone = $representative['directLine'] ?? '';
     $agent_email = $representative['email'] ?? '';
+    $agent_pic =  $representative['pictureUrl'] ?? '';
 }
 
 // If still no agent found, check other possible locations
@@ -271,14 +272,18 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 
 				<div class="image-with-info-sec">
 					<div class="image-with-info flex">
-						<div class="image-left"><img src="/immo-ley/wp-content/themes/immo-ley/img/round-profile.png" alt="Immo Ley" alt="Immo Ley" /> </div>
+						<div class="image-left"><img src="<?php echo esc_url($agent_pic); ?>" alt="Immo Ley" /> </div>
 						<div class="content-right">
 							<h3>JOUW EXPERT</h3>
-							<p><?php echo esc_html($agent_name); ?></p>
+							<p><?php echo esc_html(ucfirst($agent_name)); ?></p>
 							<ul>
-							<li><a href="tel:<?php echo esc_attr($agent_phone); ?>"><?php echo esc_html($agent_phone); ?></a></li>
-							<li><a href="mailto:<?php echo esc_attr($agent_email); ?>"><?php echo esc_html($agent_email); ?></a></li>
-							<li><a href="#">WHATSAPP</a></li>
+                                <li><a href="tel:<?php echo esc_attr($agent_phone); ?>"><?php echo esc_html($agent_phone); ?></a></li>
+                                <li><a href="mailto:<?php echo esc_attr($agent_email); ?>"><?php echo esc_html($agent_email); ?></a></li>
+                                <li>
+                                    <a href="https://wa.me/+<?php echo $agent_phone; ?>?text=<?php echo urlencode($estate_title); ?>" target="_blank">
+                                        Chat on WhatsApp
+                                    </a>
+                                </li>
 							</ul>
 						</div>
 					</div>
@@ -376,7 +381,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
                                 $formatted_value .= ' kWh/m²';
                             }
                             
-                            echo '<p><span>' . esc_html($label) . '</span><strong>' . esc_html($formatted_value) . '</strong></p>';
+                            echo '<p><span>' . esc_html(ucwords($label)) . '</span><strong>' . esc_html($formatted_value) . '</strong></p>';
                         }
                     }
                 } else {

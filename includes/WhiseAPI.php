@@ -347,63 +347,8 @@ class WhiseAPI {
      * Get static data (purpose, category, etc.)
      */
     public function get_static_data($type) {
-        // Try to get data from API first, fallback to hardcoded data
-        if (!$this->client_token) {
-            if (!$this->get_client_token()) {
-                error_log('Whise API: Failed to get client token for static data');
-                return $this->get_hardcoded_static_data($type);
-            }
-        }
-        
-        switch ($type) {
-            case 'purpose':
-                // Try to get purposes from API
-                $response = wp_remote_post($this->api_url . '/v1/estates/purposes/list', [
-                    'headers' => [
-                        'Content-Type' => 'application/json',
-                        'Authorization' => 'Bearer ' . $this->client_token
-                    ],
-                    'body' => json_encode([]),
-                    'timeout' => 30
-                ]);
-                
-                if (!is_wp_error($response)) {
-                    $data = json_decode(wp_remote_retrieve_body($response), true);
-                    if ($data && isset($data['purposes'])) {
-                        error_log('Whise API: Got purposes from API: ' . print_r($data['purposes'], true));
-                        return $data['purposes'];
-                    }
-                }
-                error_log('Whise API: Using hardcoded purposes');
-                return $this->get_hardcoded_static_data($type);
-                
-            case 'category':
-                // Try to get categories from API
-                $response = wp_remote_post($this->api_url . '/v1/estates/categories/list', [
-                    'headers' => [
-                        'Content-Type' => 'application/json',
-                        'Authorization' => 'Bearer ' . $this->client_token
-                    ],
-                    'body' => json_encode([]),
-                    'timeout' => 30
-                ]);
-                
-                if (!is_wp_error($response)) {
-                    $data = json_decode(wp_remote_retrieve_body($response), true);
-                    if ($data && isset($data['categories'])) {
-                        error_log('Whise API: Got categories from API: ' . print_r($data['categories'], true));
-                        return $data['categories'];
-                    }
-                }
-                error_log('Whise API: Using hardcoded categories');
-                return $this->get_hardcoded_static_data($type);
-                
-            case 'price_ranges':
-                return $this->get_hardcoded_static_data($type);
-                
-            default:
-                return [];
-        }
+        // fetch hardcoded static data
+        return $this->get_hardcoded_static_data($type);
     }
     
     /**
@@ -413,17 +358,19 @@ class WhiseAPI {
         switch ($type) {
             case 'purpose':
                 return [
-                    ['id' => 1, 'name' => 'Te koop'],
-                    ['id' => 2, 'name' => 'Te huur']
+                    ['id' => 1, 'name' => 'For Sale'],
+                    ['id' => 2, 'name' => 'For Rent'],
+                    ['id' => 3, 'name' => 'Life Annuity Sale']
                 ];
             case 'category':
                 return [
-                    ['id' => 1, 'name' => 'Appartement'],
-                    ['id' => 2, 'name' => 'Huis'],
-                    ['id' => 3, 'name' => 'Villa'],
-                    ['id' => 4, 'name' => 'Kantoor'],
-                    ['id' => 5, 'name' => 'Winkel'],
-                    ['id' => 6, 'name' => 'Grond']
+                    ['id' => 1, 'name' => 'House'],
+                    ['id' => 2, 'name' => 'Flat'],
+                    ['id' => 3, 'name' => 'Plot'],
+                    ['id' => 4, 'name' => 'Office'],
+                    ['id' => 5, 'name' => 'Commercial'],
+                    ['id' => 6, 'name' => 'Industrial'],
+                    ['id' => 7, 'name' => 'Garage / Parking']
                 ];
             case 'price_ranges':
                 return [
