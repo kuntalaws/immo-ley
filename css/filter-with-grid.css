@@ -6,6 +6,8 @@
      width: 100%;
      display: block;
      padding-bottom: 7.328125vw;
+     position: relative;
+     z-index: 11;
 }
 .filter-with-grid .filter-row .filter-row-in{
      /* grid-column-gap: 1.875vw; */
@@ -168,6 +170,31 @@
      grid-column-gap: 10.8203125vw;
      grid-row-gap: 0;
      align-items: flex-start;
+}
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .no-results{
+     width: 100%;
+     padding-top: 0;
+     padding-bottom: 8.4375vw;
+     padding-left: clamp(24px, 1.875vw, 48px);
+     padding-right: clamp(24px, 1.875vw, 48px);
+}
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .no-results .no-results-in{
+     /* background-color: #efefef; */
+     padding: 40px 0;
+}
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .no-results .no-results-in h4{
+     font-size: clamp(26px, 1.953125vw, 50px);
+     line-height: clamp(43px, 3.125vw, 80px);
+     color: #3d1a25;
+     font-weight: 400;
+     font-family: "larken", sans-serif;
+     display: block;
+}
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .no-results .no-results-in p{
+     padding-top: 5px;
+}
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row + .filter-grid-item-wrap{
+     padding-top: 8.4375vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item{
      width: 100%;
@@ -378,6 +405,11 @@
           width: calc((100% - 24px) / 2);
           height: 40vw;
      }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap{
+          grid-template-columns: repeat(1, 1fr);
+          grid-column-gap: 0vw;
+          grid-row-gap: 24px;
+     }
 }
 
 
@@ -447,6 +479,9 @@
 
      .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row{
           margin-top: 15vw;
+     }
+     .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row + .filter-grid-item-wrap{
+          padding-top: 15vw;
      }
      .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col{
           width: 100%;

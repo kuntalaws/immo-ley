@@ -415,8 +415,10 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 					<?php endforeach; ?>
 				<?php else: ?>
 					<div class="no-results">
-						<h4>Geen eigendommen gevonden</h4>
-						<p>Probeer andere zoekcriteria of neem contact met ons op.</p>
+						<div class="no-results-in">
+                            <h4>Geen eigendommen gevonden</h4>
+						    <p>Probeer andere zoekcriteria of neem contact met ons op.</p>
+                        </div>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -558,7 +560,7 @@ jQuery(document).ready(function($) {
                 // Hide option and clear input
                 $li.hide();
                 $input.val('');
-                $input.focus();
+                //$input.focus();
 
                 // Hide dropdown after selection
                 $optionsList.hide();
