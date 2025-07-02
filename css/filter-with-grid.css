@@ -204,6 +204,9 @@
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 2){
      margin-top: 7.1875vw;
 }
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 1){
+     margin-bottom: 7.1875vw;
+}
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img{
      width: 100%;
      position: relative;
