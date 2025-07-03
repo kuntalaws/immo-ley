@@ -358,18 +358,18 @@ class WhiseAPI {
         switch ($type) {
             case 'purpose':
                 return [
-                    ['id' => 1, 'name' => 'For Sale'],
-                    ['id' => 2, 'name' => 'For Rent'],
-                    ['id' => 3, 'name' => 'Life Annuity Sale']
+                    ['id' => 1, 'name' => 'te koop'],
+                    ['id' => 2, 'name' => 'te huur'],
+                    ['id' => 3, 'name' => 'lijfrente verkoop']
                 ];
             case 'category':
                 return [
-                    ['id' => 1, 'name' => 'House'],
-                    ['id' => 2, 'name' => 'Flat'],
-                    ['id' => 3, 'name' => 'Plot'],
-                    ['id' => 4, 'name' => 'Office'],
-                    ['id' => 5, 'name' => 'Commercial'],
-                    ['id' => 6, 'name' => 'Industrial'],
+                    ['id' => 1, 'name' => 'huis'],
+                    ['id' => 2, 'name' => 'appartement'],
+                    ['id' => 3, 'name' => 'grond'],
+                    ['id' => 4, 'name' => 'kantoor'],
+                    ['id' => 5, 'name' => 'commercieel'],
+                    ['id' => 6, 'name' => 'industrieel'],
                     ['id' => 7, 'name' => 'Garage / Parking']
                 ];
             case 'price_ranges':
