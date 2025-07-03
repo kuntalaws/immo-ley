@@ -401,6 +401,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 						?>
 						<a href="<?php echo esc_url(add_query_arg('estate_id', $estate['id'], get_permalink(get_page_by_path('single-project')))); ?>" class="filter-grid-item" data-estate-id="<?php echo esc_attr($estate['id']); ?>">
 							<div class="filter-grid-item-img">
+                                <span class="pro-type sold">Sold</span>
 								<div class="filter-grid-item-img-box">
 									<img loading="lazy" src="<?php echo esc_url($imageUrl); ?>" alt="<?php echo esc_attr($title); ?>">
 								</div>
