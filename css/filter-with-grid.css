@@ -244,6 +244,24 @@
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:hover .filter-grid-item-img::before{
      height: 10vw;
 }
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img .pro-type{
+     position: absolute;
+     z-index: 2;
+     width: auto;
+     left: 2.5vw;
+     top: 2.5vw;
+     background-color: #b0d4d5;
+     padding: clamp(10px, 0.5859375vw, 15px) clamp(20px, 1.5625vw, 40px);
+     color: #3d1a25;
+     font-size: clamp(13px, 0.7421875vw, 19px);
+     line-height: clamp(16px, 0.78125vw, 20px);
+     font-weight: 400;
+     text-transform: uppercase;
+}
+.filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img .pro-type.sold{
+     background-color: #3d1a25;
+     color: #fff;
+}
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img .filter-grid-item-img-box{
      width: 100%;
      position: relative;
