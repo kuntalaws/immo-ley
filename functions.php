@@ -587,3 +587,37 @@ add_filter('wp_nav_menu_args', 'register_custom_menu_walker');*/
 
 // No longer needed - filters work with normal form submission
 
+function get_whise_status_by_id($id) {
+	$statuses = [
+		1 => "te koop",
+		2 => "te huur",
+		3 => "verkocht",
+		4 => "verhuurd",
+		5 => "optie te koop",
+		6 => "optie te huur",
+		8 => "opgeschort verk.",
+		9 => "opgeschort verh.",
+		10 => "uitgesteld verk.",
+		11 => "uitgesteld verh.",
+		12 => "optie eig. verk.",
+		13 => "optie eig. verh.",
+		14 => "verkocht met opsch. voorwaarde",
+		15 => "te koop",
+		16 => "optie te koop",
+		17 => "verkocht",
+		19 => "prospectie",
+		20 => "voorbereiding",
+		21 => "gereserveerd",
+		22 => "compromis",
+		23 => "prospectie verhuur",
+		24 => "waardebepaling v.",
+		25 => "waardebepaling h.",
+		26 => "waardebepaling l.r.",
+		27 => "voorbereiding (huur)",
+		28 => "voorbereiding (lijfrente)",
+	];
+	if (isset($statuses[$id])) {
+		return ['id' => $id, 'name' => $statuses[$id]];
+	}
+	return false;
+}

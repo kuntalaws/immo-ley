@@ -401,7 +401,25 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 						?>
 						<a href="<?php echo esc_url(add_query_arg('estate_id', $estate['id'], get_permalink(get_page_by_path('single-project')))); ?>" class="filter-grid-item" data-estate-id="<?php echo esc_attr($estate['id']); ?>">
 							<div class="filter-grid-item-img">
-                                <span class="pro-type sold">Sold</span>
+                                <?php                                    
+                                    $status_class = '';
+                                    $status_label = '';
+                                    if (isset($estate['purposeStatus']['id'])) {
+                                        if ($estate['purposeStatus']['id'] == 3) {
+                                            $status_class = 'sold';
+                                        }
+                                        
+                                        if (function_exists('get_whise_status_by_id')) {
+                                            $status_data = get_whise_status_by_id($estate['purposeStatus']['id']);
+                                            $status_label = isset($status_data['name']) ? $status_data['name'] : 'Status';
+                                        } else {
+                                            $status_label = 'Status';
+                                        }
+                                    }
+                                ?>
+                                <?php if ($status_label): ?>
+                                    <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
+                                <?php endif; ?>
 								<div class="filter-grid-item-img-box">
 									<img loading="lazy" src="<?php echo esc_url($imageUrl); ?>" alt="<?php echo esc_attr($title); ?>">
 								</div>
@@ -464,6 +482,25 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 					?>
 					<a href="<?php echo esc_url(add_query_arg('estate_id', $estate['id'], get_permalink(get_page_by_path('single-project')))); ?>" class="filter-grid-item" data-estate-id="<?php echo esc_attr($estate['id']); ?>">
 						<div class="filter-grid-item-img">
+                            <?php
+                                $status_class = '';
+                                $status_label = '';
+                                if (isset($estate['purposeStatus']['id'])) {
+                                    if ($estate['purposeStatus']['id'] == 3) {
+                                        $status_class = 'sold';
+                                    }
+                                    
+                                    if (function_exists('get_whise_status_by_id')) {
+                                        $status_data = get_whise_status_by_id($estate['purposeStatus']['id']);
+                                        $status_label = isset($status_data['name']) ? $status_data['name'] : 'Status';
+                                    } else {
+                                        $status_label = 'Status';
+                                    }
+                                }
+                            ?>
+                            <?php if ($status_label): ?>
+                                <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
+                            <?php endif; ?>
 							<div class="filter-grid-item-img-box">
 								<img loading="lazy" src="<?php echo esc_url($imageUrl); ?>" alt="<?php echo esc_attr($title); ?>">
 							</div>
