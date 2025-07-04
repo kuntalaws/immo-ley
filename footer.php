@@ -34,9 +34,9 @@ $footerlegalmenu = wp_nav_menu(
             <div class="footer-top-row flex">
             <div class="footer-top-row-left">
                 <?php if(!empty($flogo)){?>
-                    <div class="footer-logo">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo">
                         <img <?php echo $flogo['attrs']['class'];?> <?php echo $flogo['attrs']['src'];?>="<?php echo esc_url($flogo['url']);?>" alt="<?php echo esc_attr($flogo['alt']); ?>" width="<?php echo esc_attr($flogo['width']); ?>" height="<?php echo esc_attr($flogo['height']); ?>">
-                    </div>
+                    </a>
                 <?php }?>
             </div>
             <div class="footer-top-row-right">

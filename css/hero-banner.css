@@ -18,21 +18,21 @@
      left: 0;
 }
 .hero-banner .hero-banner-in{
-     padding-bottom: 3.90625vw;
+     padding-bottom: 3.25vw;
      position: relative;
      z-index: 1;
 }
 .hero-banner .hero-banner-in .hero-banner-content{
      width: 100%;
-     max-width: 37.5vw;
-     max-width: clamp(540px, 37.5vw, 960px);
+     max-width: 32vw;
+     max-width: clamp(480px, 32vw, 960px);
      display: block;
 }
 .hero-banner .hero-banner-in .hero-banner-content h1{
      color: #ffffff;     
 }
 .hero-banner .hero-banner-in .hero-banner-content .button-wrap{
-     margin-top: 5.5vw;
+     margin-top: 4.06vw;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1365px) {

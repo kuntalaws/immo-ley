@@ -5,7 +5,7 @@
 .filter-with-grid .filter-row{
      width: 100%;
      display: block;
-     padding-bottom: 7.328125vw;
+     padding-bottom: 6.6666vw;
      position: relative;
      z-index: 11;
 }
@@ -28,9 +28,9 @@
      display: block;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item input[type="text"]{
-     font-size: clamp(17px, 1.171875vw, 19px);
-     line-height: clamp(32px, 1.5625vw, 40px);
-     padding: 0.5859375vw 0.390625vw;     
+     font-size: clamp(16px, 1vw, 30px);
+     line-height: clamp(22px, 1.333vw, 40px);
+     padding: 0.5333vw 0.333vw;     
      font-weight: 300;
      display: block;
      margin: 0;
@@ -52,9 +52,9 @@
      opacity: 1;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item button {
-     font-size: clamp(17px, 1.171875vw, 19px);
-     line-height: clamp(32px, 1.5625vw, 40px);
-     padding: 0.5859375vw 0.390625vw;     
+     font-size: clamp(16px, 1vw, 30px);
+     line-height: clamp(22px, 1.333vw, 40px);
+     padding: 0.5333vw 0.333vw;     
      font-weight: 300;
      width: 100%;;
      display: block;
@@ -82,9 +82,9 @@
      border: 1px solid #f9f3ec;
 }
 .filter-with-grid .filter-row .filter-row-in .filter-item ul.select-options li{
-     padding: 8px 0.390625vw;
-     font-size: 15px;
-     line-height: 17px;
+     padding: 5px 0.333vw;
+     font-size: clamp(16px, 0.8vw, 30px);
+     line-height: clamp(24px, 1.333vw, 40px);
      letter-spacing: 0.5px;
      font-weight: 300;
      display: block;
@@ -112,7 +112,7 @@
      display: flex;
      flex-wrap: wrap;
      gap: 15px;
-     padding-top: 4vw;
+     padding-top: 3.33vw;
      /* position: absolute;
      top: 100%;
      left: 0; */
@@ -120,8 +120,8 @@
 .filter-with-grid .filter-row .filter-row-in .filter-item .selected-tags .selected-tag{
      color: #3d1a25;
      background-color: #efefef;
-     font-size: clamp(12px, 0.6vw, 22px);
-     line-height: clamp(24px, 1.5625vw, 40px);
+     font-size: clamp(12px, 0.733333vw, 22px);
+     line-height: clamp(22px, 1.3333vw, 40px);
      font-family: "Be Vietnam Pro", sans-serif;
      text-transform: uppercase;
      font-weight: 400;
@@ -146,11 +146,11 @@
 .filter-with-grid .filter-grid{
      width: 100%;
      display: block;
-     padding-bottom: 13.125vw;
+     padding-bottom: 11.333vw;
 }
 .filter-with-grid .filter-grid .filter-grid-title{
      display: block;
-     padding-bottom: 3.125vw;
+     padding-bottom: 3vw;
 }
 .filter-with-grid .filter-grid .filter-grid-title h3{
      display: block;
@@ -167,7 +167,7 @@
      padding-right: 0;
      display: grid;
      grid-template-columns: repeat(2, 1fr);
-     grid-column-gap: 10.8203125vw;
+     grid-column-gap: 9.2666vw;
      grid-row-gap: 0;
      align-items: flex-start;
 }
@@ -175,16 +175,16 @@
      width: 100%;
      padding-top: 0;
      padding-bottom: 8.4375vw;
-     padding-left: clamp(24px, 1.875vw, 48px);
-     padding-right: clamp(24px, 1.875vw, 48px);
+     padding-left: clamp(24px, 1.6vw, 48px);
+     padding-right: clamp(24px, 1.6vw, 48px);
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .no-results .no-results-in{
      /* background-color: #efefef; */
      padding: 40px 0;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .no-results .no-results-in h4{
-     font-size: clamp(26px, 1.953125vw, 50px);
-     line-height: clamp(43px, 3.125vw, 80px);
+     font-size: clamp(25px, 1.6666vw, 50px);
+     line-height: clamp(40px, 2.666vw, 80px);
      color: #3d1a25;
      font-weight: 400;
      font-family: "larken", sans-serif;
@@ -194,7 +194,7 @@
      padding-top: 5px;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row + .filter-grid-item-wrap{
-     padding-top: 8.4375vw;
+     padding-top: 7.6666vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item{
      width: 100%;
@@ -202,37 +202,37 @@
      position: relative;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 2){
-     margin-top: 7.1875vw;
+     margin-top: 6vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 1){
-     margin-bottom: 7.1875vw;
+     margin-bottom: 6vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img{
      width: 100%;
      position: relative;
-     padding-right: 1.875vw;
-     padding-bottom: 1.875vw;
-     margin-bottom: 1.5625vw;
+     padding-right: 1.6vw;
+     padding-bottom: 1.6vw;
+     margin-bottom: 1.333vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img:after{
      width: 1px;
-     height: 7.8vw;
+     height: 6.666vw;
      position: absolute;
-     left: 3.3203125vw;
-     bottom: -3.9vw;
+     left: 3vw;
+     bottom: -3.333vw;
      content: '';
      display: block;
      background-color: #5c182e;
      z-index: 2;
-     transition: all 0.5s ease-in-out 0s;
+     transition: all 1s ease-in-out 0s;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:hover .filter-grid-item-img:after{
-     height: 12vw;
-     bottom: -6vw;
+     height: 10vw;
+     bottom: -5vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img::before{
-     width: clamp(380px, 25.15625vw, 644px);
-     height: 7.3046875vw;
+     width: clamp(322px, 21.4666vw, 644px);
+     height: 6.2333vw;
      position: absolute;
      right: 0;
      bottom: 0;
@@ -242,19 +242,19 @@
      transition: all 0.5s ease-in-out 0s;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:hover .filter-grid-item-img::before{
-     height: 10vw;
+     height: 8vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-img .pro-type{
      position: absolute;
      z-index: 2;
      width: auto;
-     left: 2.5vw;
-     top: 2.5vw;
+     left: 1.6vw;
+     top: 1.6vw;
      background-color: #b0d4d5;
-     padding: clamp(10px, 0.5859375vw, 15px) clamp(20px, 1.5625vw, 40px);
+     padding: clamp(10px, 0.5859375vw, 15px) clamp(20px, 1.333vw, 40px);
      color: #3d1a25;
-     font-size: clamp(13px, 0.7421875vw, 19px);
-     line-height: clamp(16px, 0.78125vw, 20px);
+     font-size: clamp(13px, 0.6333vw, 19px);
+     line-height: clamp(16px, 0.66666vw, 20px);
      font-weight: 400;
      text-transform: uppercase;
 }
@@ -281,11 +281,11 @@
      object-fit: cover;
      object-position: center;
      display: block;
-     transition: all 0.5s ease-in-out 0s;
+     transition: all 1s ease-in-out 0s;
      transform: scale(1);
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:hover .filter-grid-item-img .filter-grid-item-img-box img{
-     transform: scale(1.1);
+     transform: scale(1.05);
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info{
      width: 100%;
@@ -296,22 +296,22 @@
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in{
      width: 100%;
-     max-width: clamp(380px, 25.15625vw, 644px);
+     max-width: clamp(322px, 21.4666vw, 644px);
      display: block;
-     padding-right: 7.6171875vw;
+     padding-right: 6vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in h6{
      color: #434343;
-     font-size: clamp(16px, 0.859375vw, 22px);
-     line-height: clamp(24px, 1.5625vw, 40px);
+     font-size: clamp(14px, 0.733333vw, 22px);
+     line-height: clamp(22px, 1.333vw, 40px);
      font-family: "Be Vietnam Pro", sans-serif;
      text-transform: uppercase;
      font-weight: 400;
      display: block;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item .filter-grid-item-info .filter-grid-item-info-in h4{
-     font-size: clamp(24px, 1.6796875vw, 43px);
-     line-height: clamp(36px, 2.2265625vw, 57px);
+     font-size: clamp(22px, 1.43333vw, 43px);
+     line-height: clamp(32px, 1.9vw, 57px);
      font-weight: 400;
      display: block;
 }
@@ -325,7 +325,7 @@
      justify-content: space-between;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col{
-     width: calc((100% - 10.8203125vw) / 2);
+     width: calc(50% - 4.5vw);
      background-color: #3d1a25;
      display: flex;
      flex-wrap: wrap;
@@ -333,9 +333,9 @@
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content{
      width: 100%;
-     max-width: clamp(500px, 31.625vw, 810px);
-     padding-left: clamp(24px, 1.875vw, 48px);
-     padding-right: clamp(24px, 6.328125vw, 162px);
+     max-width: clamp(420px, 27vw, 810px);
+     padding-left: clamp(24px, 1.6vw, 48px);
+     padding-right: clamp(24px, 5.4vw, 162px);
      display: flex;
      flex-wrap: wrap;
      align-items: center;
@@ -345,27 +345,27 @@
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content h2{
      display: block;
      color: #f9f3ec;
-     padding-bottom: 3.125vw;
+     padding-bottom: 2.4vw;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content p{
      color: #f9f3ec;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-content-col .additional-info-content .button-wrap{
      position: absolute;
-     left: 1.875vw;
-     bottom: -1.875vw;
+     left: 1.6vw;
+     bottom: -1.6vw;
 }
 
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img{
-     width: calc((100% - 10.8203125vw) / 2);
+     width: calc(50% - 4.5vw);
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
      align-items: center;
      align-content: center;
-     height: 29.933vw;
+     height: 29.9333vw;
      overflow: hidden;
-     top: 8.4375vw;
+     top: 7.2333vw;
      position: relative;
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img img{
@@ -375,11 +375,11 @@
      display: block;
      object-fit: cover;
      object-position: center;
-     transition: all 0.5s ease-in-out 0s;
+     transition: all 1s ease-in-out 0s;
      transform: scale(1);
 }
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .additional-info-row .additional-info-item-img:hover img{
-     transform: scale(1.1);
+     /* transform: scale(1.05); */
 }
 
 

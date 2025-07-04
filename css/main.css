@@ -9,8 +9,8 @@ body {
   font-style: normal;
   display: block;
   -webkit-font-smoothing: antialiased;
-  font-size: clamp(16px, 0.859375vw, 22px);
-  line-height: clamp(24px, 1.5625vw, 40px);
+  font-size: clamp(12px, 0.733vw, 22px);
+  line-height: clamp(22px, 1.333vw, 40px);
   color: #3d1a25;
 }
 body.scroll-lock {
@@ -63,22 +63,22 @@ li {
 }
 
 h1 {
-  font-size: clamp(80px, 5.9375vw, 152px);
-  line-height: clamp(90px, 6.6015625vw, 169px);
+  font-size: clamp(76px, 5.0666vw, 152px);
+  line-height: clamp(85px, 5.6333vw, 169px);
   font-family: "larken", sans-serif;
   font-weight: 300;
 }
 
 h2 {
-  font-size: clamp(42px, 3.125vw, 80px);
-  line-height: clamp(42px, 3.125vw, 80px);
+  font-size: clamp(40px, 2.6666vw, 80px);
+  line-height: clamp(40px, 2.6666vw, 80px);
   font-family: "larken", sans-serif;
   font-weight: 300;
 }
 
 h3 {
-  font-size: clamp(32px, 2.34375vw, 60px);
-  line-height: clamp(34px, 2.5vw, 64px);
+  font-size: clamp(30px, 2vw, 60px);
+  line-height: clamp(32px, 2.13vw, 64px);
   font-family: "larken", sans-serif;
   font-weight: 300;
 }
@@ -110,9 +110,9 @@ img {
 }
 
 p {
-  font-size: clamp(16px, 0.859375vw, 22px);
-  line-height: clamp(24px, 1.5625vw, 40px);
-  margin: 0 0 clamp(24px, 1.5625vw, 40px);
+  font-size: clamp(12px, 0.733vw, 22px);
+  line-height: clamp(22px, 1.333vw, 40px);
+  margin: 0 0 clamp(22px, 1.333vw, 40px);
 }
 
 strong {
@@ -158,10 +158,10 @@ button{
 
 .fw {
   width: 100%;
-  max-width: clamp(1280px, 74.0625vw, 1800px);
+  max-width: clamp(1212px, 63.2vw, 2426px);
   margin: 0 auto;
-  padding-left: clamp(24px, 1.875vw, 48px);
-  padding-right: clamp(24px, 1.875vw, 48px);
+  padding-left: clamp(24px, 1.6vw, 48px);
+  padding-right: clamp(24px, 1.6vw, 48px);
 }
 
 .button-wrap{
@@ -173,14 +173,14 @@ button{
 .button-wrap .btn, 
 .button-wrap button{
   background-color: #b0d4d5;
-  padding-left: clamp(12px, 0.9375vw, 24px);
-  padding-bottom: clamp(12px, 0.9375vw, 24px);
+  padding-left: clamp(12px, 0.8vw, 24px);
+  padding-bottom: clamp(12px, 0.8vw, 24px);
   display: flex;
   flex-wrap: wrap;
   position: relative;
   justify-content: center;
   align-items: center;  
-  height: clamp(60px, 3.90625vw, 100px);
+  height: clamp(60px, 3.333vw, 100px);
   cursor: pointer;
   font-family: "Be Vietnam Pro", sans-serif;
   transition: all 0.5s ease-in-out 0s;
@@ -189,11 +189,11 @@ button{
 .button-wrap button span{
   position: relative;
   z-index: 1;
-  padding: 0 clamp(48px, 4vw, 100px);
-  font-size: clamp(14px, 0.859375vw, 22px);
-  line-height: clamp(24px, 1.5625vw, 40px);
+  padding: 0 clamp(48px, 3.333vw, 100px);
+  font-size: clamp(12px, 0.7333vw, 22px);
+  line-height: clamp(22px, 1.333vw, 40px);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.2px;
   color: #ffffff;
   font-family: "Be Vietnam Pro", sans-serif;
   transition: all 0.5s ease-in-out 0s;
@@ -202,8 +202,8 @@ button{
 .button-wrap button::before{
   content: '';
   position: absolute;
-  left: clamp(12px, 0.9375vw, 24px);
-  bottom: clamp(12px, 0.9375vw, 24px);
+  left: clamp(12px, 0.8vw, 24px);
+  bottom: clamp(12px, 0.8vw, 24px);
   width: 100%;
   height: 100%;
   background-color: #b0d4d5;
@@ -247,7 +247,7 @@ header.header{
   padding: 0;
   margin: 0;
   display: block;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1111;
@@ -261,16 +261,16 @@ header.header .header-in{
   align-content: center;
 }
 header.header .header-in .logo{
-  width: clamp(100px, 10.5078125vw, 269px);
+  width: clamp(130px, 9vw, 269px);
   display: block;
   transition: all 0.5s ease-in-out 0s;
 }
 header.header.sticky{
-  background-color: rgba(255,255,255,0.9);
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  /* background-color: rgba(255,255,255,0.9);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); */
 }
 header.header.sticky .logo{
-  width: 8vw;
+  width: 7vw;
 }
 
 header.header .header-in .logo img{
@@ -295,7 +295,7 @@ header.header .header-in .header-nav-wrap .nav .mainmenu{
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-  gap: clamp(60px, 5.078125vw, 130px);
+  gap: clamp(65px, 4.33vw, 130px);
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li{
   display: block;
@@ -304,11 +304,11 @@ header.header .header-in .header-nav-wrap .nav .mainmenu > li.only-for-mobile{
   display: none;
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li > a{
-  font-size:  clamp(16px, 0.8203125vw, 22px);
-  line-height: clamp(40px, 1.5625vw, 40px);
+  font-size:  clamp(13px, 0.68333vw, 20.5px);
+  line-height: clamp(40px, 1.333vw, 40px);
   text-transform: uppercase;
   color: #3d1a25;
-  letter-spacing: 2px;
+  letter-spacing: 1.2px;
   display: block;
   text-decoration: none;
   font-family: "Be Vietnam Pro", sans-serif;

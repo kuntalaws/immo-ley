@@ -1,17 +1,18 @@
 .text-section {
-  padding-top: 6.25vw;
-  padding-bottom: 93px;
+  padding-top: 5.33vw;
+  padding-bottom: 3.1vw;
 }
 .page-over-ons .text-section {
-  margin-top: clamp(190px, 14.257vw, 365px);
+  margin-top: clamp(185px, 12.16666vw, 365px);
 }
 .text-section .text-section-in h3 {
-  font-size: clamp(26px, 1.953125vw, 50px);
-  line-height: clamp(43px, 3.125vw, 80px);
+  font-size: clamp(25px, 1.66666vw, 50px);
+  line-height: clamp(40px, 2.6666vw, 80px);
   color: #3d1a25;
   font-weight: 300;
   font-family: "larken", sans-serif;
   display: block;
+  padding-right: 6.2vw;
 }
   
 
