@@ -2,6 +2,7 @@
 // Exit if this file is directly accessed
 if ( ! defined( 'ABSPATH' ) ) exit;
 global $contentRowsInPage,$curContIndex,$sectionID;
+$heading = trim(get_field('heading'));
 $left_title = trim(get_field('left_title'));
 $left_overview = trim(get_field('left_overview'));
 $left_button = get_field('left_button');
@@ -380,9 +381,11 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 		</div>
 	</form>
 	<div class="filter-grid">
+        <?php if(!empty($heading)){ ?>
 		<div class="filter-grid-title fw">
-			<h3>Een greep uit ons aanbod</h3>
+			<h3><?php echo $heading; ?></h3>
 		</div>
+        <?php } ?>
 		<div class="filter-grid-item-wrapper">
 			<!--Show First 4 Items-->
 			<div class="filter-grid-item-wrap fw flex" id="whise-estates-container">
@@ -411,13 +414,13 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
                                         
                                         if (function_exists('get_whise_status_by_id')) {
                                             $status_data = get_whise_status_by_id($estate['purposeStatus']['id']);
-                                            $status_label = isset($status_data['name']) ? $status_data['name'] : 'Status';
+                                            $status_label = isset($status_data['name']) ? $status_data['name'] : '';
                                         } else {
-                                            $status_label = 'Status';
+                                            $status_label = '';
                                         }
                                     }
                                 ?>
-                                <?php if ($status_label): ?>
+                                <?php if (!empty($status_label) && isset($status_data) && $status_data['id'] != 1 && $status_data['id'] != 2): ?>
                                     <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
                                 <?php endif; ?>
 								<div class="filter-grid-item-img-box">
@@ -492,13 +495,13 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
                                     
                                     if (function_exists('get_whise_status_by_id')) {
                                         $status_data = get_whise_status_by_id($estate['purposeStatus']['id']);
-                                        $status_label = isset($status_data['name']) ? $status_data['name'] : 'Status';
+                                        $status_label = isset($status_data['name']) ? $status_data['name'] : '';
                                     } else {
-                                        $status_label = 'Status';
+                                        $status_label = '';
                                     }
                                 }
                             ?>
-                            <?php if ($status_label): ?>
+                            <?php if (!empty($status_label) && isset($status_data) && $status_data['id'] != 1 && $status_data['id'] != 2): ?>
                                 <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
                             <?php endif; ?>
 							<div class="filter-grid-item-img-box">
