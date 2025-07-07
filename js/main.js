@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  const submitInput = document.querySelector('.wpcf7 input[type="submit"]');
-  if (submitInput) {
-    const button = document.createElement('button');
-    button.type = 'submit';
-    button.innerText = 'Versturen';
-    button.className = submitInput.className;
-    submitInput.parentNode.replaceChild(button, submitInput);
-  }
+  // const submitInput = document.querySelector('.wpcf7 input[type="submit"]');
+  // if (submitInput) {
+  //   const button = document.createElement('button');
+  //   button.type = 'submit';
+  //   button.innerText = 'Versturen';
+  //   button.className = submitInput.className;
+  //   submitInput.parentNode.replaceChild(button, submitInput);
+  // }
 });

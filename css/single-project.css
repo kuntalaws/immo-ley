@@ -4,14 +4,14 @@
     flex-wrap: wrap;
     align-items: flex-end;
     align-content: flex-end;
-    height: 100vh;
-    margin-top: clamp(250px, 19.53125vw, 500px);
+    padding-top: clamp(250px, 12.466vw, 374px);
     position: relative;
     z-index: 1;
 }
 .single-project-section .single-project-section-in {
     position: relative;
-    height: 100%;
+    max-width: clamp(1200px, 72.2vw, 2166px);
+    aspect-ratio: 2166 / 1042;
 }
 .single-project-section .single-project-section-image {
     width: 100%;
@@ -24,7 +24,7 @@
     left: 0;
 }
 .single-project-section .single-project-section-in .single-project-section-button {
-    padding: clamp(30px, 2.148vw, 55px) clamp(24px, 1.875vw, 48px) 0 clamp(24px, 1.875vw, 48px);
+    padding-top: clamp(30px, 1.8vw, 54px);
 }
 .single-project-section .single-project-section-in .single-project-section-button a {
     display: flex;
@@ -176,6 +176,21 @@ padding-bottom: clamp(42px, 3.125vw, 80px);
 }
 
 /* kenmerken end */
+
+.property-long-description{
+    width: 100%;
+    display: block;
+    padding-top: clamp(80px, 5vw, 150px);
+    padding-bottom: clamp(100px, 6vw, 180px);
+}
+.property-long-description h2{
+    padding-bottom: clamp(40px, 2.4vw, 72px);
+}
+.property-long-description p{
+    font-size: clamp(16px, 0.8vw, 24px);
+    line-height: clamp(24px, 1.6vw, 48px);
+    margin-bottom: clamp(24px, 1.6vw, 48px);
+}
 
 /*property widget*/
 

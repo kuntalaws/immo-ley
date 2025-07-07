@@ -249,14 +249,39 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 <section class="single-project-section">
 	<div class="single-project-section-in fw">
 		<div class="single-project-section-image" style="background-image:url('<?php echo esc_url($main_image_url); ?>')">
-			<div class="single-project-section-button">
-				<a href="<?php echo esc_url(home_url('/')); ?>" class="btn flex img-icon-btn">
+			<div class="single-project-section-button fw">
+				<a href="javascript:void(0);" class="btn flex img-icon-btn" id="all-projects-link">
 				<span class="img-icon"><img loading="lazy" src="/immo-ley/wp-content/themes/immo-ley/img/img-icon2.png" alt="Immo Ley"></span>
 				<span class="btn-text">Alle projecten</span></a>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- Fancybox CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+<!-- Fancybox JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<script>
+  document.getElementById('all-projects-link').addEventListener('click', function () {
+    Fancybox.show([
+      {
+        src: '<?php echo esc_url($main_image_url); ?>',
+        type: 'image',
+      },
+      {
+        src: '<?php echo esc_url($main_image_url); ?>',
+        type: 'image',
+      },
+      {
+        src: '<?php echo esc_url($main_image_url); ?>',
+        type: 'image',
+      },
+    ], {
+      Thumbs: true,
+      Toolbar: true,
+    });
+  });
+</script>
 
 <section class="single-project-content-section">
 	<div class="single-project-content-section-in fw">
@@ -347,6 +372,18 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
         </div>
     </section>
 
+
+    <section class="property-long-description">
+        <div class="property-long-description-in fw">
+            <h2>Meer over deze woning</h2>
+            <div class="property-long-description-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+            </div>
+        </div>
+    </section>
+
 	<section class="property-widget">
 		<div class="property-widget-wrap fw">
 		<h2 class="widget-title">Algemene info</h2>
@@ -407,12 +444,57 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 		</div>     
     </section>
 
+
+    <section class="filter-with-grid related-projects">
+	<div class="filter-grid">
+		<div class="filter-grid-title fw">
+			<h3>Gelijkaardige panden</h3>
+		</div>
+		<div class="filter-grid-item-wrapper">
+			<div class="filter-grid-item-wrap fw flex" id="whise-estates-container">
+				<a href="https://anushaweb.com/immo-ley/single-project/?estate_id=6973025" class="filter-grid-item" data-estate-id="6973025">
+                    <div class="filter-grid-item-img">
+                                                                                            <span class="pro-type sold">verkocht</span>
+                                                        <div class="filter-grid-item-img-box">
+                            <img decoding="async" loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/themes/immo-ley/img/grid-item-img-01.jpg" alt="Kerremansstraat 31 - 2840 Rumst">
+                        </div>
+                    </div>
+                    <div class="filter-grid-item-info">
+                        <div class="filter-grid-item-info-in">
+                            <h6><span class="filter-grid-item-info-category">Reet</span> / <span class="filter-grid-item-info-price">€ 950.000</span></h6>
+                            <h4>Kerremansstraat 31 - 2840 Rumst</h4>
+                        </div>
+                    </div>
+                </a>
+                                                            <a href="https://anushaweb.com/immo-ley/single-project/?estate_id=6955982" class="filter-grid-item" data-estate-id="6955982">
+                    <div class="filter-grid-item-img">
+                                                                                        <div class="filter-grid-item-img-box">
+                            <img decoding="async" loading="lazy" src="https://whisestorageprod.blob.core.windows.net/public/storage12889/Pictures/6955982/640/665d4faa033a47b6b96e18635fae5d23.jpg" alt="Edegemsestraat 135 - 2640 Mortsel">
+                        </div>
+                    </div>
+                    <div class="filter-grid-item-info">
+                        <div class="filter-grid-item-info-in">
+                            <h6><span class="filter-grid-item-info-category">Mortsel</span> / <span class="filter-grid-item-info-price">€ 450.000</span></h6>
+                            <h4>Edegemsestraat 135 - 2640 Mortsel</h4>
+                        </div>
+                    </div>
+                </a>
+			</div>
+		</div>
+	</div>
+</section>
+
 <?php
 	if(intval($contentRowsInPage['single-project']) == 0 || is_admin()){
 		if(file_exists(get_template_directory().'/css/single-project.css')){
 			echo '<style>';
 		include(get_template_directory().'/css/single-project.css');
 		echo '</style>';
-		}    
+		} 
+        if(file_exists(get_template_directory().'/css/filter-with-grid.css')){
+			echo '<style>';
+		include(get_template_directory().'/css/filter-with-grid.css');
+		echo '</style>';
+		}   
 	}
 	$contentRowsInPage['single-project'] = intval($contentRowsInPage['single-project'])+1;

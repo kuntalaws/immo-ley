@@ -1,71 +1,99 @@
+.contact-form-section{
+    width: 100%;
+    display: block;
+    padding-bottom: 5vw;
+}
 .contact-form .contact-form-in .checkbox-input span.wpcf7-list-item.first.last {
     margin: 0;
+    display: block;
     }
     .contact-form .contact-form-in .checkbox-input span.wpcf7-list-item.first.last input {
         width: 24px;
         height: 24px;
+        margin: 0;
+        border-radius: 0;
         margin-right: 15px;
     }
     .contact-form .contact-form-in .checkbox-input span.wpcf7-list-item.first.last label {
         display: flex;
         align-items: center;
+        cursor: pointer;
+    }
+    .contact-form .contact-form-in .checkbox-input span.wpcf7-list-item.first.last label span {
+        color: #3d1a25;
+        font-size: clamp(14px, 0.53333vw, 16px);
+        line-height: clamp(16px, 0.8vw, 24px);
+        display: block;
     }
     .contact-form .contact-form-in .checkbox-container {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        align-content: center;
         justify-content: space-between;
-        margin-top: clamp(40px, 3.125vw, 80px);
+        margin-top: clamp(40px, 2.66666vw, 80px);
     }
     .contact-form .contact-form-in .checkbox-container p {
         display: flex;
-        align-items: flex-start;
-        margin-bottom: 40px;
+        align-items: center;
+        margin: 0;
         gap: 12px;
     }
     
-    .contact-form .contact-form-in .checkbox-input {
+    /* .contact-form .contact-form-in .checkbox-input {
         width: 18px;
         height: 18px;
         margin-top: 2px;
         accent-color: #333;
-    }
+    } */
     .contact-form .contact-form-in .checkbox-container .submit-btn {
+        position: relative;
+        display: block;
+    }
+    .contact-form .contact-form-in .checkbox-container .submit-btn input {
         background-color: #3d1a25;
-        padding-left: clamp(16px, 0.9375vw, 24px);
-        padding-bottom: clamp(16px, 0.9375vw, 24px);
+        padding-left: 3vw;
+        padding-right: 3vw;
         display: flex;
         flex-wrap: wrap;
         position: relative;
         justify-content: center;
         align-items: center;
-        height: clamp(60px, 3.90625vw, 100px);
+        height: clamp(60px, 3.6666vw, 110px);
         cursor: pointer;
         font-family: "Be Vietnam Pro", sans-serif;
         transition: all 0.5s ease-in-out 0s;
-        width: clamp(130px, 9.765vw, 250px);
-    }
-    .contact-form .contact-form-in .checkbox-container .submit-btn:after {
-        content: '';
-        position: absolute;
-        left: clamp(16px, 0.9375vw, 24px);
-        bottom: clamp(16px, 0.9375vw, 24px);
-        width: 100%;
-        height: 100%;
-        background-color: #3d1a25;
-        display: block;
-        transition: all 0.5s ease-in-out 0s;
-    }
-    .contact-form .contact-form-in .checkbox-container .submit-btn input {
-        background-color: transparent;
         border: 0;
         outline: 0;
         color: #fff;
         position: relative;
-        z-index: 9;
-        font-size: clamp(16px, 0.9375vw, 18px);
+        z-index: 1;
+        font-size: clamp(14px, 0.6vw, 18px);
         text-transform: uppercase;
         font-family: "Be Vietnam Pro", sans-serif;
         letter-spacing: 2px;
+    }
+    .contact-form .contact-form-in .checkbox-container .submit-btn input:hover{
+        background-color: #b0d4d5;
+        color: #3d1a25;
+    }
+    .contact-form .contact-form-in .checkbox-container .submit-btn:after,
+    .contact-form .contact-form-in .checkbox-container .submit-btn::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: clamp(14px, 0.66vw, 18px);
+        height: clamp(14px, 0.66vw, 18px);
+        background-color: #ffffff;
+        display: block;
+        z-index: 2;
+        transition: all 0.5s ease-in-out 0s;
+    }
+    .contact-form .contact-form-in .checkbox-container .submit-btn::after{
+        left: auto;
+        top: auto;
+        right: 0;
+        bottom: 0;
     }
     .contact-form .form-container {
         background-color: #d7e9ea;
@@ -80,11 +108,13 @@
     .contact-form .form-container.bg-white .form-title {
     color: #fff;
     }
-    .contact-form .form-container.bg-white .form-group input, .contact-form .form-container.bg-white .textarea-group textarea {
+    .contact-form .form-container.bg-white .form-group input, 
+    .contact-form .form-container.bg-white .textarea-group textarea {
         border-bottom: 1px solid #828282;
         color: #828282;
     }
-    .contact-form .form-container.bg-white .form-group input::placeholder, .contact-form .form-container.bg-white .textarea-group textarea::placeholder {
+    .contact-form .form-container.bg-white .form-group input::placeholder, 
+    .contact-form .form-container.bg-white .textarea-group textarea::placeholder {
         color: #828282;
     }
     .contact-form .contact-form-in .form-title {
@@ -103,25 +133,31 @@
     }
     .contact-form .widget .checkbox-group .wpcf7-form-control.wpcf7-checkbox  span.wpcf7-list-item-label {
         color: #828282;
-        font-size: clamp(12px, 0.859375vw, 16px);
+        font-size: clamp(12px, 0.53333vw, 16px);
         text-transform: uppercase;
     }
     .contact-form .contact-form-in  .form-group {
-        margin-bottom: 35px;
         position: relative;
     }
     
-    .contact-form .contact-form-in  .form-group input, .contact-form .contact-form-in  .textarea-group textarea {
+    .contact-form .contact-form-in  .form-group input, 
+    .contact-form .contact-form-in  .textarea-group textarea {
         width: 100%;
-        padding: 12px 0;
-        font-size: clamp(16px, 0.859375vw, 22px);
+        padding: 1vw 0;
+        font-size: clamp(16px, 0.73333vw, 22px);
+        line-height: clamp(20px, 1vw, 28px);
         color: #333;
         background: transparent;
         border: none;
         border-bottom: 1px solid #666;
         outline: none;
-        transition: border-color 0.3s ease;
+        transition: all 0.3s ease-in-out 0s;
         font-family: "Be Vietnam Pro", sans-serif;
+        display: block;
+    }
+    .contact-form .form-container.bg-white .textarea-group textarea{
+        height: 8vw;
+        resize: none;
     }
     .contact-form-section .contact-form-section-in {
         justify-content: space-between;
@@ -135,14 +171,14 @@
         flex-direction: column;
         justify-content: flex-start;
         border-radius: 0;
-        flex: 0 0 30%;
+        flex: 0 0 34.5%;
     }
 
     .contact-form-section .contact-form-section-in .title {
-        font-size: clamp(26px, 1.953vw, 50px);
+        font-size: clamp(26px, 1.666666vw, 50px);
         font-weight: 400;
         color: #3d1a25;
-        margin-bottom: 50px;
+        margin-bottom: clamp(48px, 3vw, 88px);;
         letter-spacing: -0.5px;
         line-height: 1.2;
     }
@@ -150,26 +186,27 @@
     .contact-form-section .contact-form-section-in .contact-info {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: clamp(14px, 1vw, 24px);
     }
 
     .contact-form-section .contact-form-section-in .info-group {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 0;
     }
 
     .contact-form-section .contact-form-section-in .info-line,
     .contact-form-section .contact-form-section-in .info-line a {
-        font-size: clamp(16px, 0.859375vw, 18px);
+        font-size: clamp(14px, 0.6vw, 18px);
         font-weight: 400;
         color: #3d1a25;
-        line-height: 1.4;
+        line-height: clamp(14px, 0.8vw, 24px);
+        font-family: "Be Vietnam Pro", sans-serif;
     }
 
     .contact-form-section .contact-form-section-in .email {
         text-decoration: none;
-        font-size: clamp(16px, 0.859375vw, 18px);
+        font-size: clamp(14px, 0.6vw, 18px);
         font-weight: 400;
         color: #3d1a25;
     }
@@ -180,13 +217,13 @@
 
     .contact-form-section .contact-form-section-in .appointment {
         margin-top: 40px;
-        font-size: clamp(16px, 0.859375vw, 18px);
+        font-size: clamp(16px, 0.66w, 18px);
         font-weight: 400;
         color: #3d1a25;
         text-transform: uppercase;
     }
     .contact-form-section .contact-form-section-in .contact-form {
-        flex: 0 0 60%;
+        flex: 0 0 55.5%;
     }
 @media screen and (max-width: 768px) {
     .contact-form-section .contact-form-section-in {
