@@ -20,12 +20,31 @@ $primaryNav = wp_nav_menu(
 $include_in_head_tag = trim(get_field('include_in_head_tag', 'option'));
 $include_at_top_of_body_tag = trim(get_field('include_at_top_of_body_tag', 'option'));
 
+// Check if we're on a single project page and get property title
+$page_title = '';
+if (is_page('single-project') && isset($_GET['estate_id']) && !is_admin()) {
+    $estate_id = intval($_GET['estate_id']);
+    if ($estate_id > 0) {
+        $whise = new WhiseAPI();
+        if ($whise) {
+            $estate_data = $whise->get_estate_details($estate_id);
+            if ($estate_data && isset($estate_data['estate'])) {
+                $estate = $estate_data['estate'];
+                $page_title = $estate['name'] ?? '';
+                if (!empty($page_title)) {
+                    $page_title = esc_html($page_title) . ' | Immo Ley';
+                }
+            }
+        }
+    }
+}
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en-US">
 <head>
     <meta charset="utf-8">
-    <title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+    <title><?php echo !empty($page_title) ? $page_title : wp_title('|', true, 'right') . ' ' . bloginfo('name'); ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
