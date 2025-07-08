@@ -141,6 +141,61 @@ if (isset($estate['details']) && is_array($estate['details'])) {
     }
 }
 
+// Fetch similar properties based on the same purpose (state)
+$similar_properties = [];
+$current_purpose_id = null;
+
+// Get the purpose ID from the estate data structure - use same logic as filter system
+if (isset($estate['purpose']['id'])) {
+    $current_purpose_id = intval($estate['purpose']['id']); // Convert to integer like filter system
+} elseif (isset($estate['purposeId'])) {
+    $current_purpose_id = intval($estate['purposeId']);
+}
+
+// Debug purpose ID extraction
+if (isset($_GET['debug']) && $_GET['debug'] == '1') {
+    echo '<h4>🔍 Purpose ID Extraction Debug:</h4>';
+    echo '<pre style="background: white; padding: 10px; overflow-x: auto; max-height: 200px;">';
+    echo "Estate purpose object: " . print_r($estate['purpose'] ?? 'Not set', true) . "\n";
+    echo "Estate purposeId field: " . ($estate['purposeId'] ?? 'Not set') . "\n";
+    echo "Extracted current_purpose_id: " . ($current_purpose_id ?? 'Not set') . "\n";
+    echo "Purpose ID type: " . gettype($current_purpose_id) . "\n";
+    echo '</pre>';
+}
+
+if ($whise && $current_purpose_id) {
+    // Use exact same logic as filter system
+    $similar_filters = [
+        'PurposeIds' => array_map('intval', [$current_purpose_id]) // Convert to array of integers
+    ];
+    
+    // Exclude the current estate from similar properties
+    $similar_estates_data = $whise->get_estates($similar_filters);
+    
+    // Debug the API response
+    if (isset($_GET['debug']) && $_GET['debug'] == '1') {
+        echo '<h4>🔍 Similar Properties API Debug:</h4>';
+        echo '<pre style="background: white; padding: 10px; overflow-x: auto; max-height: 300px;">';
+        echo "Filters sent to API: " . print_r($similar_filters, true) . "\n";
+        echo "API Response: " . print_r($similar_estates_data, true) . "\n";
+        echo "Number of estates returned: " . (isset($similar_estates_data['estates']) ? count($similar_estates_data['estates']) : '0') . "\n";
+        if (isset($similar_estates_data['estates']) && count($similar_estates_data['estates']) > 0) {
+            echo "First estate structure:\n";
+            print_r($similar_estates_data['estates'][0]);
+        }
+        echo '</pre>';
+    }
+    
+    if ($similar_estates_data && isset($similar_estates_data['estates'])) {
+        // Filter out the current estate and limit to 2 similar properties
+        foreach ($similar_estates_data['estates'] as $similar_estate) {
+            if ($similar_estate['id'] != $estate_id && count($similar_properties) < 2) {
+                $similar_properties[] = $similar_estate;
+            }
+        }
+    }
+}
+
 // Helper function to get detail value by label or ID
 function get_detail_value($details, $label, $default = 'niet vermeld') {
     if (isset($details[$label])) {
@@ -242,6 +297,50 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
     }
     echo '</pre>';
     
+    echo '<h4>🏠 Similar Properties Debug:</h4>';
+    echo '<pre style="background: white; padding: 10px; overflow-x: auto; max-height: 300px;">';
+    echo "Current Estate PurposeId: " . ($current_purpose_id ?? 'Not set') . "\n";
+    echo "Estate Purpose Object: " . print_r($estate['purpose'] ?? 'Not set', true) . "\n";
+    echo "Similar Properties Found: " . count($similar_properties) . "\n";
+    echo "Similar Filters Used: " . print_r($similar_filters ?? [], true) . "\n";
+    echo "Current Estate ID: " . $estate_id . "\n";
+    echo "Current Estate Purpose ID from purpose object: " . (isset($estate['purpose']['id']) ? $estate['purpose']['id'] : 'Not found') . "\n";
+    
+    // Test API call without filters to see if we get any properties at all
+    if ($whise) {
+        $all_estates_data = $whise->get_estates([]);
+        echo "Total properties available (no filters): " . (isset($all_estates_data['estates']) ? count($all_estates_data['estates']) : '0') . "\n";
+        
+        if (isset($all_estates_data['estates']) && count($all_estates_data['estates']) > 0) {
+            echo "Sample of all properties:\n";
+            for ($i = 0; $i < min(3, count($all_estates_data['estates'])); $i++) {
+                $sample_estate = $all_estates_data['estates'][$i];
+                echo "- ID: " . ($sample_estate['id'] ?? 'N/A') . ", PurposeId: " . ($sample_estate['purposeId'] ?? 'N/A') . ", Purpose Object: " . print_r($sample_estate['purpose'] ?? 'N/A', true) . ", Name: " . ($sample_estate['name'] ?? 'N/A') . "\n";
+            }
+        }
+    }
+    
+    if (!empty($similar_properties)) {
+        echo "\nSimilar Properties Details:\n";
+        foreach ($similar_properties as $index => $similar_estate) {
+            echo "Property " . ($index + 1) . ":\n";
+            echo "- ID: " . ($similar_estate['id'] ?? 'N/A') . "\n";
+            echo "- Name: " . ($similar_estate['name'] ?? 'N/A') . "\n";
+            echo "- PurposeId: " . ($similar_estate['purposeId'] ?? 'N/A') . "\n";
+            echo "- City: " . ($similar_estate['city'] ?? 'N/A') . "\n";
+            echo "- Price: " . ($similar_estate['price'] ?? 'N/A') . "\n";
+            echo "- Pictures: " . (isset($similar_estate['pictures']) ? count($similar_estate['pictures']) : '0') . " images\n";
+            echo "\n";
+        }
+    } else {
+        echo "No similar properties found. Possible reasons:\n";
+        echo "- No other properties with same purposeId\n";
+        echo "- API call failed\n";
+        echo "- All properties with same purposeId are the current property\n";
+        echo "- Filter parameter issue (check PurposeIds vs PurposeId)\n";
+    }
+    echo '</pre>';
+    
     echo '</div>';
 }
 ?>
@@ -263,22 +362,53 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 <script>
   document.getElementById('all-projects-link').addEventListener('click', function () {
-    Fancybox.show([
-      {
-        src: '<?php echo esc_url($main_image_url); ?>',
-        type: 'image',
-      },
-      {
-        src: '<?php echo esc_url($main_image_url); ?>',
-        type: 'image',
-      },
-      {
-        src: '<?php echo esc_url($main_image_url); ?>',
-        type: 'image',
-      },
-    ], {
+    // Create array of all property images for Fancybox
+    var propertyImages = [
+      <?php 
+      if (!empty($estate_images)) {
+          foreach ($estate_images as $index => $image) {
+              $image_url = $image['urlXXL'] ?? $image['urlLarge'] ?? $image['url'] ?? '';
+              if (!empty($image_url)) {
+                  echo "{\n";
+                  echo "  src: '" . esc_url($image_url) . "',\n";
+                  echo "  type: 'image',\n";
+                  echo "  caption: '" . esc_js($estate_title . ' - Afbeelding ' . ($index + 1)) . "'\n";
+                  echo "}";
+                  if ($index < count($estate_images) - 1) {
+                      echo ",\n";
+                  }
+              }
+          }
+      } else {
+          // Fallback to main image if no images available
+          echo "{\n";
+          echo "  src: '" . esc_url($main_image_url) . "',\n";
+          echo "  type: 'image',\n";
+          echo "  caption: '" . esc_js($estate_title) . "'\n";
+          echo "}";
+      }
+      ?>
+    ];
+    
+    Fancybox.show(propertyImages, {
       Thumbs: true,
       Toolbar: true,
+      Image: {
+        zoom: true,
+        click: "close",
+        wheel: "slide"
+      },
+      Carousel: {
+        infinite: true,
+        center: true,
+        fill: true,
+        dragFree: true,
+        adaptive: true,
+        friction: 0.7,
+        infinite: true,
+        preload: 1,
+        slidesPerPage: 1
+      }
     });
   });
 </script>
@@ -372,18 +502,26 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
         </div>
     </section>
 
-
+    <?php 
+    // Extract long description content from the array structure
+    $long_description_content = '';
+    if (isset($estate['longDescription']) && is_array($estate['longDescription']) && !empty($estate['longDescription'])) {
+        // Get the first description (usually the main one)
+        $first_description = $estate['longDescription'][0];
+        if (isset($first_description['content'])) {
+            $long_description_content = $first_description['content'];
+        }
+    }
+    
+    if (!empty($long_description_content)): ?>
     <section class="property-long-description">
         <div class="property-long-description-in fw">
-            <h2>Meer over deze woning</h2>
-            <div class="property-long-description-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
-            </div>
+            <?php echo wp_kses_post($long_description_content); ?>
         </div>
     </section>
+    <?php endif; ?>
 
+    <?php if($estate['details']): ?>
 	<section class="property-widget">
 		<div class="property-widget-wrap fw">
 		<h2 class="widget-title">Algemene info</h2>
@@ -443,46 +581,84 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
             </div>
 		</div>     
     </section>
-
+    <?php endif; ?>
 
     <section class="filter-with-grid related-projects">
-	<div class="filter-grid">
-		<div class="filter-grid-title fw">
-			<h3>Gelijkaardige panden</h3>
-		</div>
-		<div class="filter-grid-item-wrapper">
-			<div class="filter-grid-item-wrap fw flex" id="whise-estates-container">
-				<a href="https://anushaweb.com/immo-ley/single-project/?estate_id=6973025" class="filter-grid-item" data-estate-id="6973025">
-                    <div class="filter-grid-item-img">
-                                                                                            <span class="pro-type sold">verkocht</span>
-                                                        <div class="filter-grid-item-img-box">
-                            <img decoding="async" loading="lazy" src="https://anushaweb.com/immo-ley/wp-content/themes/immo-ley/img/grid-item-img-01.jpg" alt="Kerremansstraat 31 - 2840 Rumst">
-                        </div>
-                    </div>
-                    <div class="filter-grid-item-info">
-                        <div class="filter-grid-item-info-in">
-                            <h6><span class="filter-grid-item-info-category">Reet</span> / <span class="filter-grid-item-info-price">€ 950.000</span></h6>
-                            <h4>Kerremansstraat 31 - 2840 Rumst</h4>
-                        </div>
-                    </div>
-                </a>
-                                                            <a href="https://anushaweb.com/immo-ley/single-project/?estate_id=6955982" class="filter-grid-item" data-estate-id="6955982">
-                    <div class="filter-grid-item-img">
-                                                                                        <div class="filter-grid-item-img-box">
-                            <img decoding="async" loading="lazy" src="https://whisestorageprod.blob.core.windows.net/public/storage12889/Pictures/6955982/640/665d4faa033a47b6b96e18635fae5d23.jpg" alt="Edegemsestraat 135 - 2640 Mortsel">
-                        </div>
-                    </div>
-                    <div class="filter-grid-item-info">
-                        <div class="filter-grid-item-info-in">
-                            <h6><span class="filter-grid-item-info-category">Mortsel</span> / <span class="filter-grid-item-info-price">€ 450.000</span></h6>
-                            <h4>Edegemsestraat 135 - 2640 Mortsel</h4>
-                        </div>
-                    </div>
-                </a>
-			</div>
-		</div>
-	</div>
-</section>
+        <div class="filter-grid">
+            <div class="filter-grid-title fw">
+                <h3>Gelijkaardige panden</h3>
+            </div>
+            <div class="filter-grid-item-wrapper">
+                <div class="filter-grid-item-wrap fw flex" id="whise-estates-container">
+                    <?php 
+                    if (!empty($similar_properties)) {
+                        foreach ($similar_properties as $similar_estate) {
+                            // Get image URL
+                            $similar_image_url = get_template_directory_uri() . '/img/grid-item-img-01.jpg'; // Default fallback
+                            if (isset($similar_estate['pictures']) && !empty($similar_estate['pictures'])) {
+                                $similar_image_url = $similar_estate['pictures'][0]['urlLarge'] ?? $similar_estate['pictures'][0]['url'] ?? $similar_image_url;
+                            }
+                            
+                            // Get estate information
+                            $similar_price = $similar_estate['price'] ? '€ ' . number_format($similar_estate['price'], 0, ',', '.') : 'Prijs op aanvraag';
+                            $similar_city = $similar_estate['city'] ?? 'Onbekend';
+                            $similar_title = $similar_estate['name'] ?? ($similar_estate['shortDescription'] && count($similar_estate['shortDescription']) > 0 ? $similar_estate['shortDescription'][0]['content'] : 'Eigendom');
+                            
+                            // Determine purpose label based on purposeId
+                            $purpose_label = 'Onbekend';
+                            if (isset($similar_estate['purposeId'])) {
+                                switch ($similar_estate['purposeId']) {
+                                    case 1:
+                                        $purpose_label = 'te koop';
+                                        break;
+                                    case 2:
+                                        $purpose_label = 'te huur';
+                                        break;
+                                    case 3:
+                                        $purpose_label = 'lijfrente verkoop';
+                                        break;
+                                }
+                            }
+                            
+                            // Check if property is sold/rented
+                            $status_class = '';
+                            $status_label = '';
+                            if (isset($similar_estate['purposeStatus']['id'])) {
+                                if ($similar_estate['purposeStatus']['id'] == 3) {
+                                    $status_class = 'sold';
+                                    $status_label = 'verkocht';
+                                }
+                            }
+                            ?>
+                            <a href="<?php echo esc_url(add_query_arg('estate_id', $similar_estate['id'], get_permalink(get_page_by_path('single-project')))); ?>" class="filter-grid-item" data-estate-id="<?php echo esc_attr($similar_estate['id']); ?>">
+                                <div class="filter-grid-item-img">
+                                    <?php if (!empty($status_label)): ?>
+                                        <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
+                                    <?php endif; ?>
+                                    <div class="filter-grid-item-img-box">
+                                        <img decoding="async" loading="lazy" src="<?php echo esc_url($similar_image_url); ?>" alt="<?php echo esc_attr($similar_title); ?>">
+                                    </div>
+                                </div>
+                                <div class="filter-grid-item-info">
+                                    <div class="filter-grid-item-info-in">
+                                        <h6><span class="filter-grid-item-info-category"><?php echo esc_html($similar_city); ?></span> / <span class="filter-grid-item-info-price"><?php echo esc_html($similar_price); ?></span></h6>
+                                        <h4><?php echo esc_html($similar_title); ?></h4>
+                                    </div>
+                                </div>
+                            </a>
+                            <?php
+                        }
+                    } else {
+                        echo '<div class="no-similar-properties" style="text-align: center; padding: 40px; color: #666;">';
+                        echo '<h4>Geen gelijkaardige projecten gevonden</h4>';
+                        echo '<p>Er zijn momenteel geen andere projecten beschikbaar met dezelfde status.</p>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <?php
 	if(intval($contentRowsInPage['single-project']) == 0 || is_admin()){
