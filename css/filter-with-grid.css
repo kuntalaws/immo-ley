@@ -207,6 +207,9 @@
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 2){
      margin-top: 6vw;
 }
+.filter-with-grid.related-projects .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 2){
+     margin-top: 0;
+}
 .filter-with-grid .filter-grid .filter-grid-item-wrapper .filter-grid-item-wrap .filter-grid-item:nth-child(2n + 1){
      margin-bottom: 6vw;
 }
