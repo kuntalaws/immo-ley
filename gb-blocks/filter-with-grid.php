@@ -160,6 +160,33 @@ if ($whise) {
     if ($estates_data && isset($estates_data['estates'])) {
         $estates = $estates_data['estates'];
         error_log('Whise Filter Debug - Found ' . count($estates) . ' estates');
+        
+        // Sort estates: available properties first, then sold/rented properties
+        usort($estates, function($a, $b) {
+            // Get status IDs for both properties
+            $status_a = isset($a['purposeStatus']['id']) ? $a['purposeStatus']['id'] : 0;
+            $status_b = isset($b['purposeStatus']['id']) ? $b['purposeStatus']['id'] : 0;
+            
+            // Define unavailable status IDs (sold, rented, etc.)
+            $unavailable_statuses = [3, 4, 14, 17]; // sold, rented, sold with condition, sold
+            
+            // Check if properties are available or unavailable
+            $a_available = !in_array($status_a, $unavailable_statuses);
+            $b_available = !in_array($status_b, $unavailable_statuses);
+            
+            // If one is available and the other isn't, sort available first
+            if ($a_available && !$b_available) {
+                return -1; // a comes first
+            }
+            if (!$a_available && $b_available) {
+                return 1; // b comes first
+            }
+            
+            // If both have same availability status, maintain original order
+            return 0;
+        });
+        
+        error_log('Whise Filter Debug - Sorted ' . count($estates) . ' estates (available first, then sold/rented)');
     } else {
         error_log('Whise Filter Debug - No estates found or API error');
     }
