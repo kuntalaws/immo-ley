@@ -184,7 +184,7 @@ margin-bottom: clamp(48px, 3.2vw, 96px);
     color: #ffffff;
     font-weight: 300;
     font-family: "Larken";
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 /* kenmerken end */
