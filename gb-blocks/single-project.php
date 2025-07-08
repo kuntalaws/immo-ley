@@ -112,19 +112,8 @@ if (empty($agent_name)) {
     }
 }
 
-// Fallback to default values if no agent info found
-if (empty($agent_name)) {
-    $agent_name = 'Immo Ley';
-}
-if (empty($agent_phone)) {
-    $agent_phone = '03 333 33 33';
-}
-if (empty($agent_email)) {
-    $agent_email = 'info@immoley.be';
-}
-
 // Get main image
-$main_image_url = get_template_directory_uri() . '/img/single-page-banner.png'; // Default fallback
+$main_image_url = 'https://placehold.co/600x400/000000/FFFFFF/png'; // Default fallback
 if (!empty($estate_images)) {
     $main_image_url = $estate_images[0]['urlLarge'] ?? $estate_images[0]['url'] ?? $main_image_url;
 }
