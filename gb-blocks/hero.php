@@ -10,23 +10,10 @@ $imageMob = swcGetImage($image,1024,NULL,true,true);
 $image = swcGetImage($image,1920,1080,true,true);
 $button = get_field('button');
 $button = swcGetLink($button);
-/*$video = get_field('video');
-$video = swcGetURLfromIframe($video);
-if($vmoVideoID = getVimeoId($video)){
-    $video = array(
-                'id'=>$vmoVideoID,
-                'thumb'=>getVimeoThumb($vmoVideoID,1920,1080)['thumb'],
-                'url'=>'https://player.vimeo.com/video/'.$vmoVideoID
-            );
-}else if($ytVideoID = getYoutubeId($video)){
-    $video = array(
-                'id'=>$ytVideoID,
-                'thumb'=>getYoutubeThumb($ytVideoID),
-                'url'=>'https://www.youtube.com/embed/'.$ytVideoID
-            );
-}else{
-    $video = false;
-}*/
+$video_url = get_field('herovideo');
+$video_poster = intval(get_field('video_poster_bg'));
+$video_posterMob = swcGetImage($video_poster,1024,NULL,true,true);
+$video_poster = swcGetImage($video_poster,1920,1080,true,true);
 if(empty($heading) && is_admin()){
 	$heading = "Heading goes here..";
 }
@@ -51,8 +38,17 @@ if(!empty($heading) || !empty($image) || !empty($button)){?>
 	<!--Hero Banner Start-->
 	<section class="hero-banner">
 		<?php if(!empty($image)){?>
-			<div class="hero-banner-bg" style="background-image: url(<?php echo $image['url'];?>);"></div>
+			<div class="hero-banner-bg" style="background-image: url(<?php echo $image['url'];?>);">
+			</div>
 		<?php }?>
+		<?php if(!empty($video_url)){?>
+			<div class="hero-banner-bg">
+				<video autoplay loop muted playsinline class="background-video" style="background-image: url(<?php echo $video_poster['url'];?>);">
+					<source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
+		<?php }?>		
 		<div class="hero-banner-in fw flex">
 			<div class="hero-banner-content">
 				<?php if(!empty($heading)){

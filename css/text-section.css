@@ -3,7 +3,7 @@
   padding-bottom: 3.1vw;
 }
 .page-over-ons .text-section {
-  margin-top: clamp(185px, 12.16666vw, 365px);
+  padding-top: clamp(185px, 12.16666vw, 365px);
 }
 .text-section .text-section-in h3 {
   font-size: clamp(25px, 1.66666vw, 50px);
