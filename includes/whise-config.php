@@ -49,14 +49,6 @@ function whise_add_acf_fields() {
                     'type' => 'number',
                     'instructions' => 'Optional: Office ID for filtering estates by office',
                 ),
-                array(
-                    'key' => 'field_whise_cache_duration',
-                    'label' => 'Cache Duration (seconds)',
-                    'name' => 'whise_cache_duration',
-                    'type' => 'number',
-                    'default_value' => 3600, // 1 hour
-                    'instructions' => 'How long to cache API responses (in seconds)',
-                ),
             ),
             'location' => array(
                 array(
