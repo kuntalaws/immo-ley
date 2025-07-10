@@ -81,6 +81,12 @@ align-content: center;
     align-self: center;
     gap: 2.34vw;
 }
+.footer .footer-in .footer-bottom-row .footer-bottom-row-right .footer-bottom-logo-wrap.flex img{
+    display: block;
+    min-height: 58px;
+    max-width: 100%;
+    height: auto;
+}
 .footer .footer-in .footer-bottom-row .footer-bottom-row-right .footer-social-icons {
     background-color: #b0d4d5;
     height: 6.13333vw;

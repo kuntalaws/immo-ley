@@ -42,8 +42,8 @@ if(!empty($heading) || !empty($image) || !empty($button)){?>
 			</div>
 		<?php }?>
 		<?php if(!empty($video_url)){?>
-			<div class="hero-banner-bg">
-				<video autoplay loop muted playsinline class="background-video" style="background-image: url(<?php echo $video_poster['url'];?>);">
+			<div class="hero-banner-bg" style="background-image: url(<?php echo $video_poster['url'];?>);">
+				<video autoplay loop muted playsinline class="background-video">
 					<source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
 					Your browser does not support the video tag.
 				</video>
