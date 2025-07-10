@@ -110,13 +110,13 @@ font-family: "Larken";
 .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price {
     margin-bottom: clamp(43px, 2.8vw, 84px);
     margin-top: clamp(28px, 1.333vw, 40px);
-    font-size: clamp(42px, 2.8vw, 84px);
-    line-height: clamp(42px, 2.8vw, 84px);
+    font-size: clamp(36px, 2.8vw, 84px);
+    line-height: clamp(36px, 2.8vw, 84px);
     font-weight: 400;
 }
 .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price span {
-    font-size: clamp(42px, 2.8vw, 84px);
-    line-height: clamp(42px, 2.8vw, 84px);
+    font-size: clamp(36px, 2.8vw, 84px);
+    line-height: clamp(36px, 2.8vw, 84px);
     color: #3d1a25;
     font-weight: 400;
     font-family: "Larken";
@@ -277,7 +277,10 @@ margin-bottom: clamp(48px, 3.2vw, 96px);
         flex: 0 0 100%;
     }
     .single-project-section {
-        margin-top: 145px;
+        padding-top: 145px;
+    }
+    .single-project-section .single-project-section-in{
+        aspect-ratio: 3 / 2;
     }
     .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
         grid-column-gap: 10px;
@@ -287,7 +290,7 @@ margin-bottom: clamp(48px, 3.2vw, 96px);
         gap: 10px;
     }
     .property-widget .property-widget-wrap .property-table {
-        column-count: 1;
+        grid-template-columns: 1fr;
     }
     .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
         gap: 20px;
@@ -295,8 +298,5 @@ margin-bottom: clamp(48px, 3.2vw, 96px);
     .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
         width: 100px;
         height: 100px;
-    }
-    .single-project-section {
-        height: 60vh;
     }
 }

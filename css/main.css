@@ -9,15 +9,17 @@ body {
   font-style: normal;
   display: block;
   -webkit-font-smoothing: antialiased;
-  font-size: clamp(12px, 0.733vw, 22px);
-  line-height: clamp(22px, 1.333vw, 40px);
+  font-size: clamp(15px, 0.733vw, 22px);
+  line-height: clamp(24px, 1.333vw, 40px);
   color: #3d1a25;
+  overflow-x: hidden;
 }
 body.scroll-lock {
   overflow: hidden;
 }
 /*font-family: "larken", sans-serif;*/
 html {
+  overflow-x: hidden;
   padding: 0;
   margin: 0;
   display: block;
@@ -110,9 +112,9 @@ img {
 }
 
 p {
-  font-size: clamp(12px, 0.733vw, 22px);
-  line-height: clamp(22px, 1.333vw, 40px);
-  margin: 0 0 clamp(22px, 1.333vw, 40px);
+  font-size: clamp(15px, 0.733vw, 22px);
+  line-height: clamp(24px, 1.333vw, 40px);
+  margin: 0 0 clamp(24px, 1.333vw, 40px);
 }
 
 strong {
@@ -295,7 +297,7 @@ header.header .header-in .header-nav-wrap .nav .mainmenu{
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-  gap: clamp(65px, 4.33vw, 130px);
+  gap: clamp(50px, 3vw, 90px);
 }
 header.header .header-in .header-nav-wrap .nav .mainmenu > li{
   display: block;
