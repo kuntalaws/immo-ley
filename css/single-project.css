@@ -232,6 +232,7 @@ margin-bottom: clamp(48px, 3.2vw, 96px);
 }
 .property-widget .property-widget-wrap .property-table p {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #323232;
@@ -244,9 +245,13 @@ margin-bottom: clamp(48px, 3.2vw, 96px);
     font-family: "Be Vietnam Pro";
     margin: 0 !important;
 }
+.property-widget .property-widget-wrap .property-table p span{
+    max-width: 45%;
+}
 .property-widget .property-widget-wrap .property-table p strong {
     max-width: 55%;
     text-align: right;
+    word-break: break-all;
 }
 .property-widget .property-widget-wrap .share-section {
     padding-top: clamp(64px, 3.66666vw, 110px);

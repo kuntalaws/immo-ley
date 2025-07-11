@@ -103,7 +103,7 @@ if(!is_admin()){
     // Get main image
     $main_image_url = 'https://placehold.co/600x400/000000/FFFFFF/png'; // Default fallback
     if (!empty($estate_images)) {
-        $main_image_url = $estate_images[0]['urlLarge'] ?? $estate_images[0]['url'] ?? $main_image_url;
+        $main_image_url = $estate_images[0]['urlXXL'] ?? $estate_images[0]['url'] ?? $main_image_url;
     }
     // Extract property characteristics from details array
     $property_details = [];

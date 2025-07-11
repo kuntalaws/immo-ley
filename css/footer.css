@@ -40,9 +40,9 @@ footer.footer .footer-in{
     font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 300;
 }
- .footer .footer-in .footer-top-row .footer-top-row-right .footer-contact-info {
+ /* .footer .footer-in .footer-top-row .footer-top-row-right .footer-contact-info {
     padding-left: 20px;
-}
+} */
 .footer .footer-in .footer-top-row .footer-top-row-right .footer-menu h3, .footer .footer-in .footer-top-row .footer-top-row-right .footer-contact-info h3 {
     font-weight: 500;
     margin-bottom: 1.2vw;
