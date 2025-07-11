@@ -519,42 +519,42 @@ if(!is_admin()){
             <div class="kenmerken-stats-row flex">
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/immo-ley/wp-content/themes/immo-ley/img/ic1.svg" alt="Immo Ley">
+                    <img src="/wp-content/themes/immo-ley/img/ic1.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['groundArea']); ?> m²</span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/immo-ley/wp-content/themes/immo-ley/img/ic22.svg" alt="Immo Ley">
+                    <img src="/wp-content/themes/immo-ley/img/ic22.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['area']); ?> m²</span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                        <img src="/immo-ley/wp-content/themes/immo-ley/img/ic3.svg" alt="Immo Ley"></div>
+                        <img src="/wp-content/themes/immo-ley/img/ic3.svg" alt="Immo Ley"></div>
                     <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'oriëntatie van de voorgevel')); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/immo-ley/wp-content/themes/immo-ley/img/ic4.svg" alt="Immo Ley">
+                    <img src="/wp-content/themes/immo-ley/img/ic4.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['rooms']); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/immo-ley/wp-content/themes/immo-ley/img/ic5.svg" alt="Immo Ley">
+                    <img src="/wp-content/themes/immo-ley/img/ic5.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['bathRooms']); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/immo-ley/wp-content/themes/immo-ley/img/ic6.svg" alt="Immo Ley">
+                    <img src="/wp-content/themes/immo-ley/img/ic6.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'Bouwjaar')); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                        <img src="/immo-ley/wp-content/themes/immo-ley/img/ic7.svg" alt="Immo Ley">
+                        <img src="/wp-content/themes/immo-ley/img/ic7.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'EPC (Kwh/m²/j)')); ?> Kwh/m²/j</span>
                 </div>
@@ -621,13 +621,13 @@ if(!is_admin()){
                     <h3>DEEL DEZE WONING</h3>
                     <ul class="social-icons flex">
                         <li class="social-icon"><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink() . '?estate_id=' . $estate_id); ?>&quote=<?php echo urlencode($estate_title . ' - ' . $estate_address); ?>" target="_blank" title="Deel op Facebook">
-                        <img src="/immo-ley/wp-content/themes/immo-ley/img/facebook-white.svg" alt="Facebook">
+                        <img src="/wp-content/themes/immo-ley/img/facebook-white.svg" alt="Facebook">
                         </a></li>
                         <li class="social-icon"><a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink() . '?estate_id=' . $estate_id); ?>&text=<?php echo urlencode($estate_title . ' - ' . $estate_address . ' - ' . $estate_price); ?>" target="_blank" title="Deel op Twitter">
-                        <img src="/immo-ley/wp-content/themes/immo-ley/img/insta-white.svg" alt="Twitter">
+                        <img src="/wp-content/themes/immo-ley/img/insta-white.svg" alt="Twitter">
                         </a></li>
                         <li class="social-icon"><a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink() . '?estate_id=' . $estate_id); ?>" target="_blank" title="Deel op LinkedIn">
-                        <img src="/immo-ley/wp-content/themes/immo-ley/img/linkedin-white.svg" alt="LinkedIn">
+                        <img src="/wp-content/themes/immo-ley/img/linkedin-white.svg" alt="LinkedIn">
                         </a></li>
                     </ul>
                 </div>
