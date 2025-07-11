@@ -46,6 +46,11 @@
     justify-content: center;
     align-items: center;
 }
+.single-project-section .single-project-section-in .single-project-section-button a span.img-icon svg{
+    width: 24px;
+    height: auto;
+    display: block;
+}
 .single-project-section .single-project-section-in .single-project-section-button a span.btn-text {
     display: flex;
     justify-content: center;
