@@ -39,14 +39,15 @@ if(!is_admin()){
         exit;
     }
     // Extract estate information
-    $estate_title = $estate['name'] ?? 'Eigendom';
+    $estate_title = $estate['name'] ?? '';
     $estate_description = '';
     if (isset($estate['shortDescription']) && is_array($estate['shortDescription']) && count($estate['shortDescription']) > 0) {
         $estate_description = $estate['shortDescription'][0]['content'] ?? '';
     }
     $estate_price = $estate['price'] ? '€ ' . number_format($estate['price'], 0, ',', '.') : 'Prijs op aanvraag';
-    $estate_city = $estate['city'] ?? 'Onbekend';
+    $estate_city = $estate['city'] ?? '';
     $estate_address = $estate['address'] ?? '';
+    $full_address = $estate['address'] . ' ' . $estate['city'] . ' ' . $estate['zip'] . ' ' . $estate['country'];
     // Extract agent/contact information
     $agent_name = '';
     $agent_phone = '';
@@ -485,8 +486,12 @@ if(!is_admin()){
         <div class="single-project-content-section-in fw">
             <div class="single-project-content flex">
                 <div class="single-project-content-left">
-                    <h3><?php echo esc_html($estate_address); ?></h3>
-                    <h2><?php echo esc_html($estate_title); ?></h2>
+                    <h3><?php echo esc_html($full_address); ?></h3>
+                    <?php if(isset($property_details['id_1914'])){?>
+                        <h2><?php echo esc_html($property_details['id_1914']); ?></h2>
+                    <?php } else{ ?>
+                        <h2><?php echo esc_html($estate_title); ?></h2>
+                    <?php }?>
                     <p><?php echo wp_kses_post($estate_description); ?></p>
                 </div>
                 <div class="single-project-content-right">
