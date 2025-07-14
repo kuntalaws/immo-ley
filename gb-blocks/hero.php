@@ -12,8 +12,11 @@ $button = get_field('button');
 $button = swcGetLink($button);
 $video_url = get_field('herovideo');
 $video_poster = intval(get_field('video_poster_bg'));
-$video_posterMob = swcGetImage($video_poster,1024,NULL,true,true);
 $video_poster = swcGetImage($video_poster,1920,1080,true,true);
+
+$heromobilevideo = get_field('heromobilevideo');
+$video_mobile_poster_bg = intval(get_field('video_mobile_poster_bg'));
+$video_mobile_poster = swcGetImage($video_mobile_poster_bg,1920,1080,true,true);
 if(empty($heading) && is_admin()){
 	$heading = "Heading goes here..";
 }
@@ -49,6 +52,14 @@ if(!empty($heading) || !empty($image) || !empty($button)){?>
 				</video>
 			</div>
 		<?php }?>		
+		<?php if(!empty($heromobilevideo)){?>
+			<div class="hero-banner-bg" style="background-image: url(<?php echo $video_mobile_poster['url'];?>);">
+				<video autoplay loop muted playsinline class="background-video">
+					<source src="<?php echo esc_url($heromobilevideo); ?>" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
+		<?php }?>	
 		<div class="hero-banner-in fw flex">
 			<div class="hero-banner-content">
 				<?php if(!empty($heading)){

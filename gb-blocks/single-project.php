@@ -52,11 +52,12 @@ if(!is_admin()){
     $agent_phone = '';
     $agent_email = '';
     $agent_whatsapp = '';
-    // First, try to get agent from representatives list if estate has a representative ID
+    // First, try to get agent
+    //  from representatives list if estate has a representative ID
     if (!empty($representatives) && isset($estate['representativeId'])) {
         foreach ($representatives as $representative) {
             if (isset($representative['id']) && $representative['id'] == $estate['representativeId']) {
-                $agent_name = $representative['name'] ?? $representative['firstName'] ?? '';
+                $agent_name = $representative['firstName'] ?? $representative['name'] ?? '';
                 $agent_phone = $representative['directLine'] ?? '';
                 $agent_email = $representative['email'] ?? '';
                 break;
@@ -66,7 +67,7 @@ if(!is_admin()){
     // If no representative found by ID, use the first available representative (if only one exists)
     if (empty($agent_name) && !empty($representatives) && count($representatives) == 1) {
         $representative = $representatives[0];
-        $agent_name = $representative['name'] ?? $representative['firstName'] ?? '';
+        $agent_name = $representative['firstName'] ?? $representative['name'] ?? '';
         $agent_phone = $representative['directLine'] ?? '';
         $agent_email = $representative['email'] ?? '';
         $agent_pic =  $representative['pictureUrl'] ?? '';
