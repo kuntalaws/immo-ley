@@ -47,7 +47,7 @@ if(!is_admin()){
     $estate_price = $estate['price'] ? '€ ' . number_format($estate['price'], 0, ',', '.') : 'Prijs op aanvraag';
     $estate_city = $estate['city'] ?? '';
     $estate_address = $estate['address'] ?? '';
-    $full_address = $estate['address'] . ' ' . $estate['city'] . ' ' . $estate['zip'] . ' ' . $estate['country'];
+    $full_address = $estate['name'];
     // Extract agent/contact information
     $agent_name = '';
     $agent_phone = '';
@@ -507,8 +507,8 @@ if(!is_admin()){
                                     <li><a href="tel:<?php echo esc_attr($agent_phone); ?>"><?php echo esc_html($agent_phone); ?></a></li>
                                     <li><a href="mailto:<?php echo esc_attr($agent_email); ?>"><?php echo esc_html($agent_email); ?></a></li>
                                     <li>
-                                        <a href="https://wa.me/+<?php echo $agent_phone; ?>?text=<?php echo urlencode($estate_title); ?>" target="_blank">
-                                            Chat on WhatsApp
+                                        <a href="https://wa.me/+32497725212?text=<?php echo urlencode($estate_title); ?>" target="_blank">
+                                            Chat op WhatsApp
                                         </a>
                                     </li>
                                 </ul>
