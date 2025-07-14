@@ -44,22 +44,15 @@ if(!empty($heading) || !empty($image) || !empty($button)){?>
 			<div class="hero-banner-bg" style="background-image: url(<?php echo $image['url'];?>);">
 			</div>
 		<?php }?>
-		<?php if(!empty($video_url)){?>
-			<div class="hero-banner-bg" style="background-image: url(<?php echo $video_poster['url'];?>);">
-				<video autoplay loop muted playsinline class="background-video">
-					<source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>
-			</div>
-		<?php }?>		
-		<?php if(!empty($heromobilevideo)){?>
-			<div class="hero-banner-bg" style="background-image: url(<?php echo $video_mobile_poster['url'];?>);">
-				<video autoplay loop muted playsinline class="background-video">
-					<source src="<?php echo esc_url($heromobilevideo); ?>" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>
-			</div>
-		<?php }?>	
+		<?php if(!empty($video_url) || !empty($heromobilevideo)){?>
+		<div class="hero-banner-bg" data-bg-desktop="<?php echo esc_url($video_poster['url']); ?>" data-bg-mobile="<?php echo esc_url($video_mobile_poster['url']); ?>">
+			<video autoplay loop muted playsinline class="background-video">
+				<source src="<?php echo esc_url($heromobilevideo); ?>" type="video/mp4" media="(max-width: 768px)">
+				<source src="<?php echo esc_url($video_url); ?>" type="video/mp4" media="(min-width: 769px)">
+				Your browser does not support the video tag.
+			</video>
+		</div>
+		<?php }?>
 		<div class="hero-banner-in fw flex">
 			<div class="hero-banner-content">
 				<?php if(!empty($heading)){

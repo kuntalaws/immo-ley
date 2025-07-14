@@ -18,6 +18,12 @@
      left: 0;
      overflow: hidden;
 }
+.hero-banner .hero-banner-bg.desk-video{
+     display: block;
+}
+.hero-banner .hero-banner-bg.mob-video{
+     display: none;
+}
 .hero-banner .hero-banner-bg video{
      position: absolute;
      top: 50%;
@@ -48,8 +54,13 @@
      margin-top: 4.06vw;
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1365px) {
-
+@media screen and (max-width: 768px) {
+     .hero-banner .hero-banner-bg.desk-video{
+          display: none;
+     }
+     .hero-banner .hero-banner-bg.mob-video{
+          display: block;
+     }
 }
 @media screen and (max-width: 640px) {
      .hero-banner .hero-banner-in{

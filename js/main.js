@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  // const submitInput = document.querySelector('.wpcf7 input[type="submit"]');
-  // if (submitInput) {
-  //   const button = document.createElement('button');
-  //   button.type = 'submit';
-  //   button.innerText = 'Versturen';
-  //   button.className = submitInput.className;
-  //   submitInput.parentNode.replaceChild(button, submitInput);
-  // }
+  const isMobile = window.innerWidth <= 768;
+  const heroBg = document.querySelector(".hero-banner-bg");
+  const bgImage = isMobile 
+    ? heroBg.getAttribute("data-bg-mobile")
+    : heroBg.getAttribute("data-bg-desktop");
+  heroBg.style.backgroundImage = `url(${bgImage})`;
+
+  
 });

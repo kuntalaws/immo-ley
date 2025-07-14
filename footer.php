@@ -11,6 +11,8 @@ $footerbottomlogofirst = intval(get_field('footerbottomlogofirst','option'));
 $footerbottomlogofirst = swcGetImage($footerbottomlogofirst,null,null,true,true);
 $footerbottomlogosecond = intval(get_field('footerbottomlogosecond','option'));
 $footerbottomlogosecond = swcGetImage($footerbottomlogosecond,null,null,true,true);
+$footerbottomlogothird = intval(get_field('footerbottomlogothird','option'));
+$footerbottomlogothird = swcGetImage($footerbottomlogothird,null,null,true,true);
 
 $disclaimer = trim(get_field('footer_disclaimer','option'));
 $ilphone = trim(get_field('ilphone','option'));
@@ -87,6 +89,11 @@ $footerlegalmenu = wp_nav_menu(
                         if(!empty($footerbottomlogosecond)){?>
                             <div class="footer-bottom-logo">
                                 <img <?php echo $footerbottomlogosecond['attrs']['class'];?> <?php echo $footerbottomlogosecond['attrs']['src'];?>="<?php echo esc_url($footerbottomlogosecond['url']);?>" alt="<?php echo esc_attr($footerbottomlogosecond['alt']); ?>" width="<?php echo esc_attr($footerbottomlogosecond['width']); ?>" height="<?php echo esc_attr($footerbottomlogosecond['height']); ?>">
+                            </div>
+                        <?php }
+                        if(!empty($footerbottomlogothird)){?>
+                            <div class="footer-bottom-logo">
+                                <img <?php echo $footerbottomlogothird['attrs']['class'];?> <?php echo $footerbottomlogothird['attrs']['src'];?>="<?php echo esc_url($footerbottomlogothird['url']);?>" alt="<?php echo esc_attr($footerbottomlogothird['alt']); ?>" width="<?php echo esc_attr($footerbottomlogothird['width']); ?>" height="<?php echo esc_attr($footerbottomlogothird['height']); ?>">
                             </div>
                         <?php }?>
                     </div>
