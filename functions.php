@@ -32,17 +32,18 @@ if( function_exists('acf_add_options_page') ) {
 
 add_filter( 'allowed_block_types',function($allowed){
     return array(
-        'acf/hero',
-        'acf/text-section',
-	   'acf/filter-with-grid',
-	   'acf/side-image-with-content-block',
-	   'acf/heading-with-text-section',
-	   'acf/page-title-block',
-	   'acf/blog-listing',
-	   'acf/single-project',
-	   'acf/overview-content-with-form',
-	   'acf/contact-form',
-	   'acf/three-column-heading-with-content',
+		'acf/hero',
+		'acf/text-section',
+		'acf/filter-with-grid',
+		'acf/filter-with-grid-alternative',
+		'acf/side-image-with-content-block',
+		'acf/heading-with-text-section',
+		'acf/page-title-block',
+		'acf/blog-listing',
+		'acf/single-project',
+		'acf/overview-content-with-form',
+		'acf/contact-form',
+		'acf/three-column-heading-with-content',
     );
 });
 

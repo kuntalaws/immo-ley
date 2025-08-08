@@ -51,6 +51,74 @@ if ($whise) {
     if ($cities_data && isset($cities_data['cities'])) {
         $filter_options['cities'] = $cities_data['cities'];
     }
+    
+    // Get countries data for international properties
+    $filter_options['countries'] = [
+        ['id' => 2, 'name' => 'Nederland'],
+        ['id' => 3, 'name' => 'Frankrijk'],
+        ['id' => 4, 'name' => 'Duitsland'],
+        ['id' => 5, 'name' => 'Luxemburg'],
+        ['id' => 6, 'name' => 'Verenigd Koninkrijk'],
+        ['id' => 7, 'name' => 'Spanje'],
+        ['id' => 8, 'name' => 'Italië'],
+        ['id' => 9, 'name' => 'Portugal'],
+        ['id' => 10, 'name' => 'Denemarken'],
+        ['id' => 11, 'name' => 'Zweden'],
+        ['id' => 12, 'name' => 'Noorwegen'],
+        ['id' => 13, 'name' => 'Finland'],
+        ['id' => 20, 'name' => 'Zwitserland'],
+        ['id' => 21, 'name' => 'Verenigde Staten'],
+        ['id' => 22, 'name' => 'Canada'],
+        ['id' => 23, 'name' => 'Oostenrijk'],
+        ['id' => 25, 'name' => 'Singapore'],
+        ['id' => 26, 'name' => 'Tsjechië'],
+        ['id' => 27, 'name' => 'Slovakije'],
+        ['id' => 28, 'name' => 'Japan'],
+        ['id' => 29, 'name' => 'Roemenië'],
+        ['id' => 30, 'name' => 'Griekenland'],
+        ['id' => 31, 'name' => 'Cyprus'],
+        ['id' => 32, 'name' => 'Bulgarije'],
+        ['id' => 35, 'name' => 'Albanië'],
+        ['id' => 36, 'name' => 'Algerije'],
+        ['id' => 38, 'name' => 'Andorra'],
+        ['id' => 43, 'name' => 'Argentinië'],
+        ['id' => 46, 'name' => 'Australië'],
+        ['id' => 61, 'name' => 'Brazilië'],
+        ['id' => 72, 'name' => 'Chili'],
+        ['id' => 73, 'name' => 'China'],
+        ['id' => 76, 'name' => 'Colombië'],
+        ['id' => 83, 'name' => 'Kroatië'],
+        ['id' => 93, 'name' => 'Estland'],
+        ['id' => 103, 'name' => 'Georgia'],
+        ['id' => 120, 'name' => 'Hongarije'],
+        ['id' => 121, 'name' => 'Ijsland'],
+        ['id' => 122, 'name' => 'Indië'],
+        ['id' => 123, 'name' => 'Indonesië'],
+        ['id' => 126, 'name' => 'Ierland'],
+        ['id' => 128, 'name' => 'Israël'],
+        ['id' => 132, 'name' => 'Kazakhstan'],
+        ['id' => 140, 'name' => 'Letland'],
+        ['id' => 141, 'name' => 'Libanon'],
+        ['id' => 145, 'name' => 'Liechtenstein'],
+        ['id' => 146, 'name' => 'Litouwen'],
+        ['id' => 155, 'name' => 'Malta'],
+        ['id' => 161, 'name' => 'Mexico'],
+        ['id' => 163, 'name' => 'Moldova'],
+        ['id' => 164, 'name' => 'Monaco'],
+        ['id' => 166, 'name' => 'Montenegro'],
+        ['id' => 168, 'name' => 'Marokko'],
+        ['id' => 193, 'name' => 'Polen'],
+        ['id' => 196, 'name' => 'Russische Federatie'],
+        ['id' => 210, 'name' => 'Servië'],
+        ['id' => 213, 'name' => 'Slovenië'],
+        ['id' => 216, 'name' => 'Zuid-Afrika'],
+        ['id' => 234, 'name' => 'Turkije'],
+        ['id' => 239, 'name' => 'Ukraïne'],
+        ['id' => 240, 'name' => 'Verenigde Arabische Emiraten'],
+        ['id' => 242, 'name' => 'Uruguay'],
+        ['id' => 246, 'name' => 'Venezuela'],
+        ['id' => 247, 'name' => 'Vietnam']
+    ];
 }
 
 // Get current filter values from URL parameters - support multiple values
@@ -58,6 +126,7 @@ $current_purposes = [];
 $current_cities = [];
 $current_categories = [];
 $current_price_ranges = [];
+$current_countries = [];
 
 // Handle both URL parameters and form submission arrays
 if (isset($_GET['purpose'])) {
@@ -92,22 +161,31 @@ if (isset($_GET['price_range'])) {
     }
 }
 
+if (isset($_GET['country'])) {
+    if (is_array($_GET['country'])) {
+        $current_countries = array_map('sanitize_text_field', $_GET['country']);
+    } else {
+        $current_countries = [sanitize_text_field($_GET['country'])];
+    }
+}
+
 // Debug logging
 error_log('Whise Filter Debug - URL Parameters: ' . print_r($_GET, true));
-error_log('Whise Filter Debug - Current values: purposes=' . print_r($current_purposes, true) . ', cities=' . print_r($current_cities, true) . ', categories=' . print_r($current_categories, true) . ', price_ranges=' . print_r($current_price_ranges, true));
+error_log('Whise Filter Debug - Current values: purposes=' . print_r($current_purposes, true) . ', cities=' . print_r($current_cities, true) . ', categories=' . print_r($current_categories, true) . ', price_ranges=' . print_r($current_price_ranges, true) . ', countries=' . print_r($current_countries, true));
 
 // Additional debugging for form submission
-if (isset($_GET['purpose']) || isset($_GET['city']) || isset($_GET['category'])) {
+if (isset($_GET['purpose']) || isset($_GET['city']) || isset($_GET['category']) || isset($_GET['country'])) {
     error_log('Whise Filter Debug - Form submission detected');
     error_log('Whise Filter Debug - Purpose values: ' . print_r($_GET['purpose'] ?? 'not set', true));
     error_log('Whise Filter Debug - City values: ' . print_r($_GET['city'] ?? 'not set', true));
     error_log('Whise Filter Debug - Category values: ' . print_r($_GET['category'] ?? 'not set', true));
+    error_log('Whise Filter Debug - Country values: ' . print_r($_GET['country'] ?? 'not set', true));
 }
 
 // Build filters array for API call
 $filters = [];
-// Always filter for Belgian properties only (country ID 1)
-$filters['CountryIds'] = [1];
+// Exclude Belgian properties (country ID 1) - show only international properties
+$filters['CountryIds'] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30, 31, 32, 35, 36, 38, 43, 46, 61, 72, 73, 76, 83, 93, 103, 120, 121, 122, 123, 126, 128, 132, 140, 141, 145, 146, 155, 161, 163, 164, 166, 168, 193, 196, 210, 213, 216, 234, 239, 240, 242, 246, 247];
 
 if (!empty($current_purposes)) {
     $filters['PurposeIds'] = array_map('intval', $current_purposes);
@@ -119,6 +197,11 @@ if (!empty($current_cities)) {
 }
 if (!empty($current_categories)) {
     $filters['CategoryIds'] = array_map('intval', $current_categories);
+}
+if (!empty($current_countries)) {
+    // Override the default country filter with selected countries
+    $filters['CountryIds'] = array_map('intval', $current_countries);
+    error_log('Whise Filter Debug - Using selected countries: ' . print_r($current_countries, true));
 }
 
 // Handle multiple price ranges
@@ -216,6 +299,9 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
     if (!empty($current_price_ranges)) {
         echo '<li>Price Ranges: ' . print_r($current_price_ranges, true) . '</li>';
     }
+    if (!empty($current_countries)) {
+        echo '<li>Countries: ' . print_r($current_countries, true) . '</li>';
+    }
     echo '</ul>';
     
     // Show available cities from API
@@ -236,17 +322,31 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
     echo '<p><strong>Built Filters:</strong> ' . print_r($filters, true) . '</p>';
     echo '<p><strong>API Response:</strong> ' . print_r($estates_data, true) . '</p>';
     echo '<p><strong>Estates Count:</strong> ' . count($estates) . '</p>';
+    
+    // Show available countries
+    if (isset($filter_options['countries']) && is_array($filter_options['countries'])) {
+        echo '<p><strong>Available Countries:</strong></p>';
+        echo '<ul>';
+        foreach (array_slice($filter_options['countries'], 0, 15) as $country) { // Show first 15 countries
+            echo '<li>' . esc_html($country['name']) . ' (ID: ' . esc_html($country['id']) . ')</li>';
+        }
+        if (count($filter_options['countries']) > 15) {
+            echo '<li>... and ' . (count($filter_options['countries']) - 15) . ' more countries</li>';
+        }
+        echo '</ul>';
+    }
+    
     echo '</div>';
     
-    // Add test links to demonstrate multiple selections
+    // Add test links to demonstrate multiple selections including countries
     echo '<div style="background: #e8f4f8; padding: 10px; margin: 10px; border: 1px solid #4CAF50; font-family: monospace; font-size: 12px;">';
-    echo '<h3>🧪 Test Multiple Selections:</h3>';
+    echo '<h3>🧪 Test International Property Selections:</h3>';
     echo '<p><strong>Test Links:</strong></p>';
     echo '<ul>';
-    echo '<li><a href="' . add_query_arg(['purpose' => ['1', '2'], 'category' => ['1', '4'], 'city' => ['brussels', 'antwerp'], 'price_min' => '500000', 'price_max' => '1000000'], $current_url) . '">Multiple purposes + categories + multiple cities + price</a></li>';
-    echo '<li><a href="' . add_query_arg(['purpose' => '1', 'city' => 'brussels'], $current_url) . '">Single purpose + city</a></li>';
-    echo '<li><a href="' . add_query_arg(['category' => '4', 'price_min' => '1000000'], $current_url) . '">Single category + price min</a></li>';
-    echo '<li><a href="' . add_query_arg(['purpose' => '1', 'category' => '4', 'city' => ['brussels', 'ghent'], 'price_min' => '500000', 'price_max' => '1500000'], $current_url) . '">All filters with multiple cities</a></li>';
+    echo '<li><a href="' . add_query_arg(['purpose' => ['1', '2'], 'category' => ['1', '4'], 'country' => ['7', '8'], 'price_min' => '500000', 'price_max' => '1000000'], $current_url) . '">Multiple purposes + categories + Spain/Italy + price</a></li>';
+    echo '<li><a href="' . add_query_arg(['purpose' => '1', 'country' => '7'], $current_url) . '">Single purpose + Spain</a></li>';
+    echo '<li><a href="' . add_query_arg(['category' => '4', 'country' => ['6', '21'], 'price_min' => '1000000'], $current_url) . '">Single category + UK/USA + price min</a></li>';
+    echo '<li><a href="' . add_query_arg(['purpose' => '1', 'category' => '4', 'country' => ['3', '4', '5'], 'price_min' => '500000', 'price_max' => '1500000'], $current_url) . '">All filters with France/Germany/Luxembourg</a></li>';
     echo '</ul>';
     echo '</div>';
 }
@@ -351,6 +451,36 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 								<div class="selected-tag" data-value="<?php echo esc_attr($category_id); ?>">
 									<span><?php echo esc_html($category_name); ?></span>
 									<div class="remove-tag" data-value="<?php echo esc_attr($category_id); ?>" data-type="category">×</div>
+								</div>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<div class="filter-item">
+					<div class="filter-item-wrap">
+						<input type="text" placeholder="Land" value="" class="select-input" data-select="country">
+						<ul name="country" class="select-options whise-country-select" data-select="country" multiple>
+							<?php if (isset($filter_options['countries'])): ?>
+								<?php foreach ($filter_options['countries'] as $country): ?>
+									<li value="<?php echo esc_attr($country['id']); ?>" <?php echo in_array($country['id'], $current_countries) ? 'class="selected" style="display: none;"' : ''; ?>><?php echo esc_html($country['name']); ?></li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+					</div>
+					<div class="selected-tags" data-selected="country">
+						<?php foreach ($current_countries as $country_id): ?>
+							<?php 
+							$country_name = '';
+							foreach ($filter_options['countries'] as $country) {
+								if ($country['id'] == $country_id) {
+									$country_name = $country['name'];
+									break;
+								}
+							}
+							if ($country_name): ?>
+								<div class="selected-tag" data-value="<?php echo esc_attr($country_id); ?>">
+									<span><?php echo esc_html($country_name); ?></span>
+									<div class="remove-tag" data-value="<?php echo esc_attr($country_id); ?>" data-type="country">×</div>
 								</div>
 							<?php endif; ?>
 						<?php endforeach; ?>
@@ -739,7 +869,7 @@ jQuery(document).ready(function($) {
     });
 
     // Auto-submit form when filters change (for non-price filters)
-    $('.whise-purpose-select, .whise-city-select, .whise-category-select').on('change', function() {
+    $('.whise-purpose-select, .whise-city-select, .whise-category-select, .whise-country-select').on('change', function() {
         // Small delay to ensure hidden inputs are updated
         setTimeout(() => {
             $(this).closest('form').submit();

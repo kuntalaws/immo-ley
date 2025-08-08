@@ -66,13 +66,13 @@ add_action('acf/init',function(){
 		
 		acf_register_block(array(
 			'name'				=> 'filter-with-grid',
-			'title'				=> __('Filter With Grid'),
-			'description'		=> __('A Filter With Grid Block for All of Your Pages.'),
+			'title'				=> __('Belgian Properties Filter'),
+			'description'		=> __('A Filter With Grid Block for Belgian Properties Only.'),
 			'render_callback'	=> 'immoley_block_render',
 			'category'			=> 'immoley',
 			'icon'				=> 'filter',
 			'keywords'			=> array(
-									'filter grid',
+									'filter grid belgian',
 									'immoley' 
 								   ),
 			'example'  => array(
@@ -85,7 +85,28 @@ add_action('acf/init',function(){
 	        )
 		));	
 
-
+		// ######## Register Filter With Grid Alternative Block ########
+		
+		acf_register_block(array(
+			'name'				=> 'filter-with-grid-alternative',
+			'title'				=> __('International Properties Filter'),
+			'description'		=> __('A Filter With Grid Block for International Properties (excluding Belgium).'),
+			'render_callback'	=> 'immoley_block_render',
+			'category'			=> 'immoley',
+			'icon'				=> 'filter',
+			'keywords'			=> array(
+									'filter grid international',
+									'immoley' 
+								   ),
+			'example'  => array(
+	            'attributes' => array(
+	                'mode' => 'preview',
+	                'data' => array(
+	                	'_is_preview' => 'preview',
+	                )
+	            )
+	        )
+		));	
 
 		// ######## Register Side Image With Content Block ########
 		

@@ -1,9 +1,9 @@
 {
-    "key": "group_6849a3b4b9b15",
-    "title": "Belgian Properties Filter",
+    "key": "group_6895a73d56def",
+    "title": "International Properties Filter",
     "fields": [
         {
-            "key": "field_686b8311572c8",
+            "key": "field_6895a73d66caf",
             "label": "Configuration",
             "name": "",
             "aria-label": "",
@@ -21,7 +21,7 @@
             "selected": 0
         },
         {
-            "key": "field_686b8325572c9",
+            "key": "field_6895a73d66d1c",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -42,7 +42,7 @@
             "append": ""
         },
         {
-            "key": "field_6849a3b4be114",
+            "key": "field_6895a73d66e2a",
             "label": "Configuration Left Content",
             "name": "",
             "aria-label": "",
@@ -60,7 +60,7 @@
             "selected": 0
         },
         {
-            "key": "field_685e48babe82f",
+            "key": "field_6895a73d66ebb",
             "label": "Title",
             "name": "left_title",
             "aria-label": "",
@@ -81,7 +81,7 @@
             "new_lines": "br"
         },
         {
-            "key": "field_685e492abe830",
+            "key": "field_6895a73d66f44",
             "label": "Overview",
             "name": "left_overview",
             "aria-label": "",
@@ -102,7 +102,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_685e4939be831",
+            "key": "field_6895a73d66fca",
             "label": "Button",
             "name": "left_button",
             "aria-label": "",
@@ -119,7 +119,7 @@
             "allow_in_bindings": 0
         },
         {
-            "key": "field_685e4966be832",
+            "key": "field_6895a73d67011",
             "label": "Configuration Right Content",
             "name": "",
             "aria-label": "",
@@ -137,7 +137,7 @@
             "selected": 0
         },
         {
-            "key": "field_685e49e5be833",
+            "key": "field_6895a73d67094",
             "label": "Image",
             "name": "image",
             "aria-label": "",
@@ -163,7 +163,7 @@
             "preview_size": "medium_large"
         },
         {
-            "key": "field_6849a3b4be1b6",
+            "key": "field_6895a73d67110",
             "label": "Section Identifier",
             "name": "",
             "aria-label": "",
@@ -181,7 +181,7 @@
             "selected": 0
         },
         {
-            "key": "field_6849a3b4be201",
+            "key": "field_6895a73d67151",
             "label": "Section ID",
             "name": "crowid",
             "aria-label": "",
@@ -208,7 +208,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/filter-with-grid"
+                "value": "acf\/filter-with-grid-alternative"
             }
         ]
     ],
@@ -221,5 +221,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1754639961
+    "modified": 1754639967
 }
