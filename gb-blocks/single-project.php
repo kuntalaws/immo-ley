@@ -588,53 +588,65 @@ if(!is_admin()){
         <?php if($estate['details']): ?>
         <section class="property-widget">
             <div class="property-widget-wrap fw">
-            <h2 class="widget-title">Algemene info</h2>
-            <div class="property-table">
-                    <?php
-                    // Display all available property details dynamically
-                    if (isset($estate['details']) && is_array($estate['details'])) {
-                        foreach ($estate['details'] as $detail) {
-                            if (isset($detail['label']) && isset($detail['value'])) {
-                                $label = $detail['label'];
-                                $value = $detail['value'];
-                                // Format the value based on type
-                                $formatted_value = $value;
-                                if ($detail['type'] === 'yes/no') {
-                                    $formatted_value = $value == 1 ? 'ja' : 'nee';
-                                } elseif ($detail['type'] === 'year') {
+                <h2 class="widget-title">Algemene info</h2>
+                <div class="property-table">
+                        <?php
+                        // Display all available property details dynamically
+                        if (isset($estate['details']) && is_array($estate['details'])) {
+                            foreach ($estate['details'] as $detail) {
+                                if (isset($detail['label']) && isset($detail['value'])) {
+                                    $label = $detail['label'];
+                                    $value = $detail['value'];
+                                    // Format the value based on type
                                     $formatted_value = $value;
-                                } elseif ($detail['type'] === 'int') {
-                                    $formatted_value = $value;
-                                } elseif ($detail['type'] === 'float') {
-                                    $formatted_value = number_format($value, 2, ',', '.');
-                                } elseif ($detail['type'] === 'currency') {
-                                    $formatted_value = '€ ' . number_format($value, 0, ',', '.');
+                                    if ($detail['type'] === 'yes/no') {
+                                        $formatted_value = $value == 1 ? 'ja' : 'nee';
+                                    } elseif ($detail['type'] === 'year') {
+                                        $formatted_value = $value;
+                                    } elseif ($detail['type'] === 'int') {
+                                        $formatted_value = $value;
+                                    } elseif ($detail['type'] === 'float') {
+                                        $formatted_value = number_format($value, 2, ',', '.');
+                                    } elseif ($detail['type'] === 'currency') {
+                                        $formatted_value = '€ ' . number_format($value, 0, ',', '.');
+                                    }
+                                    // Add units if needed
+                                    if (stripos($label, 'oppervlakte') !== false || stripos($label, 'surface') !== false) {
+                                        $formatted_value .= ' m²';
+                                    } elseif (stripos($label, 'energie') !== false || stripos($label, 'energy') !== false) {
+                                        $formatted_value .= ' kWh/m²';
+                                    }
+                                    echo '<p><span>' . esc_html(ucwords($label)) . '</span><strong>' . esc_html($formatted_value) . '</strong></p>';
                                 }
-                                // Add units if needed
-                                if (stripos($label, 'oppervlakte') !== false || stripos($label, 'surface') !== false) {
-                                    $formatted_value .= ' m²';
-                                } elseif (stripos($label, 'energie') !== false || stripos($label, 'energy') !== false) {
-                                    $formatted_value .= ' kWh/m²';
-                                }
-                                echo '<p><span>' . esc_html(ucwords($label)) . '</span><strong>' . esc_html($formatted_value) . '</strong></p>';
                             }
+                        } else {
+                            echo '<p><span>Geen details beschikbaar</span><strong>-</strong></p>';
                         }
-                    } else {
-                        echo '<p><span>Geen details beschikbaar</span><strong>-</strong></p>';
-                    }
-                    ?>
-            </div>
+                        ?>
+                </div>
+
+                <h2 class="widget-title">Documenten</h2>
+                <div class="property-table documenten-table">
+                    <p><span>Bouwjaar</span><strong>2018</strong></p>
+                    <p><span>Verdiepingen - Aantal</span><strong>2</strong></p>
+                    <p><span>Parking Binnen</span><strong>ja</strong></p>
+                    <p><span>Parking Buiten</span><strong>ja</strong></p>
+                    <p><span>Voorzieningen Gehand.</span><strong>nee</strong></p>
+                    <p><span>Keuken</span><strong>ja</strong></p>
+                </div>
+
+                
                 <div class="share-section">
                     <h3>DEEL DEZE WONING</h3>
                     <ul class="social-icons flex">
                         <li class="social-icon"><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink() . '?estate_id=' . $estate_id); ?>&quote=<?php echo urlencode($estate_title . ' - ' . $estate_address); ?>" target="_blank" title="Deel op Facebook">
-                        <img src="/wp-content/themes/immo-ley/img/facebook-white.svg" alt="Facebook">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/facebook-white.svg" alt="Facebook">
                         </a></li>
                         <li class="social-icon"><a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink() . '?estate_id=' . $estate_id); ?>&text=<?php echo urlencode($estate_title . ' - ' . $estate_address . ' - ' . $estate_price); ?>" target="_blank" title="Deel op Twitter">
-                        <img src="/wp-content/themes/immo-ley/img/insta-white.svg" alt="Twitter">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/insta-white.svg" alt="Twitter">
                         </a></li>
                         <li class="social-icon"><a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink() . '?estate_id=' . $estate_id); ?>" target="_blank" title="Deel op LinkedIn">
-                        <img src="/wp-content/themes/immo-ley/img/linkedin-white.svg" alt="LinkedIn">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/linkedin-white.svg" alt="LinkedIn">
                         </a></li>
                     </ul>
                 </div>
