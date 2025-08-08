@@ -535,6 +535,7 @@ if(!is_admin()){
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['area']); ?> m²</span>
                 </div>
+                
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
                         <img src="/wp-content/themes/immo-ley/img/ic3.svg" alt="Immo Ley"></div>

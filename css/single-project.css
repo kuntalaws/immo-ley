@@ -1,312 +1,312 @@
-.single-project-section {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    align-content: flex-end;
-    padding-top: clamp(250px, 12.466vw, 374px);
-    position: relative;
-    z-index: 1;
-}
-.single-project-section .single-project-section-in {
-    position: relative;
-    max-width: clamp(1200px, 72.2vw, 2166px);
-    aspect-ratio: 2166 / 1042;
-}
-.single-project-section .single-project-section-image {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.single-project-section .single-project-section-in .single-project-section-button {
-    padding-top: clamp(30px, 1.8vw, 54px);
-    display: flex;
-    flex-wrap: wrap;
-}
-.single-project-section .single-project-section-in .single-project-section-button a {
-    display: flex;
-    align-items: center;
-    font-size: clamp(14px, 0.533333vw, 16px);
-    line-height: clamp(32px, 1.93333vw, 58px);
-    font-weight: 400;
-    color: #3d1a25;
-    text-transform: uppercase;
-    background-color: #fff;
-}
-.single-project-section .single-project-section-in .single-project-section-button a span.img-icon {
-    width: clamp(40px, 2.33333vw, 70px);
-    height: clamp(40px, 1.93333vw, 58px);
-    background-color: #3d1a25;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.single-project-section .single-project-section-in .single-project-section-button a span.img-icon svg{
-    width: 24px;
-    height: auto;
-    display: block;
-}
-.single-project-section .single-project-section-in .single-project-section-button a span.btn-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 clamp(16px, 0.9vw, 27px);
-    background-color: #fff;
-}
-
-.single-project-content-section {
-    background-color: #fff6ee;
-    padding: clamp(80px, 5.859vw, 150px) 0;
-    position: relative;
-}
-.single-project-content-section::before {
-    content: "";
-    position: absolute;
-    top: -100px;
-    left: 0;
-    width: 100%;
-    height: 110px;
-    background-color: #fff6ee;
-}
-.single-project-content-section::after {
-    content: "";
-    position: absolute;
-    bottom: -100px;
-    left: 0;
-    width: 100%;
-    height: 110px;
-    background-color: #fff6ee;
-}
-
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left h3,
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right h3 {
-    font-size: clamp(12px, 0.5333333vw, 16px);
-    letter-spacing: 2px;
-    line-height: clamp(24px, 1.5vw, 44px);
-    color: #3d1a25;
-    font-weight: 400;
-    font-family: "Be Vietnam Pro";
-    text-transform: uppercase;
-}
-.single-project-content-section .single-project-content-section-in .single-project-content {
-    width: 100%;
-    align-items: flex-start;
-    gap: clamp(80px, 5.859vw, 150px);
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left {
-    flex: 0 0 55%;
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right {
-    flex: 0 0 35%;
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left p {
-font-size: clamp(20px, 1.2vw, 36px);
-line-height: clamp(26px, 1.6vw, 48px);
-color: #3d1a25;
-font-weight: 300;
-font-family: "Larken";
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left h2,
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price {
-    margin-bottom: clamp(43px, 2.8vw, 84px);
-    margin-top: clamp(28px, 1.333vw, 40px);
-    font-size: clamp(36px, 2.8vw, 84px);
-    line-height: clamp(36px, 2.8vw, 84px);
-    font-weight: 400;
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price span {
-    font-size: clamp(36px, 2.8vw, 84px);
-    line-height: clamp(36px, 2.8vw, 84px);
-    color: #3d1a25;
-    font-weight: 400;
-    font-family: "Larken";
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
-    gap: 40px;
-    align-items: center;
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 100%;
-}
-.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right p {
-font-size: clamp(26px, 1.875vw, 48px);
-color: #3d1a25;
-font-weight: 300;
-font-family: "Larken";
-margin-bottom: 10px;
-}
-.kenmerken {
-    position: relative;
-    z-index: 1;
-    max-width: clamp(1200px, 72.2vw, 2166px);
-    margin: 0 auto;
-    background-color: #3d1a25;
-}
-.kenmerken .kenmerken-stats-wrap {
-    width: 100%;
-    padding-top: clamp(64px, 4.687vw, 120px);
-    padding-bottom: clamp(64px, 4.687vw, 120px);
-}
-.kenmerken .kenmerken-stats-wrap .kenmerken-title {
-font-size: clamp(32px, 2vw, 60px);
-line-height: clamp(32px, 2vw, 60px);
-color: #ffffff;
-font-family: "Larken";
-font-weight: 400;
-margin-bottom: clamp(48px, 3.2vw, 96px);
-}
-.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
-    grid-row-gap: 30px;
-}
-.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat{
-    flex: 0 0 20%;
-    align-items: center;
-    align-content: center;
-    gap: clamp(20px, 1vw, 30px);
-    display: flex;
-}
-
-.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat .kenmerken__stat-icon {
-    width: 42px;
-    height: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-}
-.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat .kenmerken-stat-value {
-    font-size: clamp(16px, 0.8vw, 24px);
-    line-height: clamp(16px, 0.8vw, 24px);
-    color: #ffffff;
-    font-weight: 300;
-    font-family: "Larken";
-    /* text-transform: capitalize; */
-}
-
-/* kenmerken end */
-
-.property-long-description{
-    width: 100%;
-    display: block;
-    padding-top: clamp(80px, 5vw, 150px);
-    padding-bottom: clamp(100px, 6vw, 180px);
-}
-.property-long-description h2{
-    padding-bottom: clamp(40px, 2.4vw, 72px);
-    font-weight: 400;
-}
-.property-long-description p{
-    font-size: clamp(16px, 0.8vw, 24px);
-    line-height: clamp(24px, 1.6vw, 48px);
-    margin-bottom: clamp(24px, 1.6vw, 48px);
-}
-
-/*property widget*/
-
-.property-widget {
-    width: 100%;
-    background-color: #d7eaea;
-    padding: clamp(74px, 5.468vw, 140px) 0;
-}
-.property-widget .property-widget-wrap .widget-title {
-    margin-bottom: clamp(32px, 1.7vw, 50px);
-    font-size: clamp(32px, 2vw, 60px);
-    line-height: clamp(32px, 2vw, 60px);
-    color: #323232;
-    font-family: "Larken";
-    font-weight: 400;
-}
-.property-widget .property-widget-wrap .property-table {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: clamp(30px, 2.3vw, 69px);
-}
-.property-widget .property-widget-wrap .property-table p {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #323232;
-    padding-bottom: clamp(20px, 1vw, 30px);
-    padding-top: clamp(20px, 1vw, 30px);
-    font-size: clamp(16px, 0.73333vw, 22px);
-    line-height: clamp(16px, 0.8vw, 24px);
-    color: #323232;
-    font-weight: 300;
-    font-family: "Be Vietnam Pro";
-    margin: 0 !important;
-}
-.property-widget .property-widget-wrap .property-table p span{
-    max-width: 45%;
-}
-.property-widget .property-widget-wrap .property-table p strong {
-    max-width: 55%;
-    text-align: right;
-    word-break: break-all;
-}
-.property-widget .property-widget-wrap .share-section {
-    padding-top: clamp(64px, 3.66666vw, 110px);
-}
-.property-widget .property-widget-wrap .share-section h3 {
-    margin-bottom: clamp(18px, 0.9vw, 27px);
-    font-size: clamp(14px, 0.5333vw, 16px);
-    letter-spacing: 2px;
-    line-height: clamp(18px, 0.73333vw, 22px);
-    color: #3d1a25;
-    font-weight: 400;
-    font-family: "Be Vietnam Pro";
-}
-.property-widget .property-widget-wrap .social-icons {
-    gap: 10px;
-    align-items: center;
-}
-.property-widget .property-widget-wrap .social-icons .social-icon a {
-    width: clamp(40px, 1.8vw, 54px);
-    height: clamp(40px, 1.8vw, 54px);
-    background-color: #3d1a25;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.property-widget .property-widget-wrap .social-icons .social-icon a img {
-    width: clamp(20px, 1vw, 30px);
-}
-
-@media screen and (max-width: 768px) {
-    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right,
-    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left {
-        flex: 0 0 100%;
-    }
-    .single-project-section {
-        padding-top: 145px;
-    }
-    .single-project-section .single-project-section-in{
-        aspect-ratio: 3 / 2;
-    }
-    .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
-        grid-column-gap: 10px;
-    }
-    .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat {
-        flex: 0 0 48%;
-        gap: 10px;
-    }
-    .property-widget .property-widget-wrap .property-table {
-        grid-template-columns: 1fr;
-    }
-    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
-        gap: 20px;
-    }
-    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
-        width: 100px;
-        height: 100px;
-    }
+.single-project-section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: flex-end;
+    padding-top: clamp(250px, 12.466vw, 374px);
+    position: relative;
+    z-index: 1;
+}
+.single-project-section .single-project-section-in {
+    position: relative;
+    max-width: clamp(1200px, 72.2vw, 2166px);
+    aspect-ratio: 2166 / 1042;
+}
+.single-project-section .single-project-section-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.single-project-section .single-project-section-in .single-project-section-button {
+    padding-top: clamp(30px, 1.8vw, 54px);
+    display: flex;
+    flex-wrap: wrap;
+}
+.single-project-section .single-project-section-in .single-project-section-button a {
+    display: flex;
+    align-items: center;
+    font-size: clamp(14px, 0.533333vw, 16px);
+    line-height: clamp(32px, 1.93333vw, 58px);
+    font-weight: 400;
+    color: #3d1a25;
+    text-transform: uppercase;
+    background-color: #fff;
+}
+.single-project-section .single-project-section-in .single-project-section-button a span.img-icon {
+    width: clamp(40px, 2.33333vw, 70px);
+    height: clamp(40px, 1.93333vw, 58px);
+    background-color: #3d1a25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.single-project-section .single-project-section-in .single-project-section-button a span.img-icon svg{
+    width: 24px;
+    height: auto;
+    display: block;
+}
+.single-project-section .single-project-section-in .single-project-section-button a span.btn-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 clamp(16px, 0.9vw, 27px);
+    background-color: #fff;
+}
+
+.single-project-content-section {
+    background-color: #fff6ee;
+    padding: clamp(80px, 5.859vw, 150px) 0;
+    position: relative;
+}
+.single-project-content-section::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #fff6ee;
+}
+.single-project-content-section::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #fff6ee;
+}
+
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left h3,
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right h3 {
+    font-size: clamp(12px, 0.5333333vw, 16px);
+    letter-spacing: 2px;
+    line-height: clamp(24px, 1.5vw, 44px);
+    color: #3d1a25;
+    font-weight: 400;
+    font-family: "Be Vietnam Pro";
+    text-transform: uppercase;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content {
+    width: 100%;
+    align-items: flex-start;
+    gap: clamp(80px, 5.859vw, 150px);
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left {
+    flex: 0 0 55%;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right {
+    flex: 0 0 35%;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left p {
+font-size: clamp(20px, 1.2vw, 36px);
+line-height: clamp(26px, 1.6vw, 48px);
+color: #3d1a25;
+font-weight: 300;
+font-family: "Larken";
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left h2,
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price {
+    margin-bottom: clamp(43px, 2.8vw, 84px);
+    margin-top: clamp(28px, 1.333vw, 40px);
+    font-size: clamp(36px, 2.8vw, 84px);
+    line-height: clamp(36px, 2.8vw, 84px);
+    font-weight: 400;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .single-project-content-right-price span {
+    font-size: clamp(36px, 2.8vw, 84px);
+    line-height: clamp(36px, 2.8vw, 84px);
+    color: #3d1a25;
+    font-weight: 400;
+    font-family: "Larken";
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
+    gap: 40px;
+    align-items: center;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right p {
+font-size: clamp(26px, 1.875vw, 48px);
+color: #3d1a25;
+font-weight: 300;
+font-family: "Larken";
+margin-bottom: 10px;
+}
+.kenmerken {
+    position: relative;
+    z-index: 1;
+    max-width: clamp(1200px, 72.2vw, 2166px);
+    margin: 0 auto;
+    background-color: #3d1a25;
+}
+.kenmerken .kenmerken-stats-wrap {
+    width: 100%;
+    padding-top: clamp(64px, 4.687vw, 120px);
+    padding-bottom: clamp(64px, 4.687vw, 120px);
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-title {
+font-size: clamp(32px, 2vw, 60px);
+line-height: clamp(32px, 2vw, 60px);
+color: #ffffff;
+font-family: "Larken";
+font-weight: 400;
+margin-bottom: clamp(48px, 3.2vw, 96px);
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
+    grid-row-gap: 30px;
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat{
+    flex: 0 0 20%;
+    align-items: center;
+    align-content: center;
+    gap: clamp(20px, 1vw, 30px);
+    display: flex;
+}
+
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat .kenmerken__stat-icon {
+    width: 42px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat .kenmerken-stat-value {
+    font-size: clamp(16px, 0.8vw, 24px);
+    line-height: clamp(16px, 0.8vw, 24px);
+    color: #ffffff;
+    font-weight: 300;
+    font-family: "Larken";
+    /* text-transform: capitalize; */
+}
+
+/* kenmerken end */
+
+.property-long-description{
+    width: 100%;
+    display: block;
+    padding-top: clamp(80px, 5vw, 150px);
+    padding-bottom: clamp(100px, 6vw, 180px);
+}
+.property-long-description h2{
+    padding-bottom: clamp(40px, 2.4vw, 72px);
+    font-weight: 400;
+}
+.property-long-description p{
+    font-size: clamp(16px, 0.8vw, 24px);
+    line-height: clamp(24px, 1.6vw, 48px);
+    margin-bottom: clamp(24px, 1.6vw, 48px);
+}
+
+/*property widget*/
+
+.property-widget {
+    width: 100%;
+    background-color: #d7eaea;
+    padding: clamp(74px, 5.468vw, 140px) 0;
+}
+.property-widget .property-widget-wrap .widget-title {
+    margin-bottom: clamp(32px, 1.7vw, 50px);
+    font-size: clamp(32px, 2vw, 60px);
+    line-height: clamp(32px, 2vw, 60px);
+    color: #323232;
+    font-family: "Larken";
+    font-weight: 400;
+}
+.property-widget .property-widget-wrap .property-table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: clamp(30px, 2.3vw, 69px);
+}
+.property-widget .property-widget-wrap .property-table p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #323232;
+    padding-bottom: clamp(20px, 1vw, 30px);
+    padding-top: clamp(20px, 1vw, 30px);
+    font-size: clamp(16px, 0.73333vw, 22px);
+    line-height: clamp(16px, 0.8vw, 24px);
+    color: #323232;
+    font-weight: 300;
+    font-family: "Be Vietnam Pro";
+    margin: 0 !important;
+}
+.property-widget .property-widget-wrap .property-table p span{
+    max-width: 45%;
+}
+.property-widget .property-widget-wrap .property-table p strong {
+    max-width: 55%;
+    text-align: right;
+    word-break: break-all;
+}
+.property-widget .property-widget-wrap .share-section {
+    padding-top: clamp(64px, 3.66666vw, 110px);
+}
+.property-widget .property-widget-wrap .share-section h3 {
+    margin-bottom: clamp(18px, 0.9vw, 27px);
+    font-size: clamp(14px, 0.5333vw, 16px);
+    letter-spacing: 2px;
+    line-height: clamp(18px, 0.73333vw, 22px);
+    color: #3d1a25;
+    font-weight: 400;
+    font-family: "Be Vietnam Pro";
+}
+.property-widget .property-widget-wrap .social-icons {
+    gap: 10px;
+    align-items: center;
+}
+.property-widget .property-widget-wrap .social-icons .social-icon a {
+    width: clamp(40px, 1.8vw, 54px);
+    height: clamp(40px, 1.8vw, 54px);
+    background-color: #3d1a25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.property-widget .property-widget-wrap .social-icons .social-icon a img {
+    width: clamp(20px, 1vw, 30px);
+}
+
+@media screen and (max-width: 768px) {
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right,
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-left {
+        flex: 0 0 100%;
+    }
+    .single-project-section {
+        padding-top: 145px;
+    }
+    .single-project-section .single-project-section-in{
+        aspect-ratio: 3 / 2;
+    }
+    .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row {
+        grid-column-gap: 10px;
+    }
+    .kenmerken .kenmerken-stats-wrap .kenmerken-stats-row .kenmerken-stat {
+        flex: 0 0 48%;
+        gap: 10px;
+    }
+    .property-widget .property-widget-wrap .property-table {
+        grid-template-columns: 1fr;
+    }
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info {
+        gap: 20px;
+    }
+    .single-project-content-section .single-project-content-section-in .single-project-content .single-project-content-right .image-with-info-sec .image-with-info .image-left img {
+        width: 100px;
+        height: 100px;
+    }
 }

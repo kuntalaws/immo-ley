@@ -1,23 +1,23 @@
-.page-title-block{
-  width: 100%;
-  display: block;
-  padding-top: clamp(250px, 16.666vw, 500px);
-  padding-bottom: clamp(60px, 3.333vw, 100px);
-}
-.page-title-block h1{
-  font-size: clamp(60px, 4vw, 120px);
-  line-height: clamp(60px, 4vw, 120px);
-  font-family: "larken", sans-serif;
-  font-weight: 400;
-}
-  
-@media screen and (max-width: 767px) {
-  .page-title-block{
-    padding-top: clamp(124px, 35vw, 220vw);
-    padding-bottom: clamp(40px, 9.375vw, 60px);
-  }
-  .page-title-block h1{
-    font-size: clamp(36px, 9.375vw, 60px);
-    line-height: clamp(36px, 9.375vw, 60px);
-  }
+.page-title-block{
+  width: 100%;
+  display: block;
+  padding-top: clamp(250px, 16.666vw, 500px);
+  padding-bottom: clamp(60px, 3.333vw, 100px);
+}
+.page-title-block h1{
+  font-size: clamp(60px, 4vw, 120px);
+  line-height: clamp(60px, 4vw, 120px);
+  font-family: "larken", sans-serif;
+  font-weight: 400;
+}
+  
+@media screen and (max-width: 767px) {
+  .page-title-block{
+    padding-top: clamp(124px, 35vw, 220vw);
+    padding-bottom: clamp(40px, 9.375vw, 60px);
+  }
+  .page-title-block h1{
+    font-size: clamp(36px, 9.375vw, 60px);
+    line-height: clamp(36px, 9.375vw, 60px);
+  }
 }

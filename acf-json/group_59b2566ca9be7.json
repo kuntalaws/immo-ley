@@ -228,7 +228,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "35",
                 "class": "",
                 "id": ""
             },
@@ -254,7 +254,33 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_6874a51ab4b13",
+            "label": "Footer Bottom Logo Third",
+            "name": "footerbottomlogothird",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
                 "class": "",
                 "id": ""
             },
@@ -569,5 +595,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749556568
+    "modified": 1752474991
 }

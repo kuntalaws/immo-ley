@@ -1,0 +1,18 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 100" width="129" height="100">
+	<title>Vector Smart Object</title>
+	<style>
+		.s0 { fill: none;stroke: #050505;stroke-linejoin: round;stroke-width: 5 } 
+		.s1 { fill: #000000;stroke: #050505;stroke-linejoin: round;stroke-width: 5 } 
+	</style>
+	<filter id="f0">
+		<feFlood flood-color="#a8d9d9" flood-opacity="1" />
+		<feBlend mode="normal" in2="SourceGraphic"/>
+		<feComposite in2="SourceAlpha" operator="in" />
+	</filter>
+	<g id="Layer 1" filter="url(#f0)">
+		<path id="&lt;Path&gt;" class="s0" d="m7.2 93v-85h113.4v85z"/>
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="s1" d="m95 50.5h-15.5v-23.3h-46.7v46.6h62.2z"/>
+		</g>
+	</g>
+</svg>
