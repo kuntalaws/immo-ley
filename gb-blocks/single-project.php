@@ -525,43 +525,43 @@ if(!is_admin()){
             <div class="kenmerken-stats-row flex">
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/wp-content/themes/immo-ley/img/ic1.svg" alt="Immo Ley">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/ic1.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['groundArea']); ?> m²</span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/wp-content/themes/immo-ley/img/ic22.svg" alt="Immo Ley">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/ic22.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['area']); ?> m²</span>
                 </div>
                 
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                        <img src="/wp-content/themes/immo-ley/img/ic3.svg" alt="Immo Ley"></div>
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/ic3.svg" alt="Immo Ley"></div>
                     <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'Oriëntatie')); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/wp-content/themes/immo-ley/img/ic4.svg" alt="Immo Ley">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/ic4.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['rooms']); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/wp-content/themes/immo-ley/img/ic5.svg" alt="Immo Ley">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/ic5.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html($estate['bathRooms']); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                    <img src="/wp-content/themes/immo-ley/img/ic6.svg" alt="Immo Ley">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/ic6.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'Bouwjaar')); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
-                        <img src="/wp-content/themes/immo-ley/img/ic7.svg" alt="Immo Ley">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/ic7.svg" alt="Immo Ley">
                     </div>
                     <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'EPC (Kwh/m²/j)')); ?> Kwh/m²/j</span>
                 </div>
@@ -625,15 +625,21 @@ if(!is_admin()){
                         ?>
                 </div>
 
+                <?php if (isset($estate['documents']) && !empty($estate['documents'])): ?>
                 <h2 class="widget-title">Documenten</h2>
                 <div class="property-table documenten-table">
-                    <p><span>Bouwjaar</span><strong>2018</strong></p>
-                    <p><span>Verdiepingen - Aantal</span><strong>2</strong></p>
-                    <p><span>Parking Binnen</span><strong>ja</strong></p>
-                    <p><span>Parking Buiten</span><strong>ja</strong></p>
-                    <p><span>Voorzieningen Gehand.</span><strong>nee</strong></p>
-                    <p><span>Keuken</span><strong>ja</strong></p>
+                    <?php foreach ($estate['documents'] as $document): ?>
+                        <p>
+                            <span><?php echo esc_html($document['description'] ?? $document['name'] ?? 'Document'); ?></span>
+                            <strong>
+                                <a href="<?php echo esc_url($document['url'] ?? '#'); ?>" target="_blank" rel="noopener noreferrer">
+                                    Download
+                                </a>
+                            </strong>
+                        </p>
+                    <?php endforeach; ?>
                 </div>
+                <?php endif; ?>
 
                 
                 <div class="share-section">
