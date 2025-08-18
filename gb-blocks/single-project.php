@@ -597,6 +597,12 @@ if(!is_admin()){
                                 if (isset($detail['label']) && isset($detail['value'])) {
                                     $label = $detail['label'];
                                     $value = $detail['value'];
+                                    
+                                    // Skip Xy Coordinaten fields
+                                    if (stripos($label, 'xy coordinaten') !== false) {
+                                        continue;
+                                    }
+                                    
                                     // Format the value based on type
                                     $formatted_value = $value;
                                     if ($detail['type'] === 'yes/no') {
