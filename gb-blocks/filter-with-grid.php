@@ -450,7 +450,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
                                         }
                                     }
                                 ?>
-                                <?php if (!empty($status_label) && isset($status_data) && $status_data['id'] != 1 && $status_data['id'] != 2): ?>
+                                <?php if (!empty($status_label) && isset($status_data)): ?>
                                     <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
                                 <?php endif; ?>
 								<div class="filter-grid-item-img-box">
@@ -531,7 +531,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
                                     }
                                 }
                             ?>
-                            <?php if (!empty($status_label) && isset($status_data) && $status_data['id'] != 1 && $status_data['id'] != 2): ?>
+                            <?php if (!empty($status_label) && isset($status_data)): ?>
                                 <span class="pro-type<?php echo $status_class ? ' ' . esc_attr($status_class) : ''; ?>"><?php echo esc_html($status_label); ?></span>
                             <?php endif; ?>
 							<div class="filter-grid-item-img-box">
