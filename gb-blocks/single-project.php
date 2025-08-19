@@ -413,17 +413,17 @@ if(!is_admin()){
     <!--Single Project Start Here-->
     <section class="single-project-section">
         <div class="single-project-section-in fw">
-            <div class="single-project-section-image" style="background-image:url('<?php echo esc_url($main_image_url); ?>')">
+            <a href="javascript:void(0);" id="all-projects-link" class="single-project-section-image" style="background-image:url('<?php echo esc_url($main_image_url); ?>')">
                 <div class="single-project-section-button fw">
-                    <a href="javascript:void(0);" class="btn flex img-icon-btn" id="all-projects-link">
+                    <span class="btn flex img-icon-btn">
                     <span class="img-icon">
 <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:serif="http://www.serif.com/" viewBox="0 0 32 25.1">
   <!-- Generator: Adobe Illustrator 29.6.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 207)  -->
   <path d="M2,13.1l2-2v-6.8h24v7.6l-4.3-4.3c-.4-.4-1-.4-1.4,0l-5.3,5.3-5.3-5.3c-.4-.4-1-.4-1.4,0L2,15.9v5.4c0,.6.4,1,1,1h26c.6,0,1-.4,1-1V3.3c0-.6-.4-1-1-1H3c-.6,0-1,.4-1,1v9.8ZM18.4,14.3l6,6h3.6v-5.6l-5-5-4.6,4.6ZM4,16.7v3.6h17.6l-10.6-10.5-7,7Z" fill="#ffedde" fill-rule="evenodd"/>
 </svg></span>
-                    <span class="btn-text">ALLE BEELDEN</span></a>
+                    <span class="btn-text">ALLE BEELDEN</span></span>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
     <!-- Fancybox CSS -->
@@ -504,7 +504,14 @@ if(!is_admin()){
                                 <h3>JOUW EXPERT</h3>
                                 <p><?php echo esc_html(ucfirst($agent_name)); ?></p>
                                 <ul>
-                                    <li><a href="tel:<?php echo esc_attr($agent_phone); ?>"><?php echo esc_html($agent_phone); ?></a></li>
+                                    <li>
+                                        <?php
+                                            $agent_phone_raw = preg_replace('/\D/', '', $agent_phone); // remove non-digits
+                                            // Format: 2 digits + 3 digits + 2 digits + 2 digits
+                                            $agent_phone_formatted = preg_replace('/(\d{2})(\d{3})(\d{2})(\d{2})/', '$1 $2 $3 $4', $agent_phone_raw);
+                                        ?>
+                                        <a href="tel:<?php echo esc_attr($agent_phone_raw); ?>"><?php echo esc_html($agent_phone_formatted); ?></a>
+                                    </li>
                                     <li><a href="mailto:<?php echo esc_attr($agent_email); ?>"><?php echo esc_html($agent_email); ?></a></li>
                                     <li>
                                         <a href="https://wa.me/+32497725212?text=<?php echo urlencode($estate_title); ?>" target="_blank">
