@@ -37,6 +37,7 @@
 .filter-with-grid .filter-row .filter-row-in .filter-item .filter-item-wrap {
   width: 100%;
   display: block;
+  position: relative;
 }
 
 .filter-with-grid .filter-row .filter-row-in .filter-item input[type="text"],
