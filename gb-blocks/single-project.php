@@ -143,10 +143,42 @@ if(!is_admin()){
         echo '</pre>';
     }
     if ($whise && $current_purpose_id) {
-        // Use exact same logic as filter system
+        // Use exact same logic as filter system for purpose
         $similar_filters = [
             'PurposeIds' => array_map('intval', [$current_purpose_id]) // Convert to array of integers
         ];
+
+        // Determine if current estate is Belgian or international (holiday)
+        $is_belgian_estate = true; // default
+        if (isset($estate['countryId'])) {
+            $is_belgian_estate = intval($estate['countryId']) === 1;
+        } elseif (isset($estate['country'])) {
+            $country_field = $estate['country'];
+            $country_name_to_check = '';
+            if (is_string($country_field) && $country_field !== '') {
+                $country_name_to_check = strtolower(trim($country_field));
+            } elseif (is_array($country_field)) {
+                if (isset($country_field['id'])) {
+                    $is_belgian_estate = intval($country_field['id']) === 1;
+                } elseif (isset($country_field['name']) && is_string($country_field['name'])) {
+                    $country_name_to_check = strtolower(trim($country_field['name']));
+                }
+            }
+            if ($country_name_to_check !== '') {
+                $is_belgian_estate = in_array($country_name_to_check, ['belgium', 'belgië', 'belgie']);
+            }
+        }
+
+        // Holiday (international) countries list (exclude Belgium = 1)
+        $holiday_country_ids = [
+            2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30, 31, 32,
+            35, 36, 38, 43, 46, 61, 72, 73, 76, 83, 93, 103, 120, 121, 122, 123, 126, 128, 132, 140,
+            141, 145, 146, 155, 161, 163, 164, 166, 168, 193, 196, 210, 213, 216, 234, 239, 240, 242,
+            246, 247
+        ];
+
+        // Apply country filter: Belgian listings -> only Belgium; holiday listings -> only holiday countries
+        $similar_filters['CountryIds'] = $is_belgian_estate ? [1] : $holiday_country_ids;
         // Exclude the current estate from similar properties
         $similar_estates_data = $whise->get_estates($similar_filters);
         // Debug the API response
