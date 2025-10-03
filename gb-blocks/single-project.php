@@ -578,7 +578,7 @@ if(!is_admin()){
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
                         <img src="<?php echo get_template_directory_uri(); ?>/img/ic3.svg" alt="Immo Ley"></div>
-                    <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'oriëntatie van de voorgevel')); ?></span>
+                    <span class="kenmerken-stat-value"><?php echo esc_html(get_detail_value($property_details, 'oriëntatie van het terrein - tuin')); ?></span>
                 </div>
                 <div class="kenmerken-stat">
                     <div class="kenmerken__stat-icon">
