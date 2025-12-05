@@ -170,16 +170,16 @@ if (isset($_GET['country'])) {
 }
 
 // Debug logging
-error_log('Whise Filter Debug - URL Parameters: ' . print_r($_GET, true));
-error_log('Whise Filter Debug - Current values: purposes=' . print_r($current_purposes, true) . ', cities=' . print_r($current_cities, true) . ', categories=' . print_r($current_categories, true) . ', price_ranges=' . print_r($current_price_ranges, true) . ', countries=' . print_r($current_countries, true));
+// error_log('Whise Filter Debug - URL Parameters: ' . print_r($_GET, true));
+// error_log('Whise Filter Debug - Current values: purposes=' . print_r($current_purposes, true) . ', cities=' . print_r($current_cities, true) . ', categories=' . print_r($current_categories, true) . ', price_ranges=' . print_r($current_price_ranges, true) . ', countries=' . print_r($current_countries, true));
 
 // Additional debugging for form submission
 if (isset($_GET['purpose']) || isset($_GET['city']) || isset($_GET['category']) || isset($_GET['country'])) {
-    error_log('Whise Filter Debug - Form submission detected');
-    error_log('Whise Filter Debug - Purpose values: ' . print_r($_GET['purpose'] ?? 'not set', true));
-    error_log('Whise Filter Debug - City values: ' . print_r($_GET['city'] ?? 'not set', true));
-    error_log('Whise Filter Debug - Category values: ' . print_r($_GET['category'] ?? 'not set', true));
-    error_log('Whise Filter Debug - Country values: ' . print_r($_GET['country'] ?? 'not set', true));
+    // error_log('Whise Filter Debug - Form submission detected');
+    // error_log('Whise Filter Debug - Purpose values: ' . print_r($_GET['purpose'] ?? 'not set', true));
+    // error_log('Whise Filter Debug - City values: ' . print_r($_GET['city'] ?? 'not set', true));
+    // error_log('Whise Filter Debug - Category values: ' . print_r($_GET['category'] ?? 'not set', true));
+    // error_log('Whise Filter Debug - Country values: ' . print_r($_GET['country'] ?? 'not set', true));
 }
 
 // Build filters array for API call
@@ -193,7 +193,7 @@ if (!empty($current_purposes)) {
 if (!empty($current_cities)) {
     // $current_cities now contains zip codes directly
     $filters['ZipCodes'] = $current_cities;
-    error_log('Whise Filter Debug - Using ZipCodes for cities: ' . print_r($current_cities, true));
+    // error_log('Whise Filter Debug - Using ZipCodes for cities: ' . print_r($current_cities, true));
 }
 if (!empty($current_categories)) {
     $filters['CategoryIds'] = array_map('intval', $current_categories);
@@ -201,7 +201,7 @@ if (!empty($current_categories)) {
 if (!empty($current_countries)) {
     // Override the default country filter with selected countries
     $filters['CountryIds'] = array_map('intval', $current_countries);
-    error_log('Whise Filter Debug - Using selected countries: ' . print_r($current_countries, true));
+    // error_log('Whise Filter Debug - Using selected countries: ' . print_r($current_countries, true));
 }
 
 // Handle multiple price ranges
@@ -236,16 +236,16 @@ if (!empty($current_price_ranges)) {
     }
 }
 
-error_log('Whise Filter Debug - Built filters: ' . print_r($filters, true));
+// error_log('Whise Filter Debug - Built filters: ' . print_r($filters, true));
 
 // Get estates based on current filters
 $estates = [];
 if ($whise) {
     $estates_data = $whise->get_estates($filters);
-    error_log('Whise Filter Debug - API Response: ' . print_r($estates_data, true));
+    // error_log('Whise Filter Debug - API Response: ' . print_r($estates_data, true));
     if ($estates_data && isset($estates_data['estates'])) {
         $estates = $estates_data['estates'];
-        error_log('Whise Filter Debug - Found ' . count($estates) . ' estates');
+        // error_log('Whise Filter Debug - Found ' . count($estates) . ' estates');
         
         // Sort estates: available properties first, then sold/rented properties
         usort($estates, function($a, $b) {
@@ -272,9 +272,9 @@ if ($whise) {
             return 0;
         });
         
-        error_log('Whise Filter Debug - Sorted ' . count($estates) . ' estates (available first, then sold/rented)');
+        // error_log('Whise Filter Debug - Sorted ' . count($estates) . ' estates (available first, then sold/rented)');
     } else {
-        error_log('Whise Filter Debug - No estates found or API error');
+        // error_log('Whise Filter Debug - No estates found or API error');
     }
 }
 

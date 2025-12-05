@@ -62,7 +62,7 @@ class WhiseAPI {
 
         if (empty($this->username) || empty($this->password)) {
 
-            error_log('Whise API: Missing username or password');
+            // error_log('Whise API: Missing username or password');
 
             return false;
 
@@ -80,7 +80,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 1 - Authenticating with username: ' . $this->username);
+        // error_log('Whise API: Step 1 - Authenticating with username: ' . $this->username);
 
         
 
@@ -104,7 +104,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Authentication error - ' . $response->get_error_message());
+            // error_log('Whise API: Authentication error - ' . $response->get_error_message());
 
             return false;
 
@@ -118,9 +118,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Authentication response code: ' . $status_code);
+        // error_log('Whise API: Authentication response code: ' . $status_code);
 
-        error_log('Whise API: Authentication response body: ' . $body);
+        // error_log('Whise API: Authentication response body: ' . $body);
 
         
 
@@ -132,7 +132,7 @@ class WhiseAPI {
 
             $this->token = $data['token'];
 
-            error_log('Whise API: Step 1 - Authentication successful');
+            // error_log('Whise API: Step 1 - Authentication successful');
 
             return true;
 
@@ -140,7 +140,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 1 - Authentication failed - no token in response');
+        // error_log('Whise API: Step 1 - Authentication failed - no token in response');
 
         return false;
 
@@ -168,7 +168,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 2 - Getting client list');
+        // error_log('Whise API: Step 2 - Getting client list');
 
         
 
@@ -192,7 +192,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Client list error - ' . $response->get_error_message());
+            // error_log('Whise API: Client list error - ' . $response->get_error_message());
 
             return false;
 
@@ -206,9 +206,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Client list response code: ' . $status_code);
+        // error_log('Whise API: Client list response code: ' . $status_code);
 
-        error_log('Whise API: Client list response body: ' . $body);
+        // error_log('Whise API: Client list response body: ' . $body);
 
         
 
@@ -218,7 +218,7 @@ class WhiseAPI {
 
         if ($data && isset($data['clients'])) {
 
-            error_log('Whise API: Step 2 - Found ' . count($data['clients']) . ' clients');
+            // error_log('Whise API: Step 2 - Found ' . count($data['clients']) . ' clients');
 
             return $data['clients'];
 
@@ -226,7 +226,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 2 - Failed to get client list');
+        // error_log('Whise API: Step 2 - Failed to get client list');
 
         return false;
 
@@ -256,7 +256,7 @@ class WhiseAPI {
 
         if (empty($this->client_id)) {
 
-            error_log('Whise API: Missing client ID');
+            // error_log('Whise API: Missing client ID');
 
             return false;
 
@@ -272,7 +272,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 3 - Getting client token for ClientId: ' . $this->client_id);
+        // error_log('Whise API: Step 3 - Getting client token for ClientId: ' . $this->client_id);
 
         
 
@@ -296,7 +296,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Client token error - ' . $response->get_error_message());
+            // error_log('Whise API: Client token error - ' . $response->get_error_message());
 
             return false;
 
@@ -310,9 +310,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Client token response code: ' . $status_code);
+        // error_log('Whise API: Client token response code: ' . $status_code);
 
-        error_log('Whise API: Client token response body: ' . $body);
+        // error_log('Whise API: Client token response body: ' . $body);
 
         
 
@@ -324,7 +324,7 @@ class WhiseAPI {
 
             $this->client_token = $data['token'];
 
-            error_log('Whise API: Step 3 - Client token obtained successfully');
+            // error_log('Whise API: Step 3 - Client token obtained successfully');
 
             return true;
 
@@ -332,7 +332,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 3 - Failed to get client token - no token in response');
+        // error_log('Whise API: Step 3 - Failed to get client token - no token in response');
 
         return false;
 
@@ -352,7 +352,7 @@ class WhiseAPI {
 
             if (!$this->get_client_token()) {
 
-                error_log('Whise API: Failed to get client token for estates request');
+                // error_log('Whise API: Failed to get client token for estates request');
 
                 return false;
 
@@ -390,7 +390,7 @@ class WhiseAPI {
 
         if (!empty($filters)) {
 
-            error_log('Whise API: Processing filters: ' . print_r($filters, true));
+            // error_log('Whise API: Processing filters: ' . print_r($filters, true));
 
             
 
@@ -514,11 +514,11 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Step 4 - Requesting estates with body: ' . json_encode($request_body));
+        // error_log('Whise API: Step 4 - Requesting estates with body: ' . json_encode($request_body));
 
-        error_log('Whise API: Step 4 - API URL: ' . $this->api_url . '/v1/estates/list');
+        // error_log('Whise API: Step 4 - API URL: ' . $this->api_url . '/v1/estates/list');
 
-        error_log('Whise API: Step 4 - Client token: ' . substr($this->client_token, 0, 20) . '...');
+        // error_log('Whise API: Step 4 - Client token: ' . substr($this->client_token, 0, 20) . '...');
 
         
 
@@ -542,7 +542,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Estates request error - ' . $response->get_error_message());
+            // error_log('Whise API: Estates request error - ' . $response->get_error_message());
 
             return false;
 
@@ -558,13 +558,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Estates response code: ' . $status_code);
+        // error_log('Whise API: Estates response code: ' . $status_code);
 
-        error_log('Whise API: Estates response headers: ' . print_r($headers, true));
-
-        error_log('Whise API: Estates response body length: ' . strlen($body));
-
-        error_log('Whise API: Estates response body: ' . $body);
+        // error_log('Whise API: Estates response headers: ' . print_r($headers, true));
 
         
 
@@ -574,11 +570,11 @@ class WhiseAPI {
 
         if ($data) {
 
-            error_log('Whise API: Step 4 - Estates data received successfully');
+            // error_log('Whise API: Step 4 - Estates data received successfully');
 
             if (isset($data['estates'])) {
 
-                error_log('Whise API: Step 4 - Found ' . count($data['estates']) . ' estates');
+                // error_log('Whise API: Step 4 - Found ' . count($data['estates']) . ' estates');
 
                 // Log first estate details for debugging
 
@@ -586,29 +582,29 @@ class WhiseAPI {
 
                     $first_estate = $data['estates'][0];
 
-                    error_log('Whise API: Step 4 - First estate: ID=' . ($first_estate['id'] ?? 'N/A') . 
+                    // error_log('Whise API: Step 4 - First estate: ID=' . ($first_estate['id'] ?? 'N/A') . 
 
-                             ', PurposeId=' . ($first_estate['purposeId'] ?? 'N/A') . 
+                    //          ', PurposeId=' . ($first_estate['purposeId'] ?? 'N/A') . 
 
-                             ', CategoryId=' . ($first_estate['categoryId'] ?? 'N/A') . 
+                    //          ', CategoryId=' . ($first_estate['categoryId'] ?? 'N/A') . 
 
-                             ', Price=' . ($first_estate['price'] ?? 'N/A') . 
+                    //          ', Price=' . ($first_estate['price'] ?? 'N/A') . 
 
-                             ', City=' . ($first_estate['city'] ?? 'N/A'));
+                    //          ', City=' . ($first_estate['city'] ?? 'N/A'));
 
                 }
 
             } else {
 
-                error_log('Whise API: Step 4 - No estates array in response');
+                // error_log('Whise API: Step 4 - No estates array in response');
 
             }
 
         } else {
 
-            error_log('Whise API: Step 4 - Failed to decode estates response');
+            // error_log('Whise API: Step 4 - Failed to decode estates response');
 
-            error_log('Whise API: Step 4 - JSON decode error: ' . json_last_error_msg());
+            // error_log('Whise API: Step 4 - JSON decode error: ' . json_last_error_msg());
 
         }
 
@@ -632,7 +628,7 @@ class WhiseAPI {
 
             if (!$this->get_client_token()) {
 
-                error_log('Whise API: Failed to get client token for cities request');
+                // error_log('Whise API: Failed to get client token for cities request');
 
                 return false;
 
@@ -642,7 +638,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Requesting cities list');
+        // error_log('Whise API: Requesting cities list');
 
         
 
@@ -666,7 +662,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Cities request error - ' . $response->get_error_message());
+            // error_log('Whise API: Cities request error - ' . $response->get_error_message());
 
             return false;
 
@@ -680,9 +676,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Cities response code: ' . $status_code);
+        // error_log('Whise API: Cities response code: ' . $status_code);
 
-        error_log('Whise API: Cities response body: ' . $body);
+        // error_log('Whise API: Cities response body: ' . $body);
 
         
 
@@ -692,7 +688,7 @@ class WhiseAPI {
 
         if ($data) {
 
-            error_log('Whise API: Cities data received successfully');
+            // error_log('Whise API: Cities data received successfully');
 
         }
 
@@ -862,7 +858,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Fetching estate details for ID: ' . $estate_id);
+        // error_log('Whise API: Fetching estate details for ID: ' . $estate_id);
 
         
 
@@ -912,7 +908,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Estate details error - ' . $response->get_error_message());
+            // error_log('Whise API: Estate details error - ' . $response->get_error_message());
 
             return false;
 
@@ -926,9 +922,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Estate details response code: ' . $status_code);
+        // error_log('Whise API: Estate details response code: ' . $status_code);
 
-        error_log('Whise API: Estate details response body: ' . $body);
+        // error_log('Whise API: Estate details response body: ' . $body);
 
         
 
@@ -940,7 +936,7 @@ class WhiseAPI {
 
             $estate = $data['estates'][0];
 
-            error_log('Whise API: Successfully fetched estate details for ID: ' . $estate_id);
+            // error_log('Whise API: Successfully fetched estate details for ID: ' . $estate_id);
 
             return ['estate' => $estate];
 
@@ -948,7 +944,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Failed to fetch estate details for ID: ' . $estate_id);
+        // error_log('Whise API: Failed to fetch estate details for ID: ' . $estate_id);
 
         return false;
 
@@ -964,7 +960,7 @@ class WhiseAPI {
 
     public function test_connection() {
 
-        error_log('Whise API: Starting complete connection test');
+        // error_log('Whise API: Starting complete connection test');
 
         
 
@@ -1040,7 +1036,7 @@ class WhiseAPI {
 
             if (!$this->get_client_token()) {
 
-                error_log('Whise API Debug: Failed to get client token');
+                // error_log('Whise API Debug: Failed to get client token');
 
                 return false;
 
@@ -1130,11 +1126,11 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API Debug: Making test API call');
+        // error_log('Whise API Debug: Making test API call');
 
-        error_log('Whise API Debug: Request body: ' . json_encode($request_body));
+        // error_log('Whise API Debug: Request body: ' . json_encode($request_body));
 
-        error_log('Whise API Debug: API URL: ' . $this->api_url . '/v1/estates/list');
+        // error_log('Whise API Debug: API URL: ' . $this->api_url . '/v1/estates/list');
 
         
 
@@ -1158,7 +1154,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API Debug: Request error - ' . $response->get_error_message());
+            // error_log('Whise API Debug: Request error - ' . $response->get_error_message());
 
             return false;
 
@@ -1174,11 +1170,11 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API Debug: Response status: ' . $status_code);
+        // error_log('Whise API Debug: Response status: ' . $status_code);
 
-        error_log('Whise API Debug: Response headers: ' . print_r($headers, true));
+        // error_log('Whise API Debug: Response headers: ' . print_r($headers, true));
 
-        error_log('Whise API Debug: Response body: ' . $body);
+        // error_log('Whise API Debug: Response body: ' . $body);
 
         
 
@@ -1188,17 +1184,17 @@ class WhiseAPI {
 
         if ($data) {
 
-            error_log('Whise API Debug: JSON decoded successfully');
+            // error_log('Whise API Debug: JSON decoded successfully');
 
             if (isset($data['estates'])) {
 
-                error_log('Whise API Debug: Found ' . count($data['estates']) . ' estates');
+                // error_log('Whise API Debug: Found ' . count($data['estates']) . ' estates');
 
             }
 
         } else {
 
-            error_log('Whise API Debug: JSON decode failed: ' . json_last_error_msg());
+            // error_log('Whise API Debug: JSON decode failed: ' . json_last_error_msg());
 
         }
 
@@ -1232,7 +1228,7 @@ class WhiseAPI {
 
             if (!$this->get_client_token()) {
 
-                error_log('Whise API: Failed to get client token for representatives request');
+                // error_log('Whise API: Failed to get client token for representatives request');
 
                 return false;
 
@@ -1242,7 +1238,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Fetching representatives list');
+        // error_log('Whise API: Fetching representatives list');
 
         
 
@@ -1266,7 +1262,7 @@ class WhiseAPI {
 
         if (is_wp_error($response)) {
 
-            error_log('Whise API: Representatives error - ' . $response->get_error_message());
+            // error_log('Whise API: Representatives error - ' . $response->get_error_message());
 
             return false;
 
@@ -1280,9 +1276,9 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Representatives response code: ' . $status_code);
+        // error_log('Whise API: Representatives response code: ' . $status_code);
 
-        error_log('Whise API: Representatives response body: ' . $body);
+        // error_log('Whise API: Representatives response body: ' . $body);
 
         
 
@@ -1292,7 +1288,7 @@ class WhiseAPI {
 
         if ($data && isset($data['representatives'])) {
 
-            error_log('Whise API: Successfully fetched ' . count($data['representatives']) . ' representatives');
+            // error_log('Whise API: Successfully fetched ' . count($data['representatives']) . ' representatives');
 
             return $data['representatives'];
 
@@ -1300,7 +1296,7 @@ class WhiseAPI {
 
         
 
-        error_log('Whise API: Failed to fetch representatives');
+        // error_log('Whise API: Failed to fetch representatives');
 
         return false;
 

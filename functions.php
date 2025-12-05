@@ -622,3 +622,92 @@ function get_whise_status_by_id($id) {
 	}
 	return false;
 }
+
+/**
+ * Clean log files to prevent them from growing too large
+ * This function cleans log files in the /logs directory and rotates them
+ */
+function immoley_clean_log_files() {
+	$log_dir = ABSPATH . 'logs';
+	$max_file_size = 50 * 1024 * 1024; // 50MB max file size
+	$max_age_days = 7; // Keep logs for 7 days
+	
+	// Check if logs directory exists
+	if (!is_dir($log_dir)) {
+		return;
+	}
+	
+	// Get all files in the logs directory
+	$files = glob($log_dir . '/*.log');
+	if (empty($files)) {
+		// Also check for files without .log extension (like error_log)
+		$files = array_merge($files, glob($log_dir . '/error_log'));
+		$files = array_merge($files, glob($log_dir . '/error_log*'));
+	}
+	
+	foreach ($files as $file) {
+		if (!is_file($file)) {
+			continue;
+		}
+		
+		$file_size = filesize($file);
+		$file_age = time() - filemtime($file);
+		$file_age_days = $file_age / (24 * 60 * 60);
+		
+		// Delete files older than max_age_days
+		if ($file_age_days > $max_age_days) {
+			@unlink($file);
+			continue;
+		}
+		
+		// Rotate files larger than max_file_size
+		if ($file_size > $max_file_size) {
+			// Create backup with timestamp
+			$backup_file = $file . '.' . date('Y-m-d_His') . '.bak';
+			@copy($file, $backup_file);
+			
+			// Truncate the original file (keep last 10MB for safety)
+			$keep_size = 10 * 1024 * 1024; // 10MB
+			if ($file_size > $keep_size) {
+				$handle = @fopen($file, 'r+');
+				if ($handle) {
+					// Seek to position (file_size - keep_size)
+					fseek($handle, $file_size - $keep_size);
+					// Read from that position
+					$content = fread($handle, $keep_size);
+					// Truncate and write back
+					ftruncate($handle, 0);
+					rewind($handle);
+					fwrite($handle, $content);
+					fclose($handle);
+				}
+			}
+			
+			// Clean up old backup files (older than max_age_days)
+			$backup_files = glob($file . '.*.bak');
+			foreach ($backup_files as $backup) {
+				$backup_age = time() - filemtime($backup);
+				$backup_age_days = $backup_age / (24 * 60 * 60);
+				if ($backup_age_days > $max_age_days) {
+					@unlink($backup);
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Schedule log file cleanup to run daily
+ */
+function immoley_schedule_log_cleanup() {
+	if (!wp_next_scheduled('immoley_daily_log_cleanup')) {
+		wp_schedule_event(time(), 'daily', 'immoley_daily_log_cleanup');
+	}
+}
+add_action('wp', 'immoley_schedule_log_cleanup');
+add_action('after_switch_theme', 'immoley_schedule_log_cleanup');
+
+/**
+ * Hook the cleanup function to the scheduled event
+ */
+add_action('immoley_daily_log_cleanup', 'immoley_clean_log_files');
